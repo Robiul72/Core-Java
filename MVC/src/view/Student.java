@@ -4,6 +4,14 @@
  */
 package view;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author user
@@ -26,21 +34,236 @@ public class Student extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        sName = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        sDOB = new com.toedter.calendar.JDateChooser();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        sSubject = new javax.swing.JComboBox<>();
+        jLabel6 = new javax.swing.JLabel();
+        sRead = new javax.swing.JCheckBox();
+        sWrite = new javax.swing.JCheckBox();
+        jLabel7 = new javax.swing.JLabel();
+        sMale = new javax.swing.JRadioButton();
+        sFemale = new javax.swing.JRadioButton();
+        sSubmit = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        sAddress = new javax.swing.JTextArea();
+        jLabel8 = new javax.swing.JLabel();
+        eMail = new javax.swing.JTextField();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(102, 102, 102));
+
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Student form");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
+        );
+
+        jLabel2.setText("Name :");
+
+        jLabel3.setText("Date   :");
+
+        jLabel4.setText("Address :");
+
+        jLabel5.setText("Subject :");
+
+        sSubject.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Selected--", "JEE", "PHP", "GD", "DDD" }));
+
+        jLabel6.setText("Hobby :");
+
+        sRead.setText("Reading");
+
+        sWrite.setText("Writing");
+
+        jLabel7.setText("Gender :");
+
+        buttonGroup1.add(sMale);
+        sMale.setText("Male");
+
+        buttonGroup1.add(sFemale);
+        sFemale.setText("Female");
+
+        sSubmit.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        sSubmit.setText("Submit");
+        sSubmit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sSubmitMouseClicked(evt);
+            }
+        });
+
+        sAddress.setColumns(20);
+        sAddress.setRows(5);
+        jScrollPane1.setViewportView(sAddress);
+
+        jLabel8.setText("Email :");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(sSubmit)
+                .addGap(187, 187, 187))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(sMale)
+                                .addGap(26, 26, 26)
+                                .addComponent(sFemale))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(sRead)
+                                .addGap(18, 18, 18)
+                                .addComponent(sWrite))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(sSubject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addGap(21, 21, 21)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(eMail)
+                            .addComponent(sName)
+                            .addComponent(sDOB, javax.swing.GroupLayout.DEFAULT_SIZE, 301, Short.MAX_VALUE))))
+                .addContainerGap(101, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(sName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(sDOB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(eMail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(15, 15, 15)))
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(sSubject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(sRead)
+                    .addComponent(sWrite))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(sMale)
+                    .addComponent(sFemale))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addComponent(sSubmit)
+                .addGap(29, 29, 29))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void sSubmitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sSubmitMouseClicked
+        // TODO add your handling code here:
+        
+        String name = sName.getText();
+        String date = sDOB.getDate().toString();
+       
+        String address = sAddress.getText();
+        String subject = sSubject.getSelectedItem().toString();
+        
+        List<String> hobby = new ArrayList<>();
+        if(sRead.isSelected()){
+            hobby.add("Reading");
+        }
+        if(sWrite.isSelected()){
+            hobby.add("Writing");
+        }
+        
+        String gender = " ";
+        if(sMale.isSelected()){
+            gender="Male";
+        }
+        else if (sFemale.isSelected()){        
+            gender= "Female";          
+        }
+        
+        String email = eMail.getText().trim();
+        String pattern = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
+       
+        
+            
+        
+        try {
+            
+            PrintWriter write = new PrintWriter("Student.txt");
+            
+            if(email.matches(pattern)){ 
+                
+            write.print("  Name      : "+name+"\n");
+            write.print("  Date      : "+date+"\n");
+            write.print("  Email     : "+email+"\n");
+            write.print("  Address   : "+address+"\n");
+            write.print("  Subject   : "+subject+"\n");
+            write.print("  Hobby     : "+hobby+"\n");
+            write.print("  Gender    : "+gender);
+            write.close();
+            
+            JOptionPane.showMessageDialog(rootPane, "Congratulation \n\n"+ "Form is Successfull");
+        }
+            else{           
+                JOptionPane.showMessageDialog(rootPane, "Congratulation \n\n"+ "Email is Invalied");               
+            }
+           
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Student.class.getName()).log(Level.SEVERE, null, ex);
+        }       
+    }//GEN-LAST:event_sSubmitMouseClicked
 
     /**
      * @param args the command line arguments
@@ -78,5 +301,26 @@ public class Student extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JTextField eMail;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea sAddress;
+    private com.toedter.calendar.JDateChooser sDOB;
+    private javax.swing.JRadioButton sFemale;
+    private javax.swing.JRadioButton sMale;
+    private javax.swing.JTextField sName;
+    private javax.swing.JCheckBox sRead;
+    private javax.swing.JComboBox<String> sSubject;
+    private javax.swing.JButton sSubmit;
+    private javax.swing.JCheckBox sWrite;
     // End of variables declaration//GEN-END:variables
 }
