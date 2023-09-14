@@ -210,59 +210,54 @@ public class Student extends javax.swing.JFrame {
 
     private void sSubmitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sSubmitMouseClicked
         // TODO add your handling code here:
-        
+
         String name = sName.getText();
         String date = sDOB.getDate().toString();
-       
+
         String address = sAddress.getText();
         String subject = sSubject.getSelectedItem().toString();
-        
+
         List<String> hobby = new ArrayList<>();
-        if(sRead.isSelected()){
+        if (sRead.isSelected()) {
             hobby.add("Reading");
         }
-        if(sWrite.isSelected()){
+        if (sWrite.isSelected()) {
             hobby.add("Writing");
         }
-        
+
         String gender = " ";
-        if(sMale.isSelected()){
-            gender="Male";
+        if (sMale.isSelected()) {
+            gender = "Male";
+        } else if (sFemale.isSelected()) {
+            gender = "Female";
         }
-        else if (sFemale.isSelected()){        
-            gender= "Female";          
-        }
-        
+
         String email = eMail.getText().trim();
         String pattern = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
-       
-        
-            
-        
+
         try {
-            
+
             PrintWriter write = new PrintWriter("Student.txt");
-            
-            if(email.matches(pattern)){ 
-                
-            write.print("  Name      : "+name+"\n");
-            write.print("  Date      : "+date+"\n");
-            write.print("  Email     : "+email+"\n");
-            write.print("  Address   : "+address+"\n");
-            write.print("  Subject   : "+subject+"\n");
-            write.print("  Hobby     : "+hobby+"\n");
-            write.print("  Gender    : "+gender);
-            write.close();
-            
-            JOptionPane.showMessageDialog(rootPane, "Congratulation \n\n"+ "Form is Successfull");
-        }
-            else{           
-                JOptionPane.showMessageDialog(rootPane, "Congratulation \n\n"+ "Email is Invalied");               
+
+            if (email.matches(pattern)) {
+
+                write.print("  Name      : " + name + "\n");
+                write.print("  Date      : " + date + "\n");
+                write.print("  Email     : " + email + "\n");
+                write.print("  Address   : " + address + "\n");
+                write.print("  Subject   : " + subject + "\n");
+                write.print("  Hobby     : " + hobby + "\n");
+                write.print("  Gender    : " + gender);
+                write.close();
+
+                JOptionPane.showMessageDialog(rootPane, "Congratulation \n\n" + "Submit is Successfull");
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Congratulation \n\n" + "Email is Invalied");
             }
-           
+
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Student.class.getName()).log(Level.SEVERE, null, ex);
-        }       
+        }
     }//GEN-LAST:event_sSubmitMouseClicked
 
     /**
