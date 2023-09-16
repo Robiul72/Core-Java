@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 
 /**
@@ -36,6 +37,35 @@ public class StudentRegForm extends javax.swing.JFrame {
         sName.setText(null);
         sAge.setText(null);
         sRoll.setText(null);
+    }
+    
+    // name the table column from here
+    String [] studentColumnName = {"Roll", "Name", "Age"};
+     
+    public void getAllStudent(){
+        sql= "select * from students";
+        
+        DefaultTableModel model = new DefaultTableModel();
+        model.setColumnIdentifiers(studentColumnName);
+        
+        sTable.setModel(model);
+        
+        try {
+            ps=con.getCon().prepareStatement(sql);
+            rs = ps.executeQuery();
+            
+            while(rs.next()){
+                int roll = rs.getInt("roll");
+                String name = rs.getString("name");
+                int age = rs.getInt("age");
+                model.addRow(new Object[]{roll, name, age});
+            }
+            ps.cancel();
+            con.getCon().close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentRegForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 
@@ -214,6 +244,7 @@ public class StudentRegForm extends javax.swing.JFrame {
 
     private void btnSaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSaveMouseClicked
         // TODO add your handling code here:
+       
         sql = "insert into student(name,age)nalues(?,?)";
         
         try {
