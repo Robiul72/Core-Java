@@ -1,0 +1,7 @@
+ Name          : fbcbcx
+ Father's Name : xcvcxbxc
+ Mother's Name : xvxvx
+ Gender        : Female
+ Date of Birth : Sat Sep 02 02:09:10 BDT 2023
+ Subject       : DDD
+ Hobby         : [Reading, Writing]
