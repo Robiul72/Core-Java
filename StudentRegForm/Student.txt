@@ -1,0 +1,8 @@
+ Name           : Robiul
+ Father's Name  : Bodiuzzaman
+ Mother's Name  : Aleza
+ Phone No       : 01911661138
+ Gender         : Male
+ Date of Birth  : Wed Sep 20 10:16:08 BDT 2023
+ Subject        : DDD
+ Hobby          : [Reading, Writing, Gaming]

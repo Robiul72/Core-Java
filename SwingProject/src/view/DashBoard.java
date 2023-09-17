@@ -59,7 +59,9 @@ public class DashBoard extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 589, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 134, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,18 +149,16 @@ public class DashBoard extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnHomeMouseClicked
 
-    
-    
     // Home btn color and wapper korar jonno
     private void btnHomeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHomeMouseEntered
         // TODO add your handling code here:
-        btnHome.setForeground(Color.red);
+       
         btnHome.setBackground(Color.BLUE);
         
     }//GEN-LAST:event_btnHomeMouseEntered
     // Home btn color and wapper korar jonno
     private void btnHomeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHomeMouseExited
-         btnHome.setForeground(Color.BLACK);
+      
          btnHome.setBackground(Color.WHITE);
     }//GEN-LAST:event_btnHomeMouseExited
 
@@ -174,13 +174,13 @@ public class DashBoard extends javax.swing.JFrame {
 
     private void btnSalesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalesMouseEntered
         // TODO add your handling code here:
-        btnSales.setForeground(Color.GREEN);
+    
         btnSales.setBackground(Color.RED);
     }//GEN-LAST:event_btnSalesMouseEntered
 
     private void btnSalesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalesMouseExited
         // TODO add your handling code here:
-         btnSales.setForeground(Color.BLACK);
+        
          btnSales.setBackground(Color.WHITE);
     }//GEN-LAST:event_btnSalesMouseExited
 

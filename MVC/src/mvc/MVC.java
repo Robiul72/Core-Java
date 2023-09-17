@@ -4,7 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import utill.Dbcon;
+import DataBased.Dbcon;
 import view.Student;
 
 public class MVC {
