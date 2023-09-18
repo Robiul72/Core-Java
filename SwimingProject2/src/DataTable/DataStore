@@ -1,0 +1,12 @@
+CREATE TABLE `sys`.`salse report` (
+  `SID` INT NULL AUTO_INCREMENT,
+  `Name` VARCHAR(45) NULL,
+  `UnitPrice` FLOAT NULL,
+  `Quantity` FLOAT NULL,
+  `TotalPrice` FLOAT NULL,
+  `DiscountPrice` FLOAT NULL,
+  `ActualPrice` FLOAT NULL,
+  `ReceivePrice` FLOAT NULL,
+  `DuePrice` FLOAT NULL,
+  `SalerID` VARCHAR(45) NOT NULL,
+  `SalseDate` DATE NULL);
