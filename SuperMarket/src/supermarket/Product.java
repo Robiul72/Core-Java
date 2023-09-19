@@ -4,6 +4,8 @@
  */
 package supermarket;
 
+import java.awt.Color;
+
 /**
  *
  * @author USER
@@ -98,6 +100,14 @@ public class Product extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jButton1.setText("Add");
         jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 0), 2));
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton1MouseExited(evt);
+            }
+        });
         jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 270, 83, 37));
 
         jButton2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -203,6 +213,19 @@ public class Product extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    
+    // 
+    private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
+        // TODO add your handling code here:
+        
+        jButton1.setBackground(new Color(255,153,0) );
+    }//GEN-LAST:event_jButton1MouseEntered
+
+    private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
+        // TODO add your handling code here:
+        jButton1.setBackground(getBackground());
+    }//GEN-LAST:event_jButton1MouseExited
 
     /**
      * @param args the command line arguments

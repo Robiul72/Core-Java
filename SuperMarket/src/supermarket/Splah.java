@@ -87,6 +87,7 @@ public class Splah extends javax.swing.JFrame {
         
         }
         
+//        new LoginPage().setVisible(true);
         new LoginPage().setVisible(true);
         mySpah.dispose();
     }
