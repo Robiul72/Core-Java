@@ -4,9 +4,16 @@
  */
 package view;
 
+import com.mysql.cj.xdevapi.Result;
 import java.awt.Color;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.concurrent.ExecutionException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import util.DbCon;
 
 /**
  *
@@ -21,16 +28,44 @@ public class jee extends javax.swing.JFrame {
         initComponents();
     }
     
-    // calculate total price
+    DbCon con = new DbCon();
+    PreparedStatement ps ;
+    String sql = " ";
+//    Result rs ="";
     
+    // calculate total price
     public float getTotalPrice(){
         float unitPrice = Float.parseFloat(txtUnitPrice.getText().trim());
         float quantity = Float.parseFloat(txtQuantity.getText().trim());
-        float totalPrice = unitPrice*quantity;
+        float totalPrice = unitPrice * quantity;
         
         return totalPrice;
     }
+    // discount price ber korar jonno
+    public float getActualPrice(){
+        float totalPrice = getTotalPrice();
+        float discount = Float.parseFloat(txtDiscount.getText().trim());
+        float discountAmount=totalPrice * discount / 100;
+        
+        float actualPrice = totalPrice - discountAmount;
+        
+    return actualPrice;
+    }
     
+    public float getDiscountAmount(){
+    
+        return getTotalPrice()-getActualPrice();
+    
+    }
+    
+    // only date method er jonno
+       public Date convertUtilDateSqlDate(java.util.Date utilDate){
+        
+            if (utilDate != null){
+                return new Date(utilDate.getTime());
+            }
+            return null;
+        }
     
 
     /**
@@ -83,7 +118,27 @@ public class jee extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         purchese = new javax.swing.JPanel();
-        jPanel8 = new javax.swing.JPanel();
+        jPanel9 = new javax.swing.JPanel();
+        jPanel12 = new javax.swing.JPanel();
+        jPanel13 = new javax.swing.JPanel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        jComboBox3 = new javax.swing.JComboBox<>();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        jLabel27 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
+        jTextField4 = new javax.swing.JTextField();
+        jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jLabel29 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -112,11 +167,6 @@ public class jee extends javax.swing.JFrame {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnHomeMouseExited(evt);
-            }
-        });
-        btnHome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHomeActionPerformed(evt);
             }
         });
         jPanel1.add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 150, 50));
@@ -195,6 +245,7 @@ public class jee extends javax.swing.JFrame {
         jLabel3.setText("Sales Report");
         jPanel6.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1070, 60));
 
+        jPanel7.setBackground(new java.awt.Color(246, 188, 188));
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
@@ -239,7 +290,7 @@ public class jee extends javax.swing.JFrame {
 
         txtSid.setEditable(false);
         txtSid.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel7.add(txtSid, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, 370, -1));
+        jPanel7.add(txtSid, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, 370, 20));
 
         txtProductName.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel7.add(txtProductName, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 70, 370, -1));
@@ -265,12 +316,22 @@ public class jee extends javax.swing.JFrame {
         jPanel7.add(txtTotalPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, 370, -1));
 
         txtDiscount.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtDiscount.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtDiscountFocusLost(evt);
+            }
+        });
         jPanel7.add(txtDiscount, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, 370, -1));
 
         txtActualPrice.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel7.add(txtActualPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 270, 370, -1));
 
         txtCashReceived.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtCashReceived.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCashReceivedFocusLost(evt);
+            }
+        });
         jPanel7.add(txtCashReceived, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 310, 370, -1));
 
         txtDueAmount.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -292,6 +353,11 @@ public class jee extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton1.setText("Submit");
         jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
         jPanel7.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 340, 80, 30));
 
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -316,31 +382,166 @@ public class jee extends javax.swing.JFrame {
 
         menu.addTab("tab2", sales);
 
+        jPanel12.setBackground(new java.awt.Color(204, 204, 255));
+
+        jPanel13.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel13.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel23.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
+        jLabel23.setForeground(new java.awt.Color(255, 153, 0));
+        jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel23.setText("MANAGE PRODUCTS");
+        jPanel13.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(4, 10, 860, 44));
+
+        jLabel24.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel24.setForeground(new java.awt.Color(255, 153, 0));
+        jLabel24.setText("PRODUCT ID");
+        jPanel13.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 71, 127, -1));
+
+        jLabel25.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel25.setForeground(new java.awt.Color(255, 153, 0));
+        jLabel25.setText("NAME");
+        jPanel13.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 127, 127, -1));
+
+        jLabel26.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel26.setForeground(new java.awt.Color(255, 153, 0));
+        jLabel26.setText("CATEGORY");
+        jPanel13.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 179, 118, -1));
+
+        jComboBox3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jComboBox3.setForeground(new java.awt.Color(255, 153, 0));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Beverage", "Vagetable", "Meat" }));
+        jPanel13.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 176, 134, -1));
+        jPanel13.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 68, 134, -1));
+        jPanel13.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 124, 134, -1));
+
+        jLabel27.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel27.setForeground(new java.awt.Color(255, 153, 0));
+        jLabel27.setText("QUANTITY");
+        jPanel13.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(446, 71, 119, -1));
+
+        jLabel28.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel28.setForeground(new java.awt.Color(255, 153, 0));
+        jLabel28.setText("PRICE");
+        jPanel13.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(446, 127, 119, -1));
+        jPanel13.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(605, 68, 168, -1));
+        jPanel13.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(605, 124, 168, -1));
+
+        jButton7.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jButton7.setText("Add");
+        jButton7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 0), 2));
+        jButton7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton7MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton7MouseExited(evt);
+            }
+        });
+        jPanel13.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 270, 83, 37));
+
+        jButton8.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jButton8.setText("Edit");
+        jButton8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 0), 2));
+        jPanel13.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 270, 74, 38));
+
+        jButton3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jButton3.setText("Delete");
+        jButton3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 0), 2));
+        jPanel13.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 270, 74, 38));
+
+        jButton4.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jButton4.setText("Clear");
+        jButton4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 0), 2));
+        jPanel13.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 270, 79, 38));
+
+        jScrollPane1.setColumnHeaderView(null);
+
+        jTable1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 0)));
+        jTable1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "NAME", "QUANTITY", "PRICE", "CATEGORY"
+            }
+        ));
+        jTable1.setAlignmentX(1.0F);
+        jTable1.setAlignmentY(1.0F);
+        jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jTable1.setEditingColumn(1);
+        jTable1.setEditingRow(5);
+        jTable1.setFillsViewportHeight(true);
+        jTable1.setFocusCycleRoot(true);
+        jTable1.setFocusTraversalPolicyProvider(true);
+        jTable1.setGridColor(new java.awt.Color(255, 153, 0));
+        jTable1.setPreferredSize(new java.awt.Dimension(37, 33));
+        jTable1.setRowHeight(25);
+        jTable1.setRowMargin(10);
+        jTable1.setSelectionForeground(new java.awt.Color(251, 248, 248));
+        jTable1.setShowHorizontalLines(true);
+        jTable1.setShowVerticalLines(true);
+        jScrollPane1.setViewportView(jTable1);
+
+        jPanel13.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, 780, 310));
+
+        jLabel29.setFont(new java.awt.Font("Times New Roman", 1, 30)); // NOI18N
+        jLabel29.setForeground(new java.awt.Color(255, 153, 0));
+        jLabel29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel29.setText("PRODUCT LIST");
+        jPanel13.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 850, 40));
+
+        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
+        jPanel12.setLayout(jPanel12Layout);
+        jPanel12Layout.setHorizontalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addContainerGap(100, Short.MAX_VALUE)
+                .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, 837, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(107, 107, 107))
+        );
+        jPanel12Layout.setVerticalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, 588, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(9, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout purcheseLayout = new javax.swing.GroupLayout(purchese);
         purchese.setLayout(purcheseLayout);
         purcheseLayout.setHorizontalGroup(
             purcheseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1050, Short.MAX_VALUE)
+            .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         purcheseLayout.setVerticalGroup(
             purcheseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 609, Short.MAX_VALUE)
+            .addGroup(purcheseLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         menu.addTab("tab3", purchese);
-
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1050, Short.MAX_VALUE)
-        );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 609, Short.MAX_VALUE)
-        );
-
-        menu.addTab("tab4", jPanel8);
 
         jPanel2.add(menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -40, 1050, 640));
 
@@ -359,11 +560,6 @@ public class jee extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
-        // TODO add your handling code here:
-        menu.setSelectedIndex(0);
-    }//GEN-LAST:event_btnHomeActionPerformed
 
     private void btnSalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalesActionPerformed
         // TODO add your handling code here:
@@ -445,6 +641,73 @@ public class jee extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtQuantityFocusLost
 
+    private void jButton7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseEntered
+        // TODO add your handling code here:
+
+        jButton1.setBackground(new Color(255,153,0) );
+    }//GEN-LAST:event_jButton7MouseEntered
+
+    private void jButton7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseExited
+        // TODO add your handling code here:
+        jButton1.setBackground(getBackground());
+    }//GEN-LAST:event_jButton7MouseExited
+
+    private void txtDiscountFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDiscountFocusLost
+        // TODO add your handling code here:
+         float actualPrice =getActualPrice();  // method call korlam
+        
+        txtActualPrice.setText(actualPrice +"");
+    }//GEN-LAST:event_txtDiscountFocusLost
+
+    private void txtCashReceivedFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCashReceivedFocusLost
+        // TODO add your handling code here:
+        
+        float actualPrice = getActualPrice();
+        float cashReceived = Float.parseFloat(txtCashReceived.getText().trim());
+        
+        float dueAmount = actualPrice - cashReceived;
+        
+        txtDueAmount.setText(dueAmount + "");
+    }//GEN-LAST:event_txtCashReceivedFocusLost
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        
+//        float discountAmount = getTotalPrice() - getActualPrice();
+        
+        sql = "insert into salse(name, unitPrice, quantity, TotalPrice, actualPrice,ReceivePrice, DiscountPrice, DuePrice, salerId, SalseDate) values (?,?,?,?,?,?,?,?,?,?)";
+        
+        try {
+            ps=con.getCon().prepareStatement(sql);
+            
+            ps.setString(1, txtProductName.getText().trim());
+            ps.setFloat(2, Float.parseFloat(txtUnitPrice.getText().trim()));
+            ps.setFloat(3, Float.parseFloat(txtQuantity.getText().trim()));
+            ps.setFloat(4, Float.parseFloat(txtTotalPrice.getText().trim()));
+            ps.setFloat(5, Float.parseFloat(txtActualPrice.getText().trim()));
+            ps.setFloat(6, Float.parseFloat(txtCashReceived.getText().trim()));
+            ps.setFloat(7, getDiscountAmount());
+            ps.setFloat(8, Float.parseFloat(txtDueAmount.getText()));
+            ps.setInt(9, 1);
+            ps.setDate(10, convertUtilDateSqlDate(txtDate.getDate()));
+            
+            ps.executeUpdate();
+            
+            ps.close();
+            con.getCon().close();
+            
+            JOptionPane.showMessageDialog(rootPane, "Data Submitted");
+            
+                    
+            
+        } catch (SQLException ex) {
+            
+            JOptionPane.showMessageDialog(rootPane, "Data not Submit");
+            
+            Logger.getLogger(jee.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -487,7 +750,12 @@ public class jee extends javax.swing.JFrame {
     private javax.swing.JPanel home;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -495,6 +763,13 @@ public class jee extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -503,13 +778,21 @@ public class jee extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
     private javax.swing.JTabbedPane menu;
     private javax.swing.JPanel purchese;
     private javax.swing.JPanel sales;
