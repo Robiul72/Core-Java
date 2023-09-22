@@ -5,6 +5,7 @@
 package view;
 
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -127,32 +128,54 @@ public class EmailCheck extends javax.swing.JFrame {
 
     private void eCheckMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eCheckMouseClicked
         // TODO add your handling code here:
-        String pass = ePass.getText();
-        String pattern1 ="^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$";
-        if(pass.matches(pattern1)){
-            pOutput.setText("Password is Currect");
-            pOutput.setForeground(Color.BLUE);
-        }
-        else{
-            pOutput.setText("Password is Incurrect");
-            pOutput.setForeground(Color.RED);
-            ePass.setText(" ");
-        }
-        
-        
+        String admin = "admin";
+        String password = "1234";
         
         String email = eMail.getText().trim();
-        String pattern = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
+        String pass = ePass.getText();
         
-        if(email.matches(pattern)){
-            eOutput.setText("Email is Valied");
-            eOutput.setForeground(Color.GREEN);
+        if(email.equalsIgnoreCase(admin) && pass.equals(password)){
+            
+            JOptionPane.showMessageDialog(rootPane, "Email or Password is Valied");
         }
-        else {
-            eOutput.setText("Email is Invalied");
-            eOutput.setForeground(Color.red);
-            eMail.setText(" ");
+        else{
+            JOptionPane.showMessageDialog(rootPane, "Email or Password is not Valied");
         }
+        
+//        if(pass.equals(password)){
+//            JOptionPane.showMessageDialog(rootPane, "Password is Valied");
+//        }
+//        else{
+//            JOptionPane.showMessageDialog(rootPane, "Password is not Valied");
+//        }
+        
+        
+//        String pass = ePass.getText();
+//        String pattern1 ="^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$";
+//        if(pass.matches(pattern1)){
+//            pOutput.setText("Password is Currect");
+//            pOutput.setForeground(Color.BLUE);
+//        }
+//        else{
+//            pOutput.setText("Password is Incurrect");
+//            pOutput.setForeground(Color.RED);
+//            ePass.setText(" ");
+//        }
+//        
+//        
+//        
+//        String email = eMail.getText().trim();
+//        String pattern = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
+//        
+//        if(email.matches(pattern)){
+//            eOutput.setText("Email is Valied");
+//            eOutput.setForeground(Color.GREEN);
+//        }
+//        else {
+//            eOutput.setText("Email is Invalied");
+//            eOutput.setForeground(Color.red);
+//            eMail.setText(" ");
+//        }
     }//GEN-LAST:event_eCheckMouseClicked
 
     /**
