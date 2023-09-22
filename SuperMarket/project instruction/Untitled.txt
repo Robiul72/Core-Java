@@ -1,0 +1,14 @@
+
+ 	 Super Market Project
+
+* now let's code the Splah form 
+
+* now Let's Create the Database
+	Database is created
+
+* now Let's Create Tables
+
+* now Add add Java DB Driver
+
+* now We will Connect the UI to the database and perform the CRUD operations
+
