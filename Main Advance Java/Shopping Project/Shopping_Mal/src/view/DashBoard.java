@@ -15,21 +15,56 @@ import javax.swing.table.DefaultTableModel;
 import util.DbCon;
 
 public class DashBoard extends javax.swing.JFrame {
-       
+
     /**
      * Creates new form DashBoard
      */
     public DashBoard() {
         initComponents();
-         getAllProduct();
+        getAllSales();
+        getAllProduct();
     }
-  
+
     DbCon con = new DbCon();
-    
+
     PreparedStatement ps;
     String sql = " ";
     ResultSet rs;
-    
+
+    // ProductAll method
+    String[] productColumns = {"Product_ID", "Product_Name", "Product_Catagory", "Product_Code"};
+
+    public void getAllProduct() {
+        DefaultTableModel model = new DefaultTableModel();
+        model.setColumnIdentifiers(productColumns);
+
+        pTable.setModel(model);
+
+        sql = "select * from producttable";
+
+        try {
+
+            ps = con.getCon().prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                int id = rs.getInt("Product_Id");
+                String name = rs.getString("Product_Name");
+                String catagory = rs.getString("Product_Catagory");
+                String code = rs.getString("Product_Code");
+
+                model.addRow(new Object[]{id, name, catagory, code});
+            }
+            rs.close();
+            ps.close();
+            con.getCon().close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DashBoard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     // calculate total Price 
     public float getTotalPrice() {
 
@@ -53,29 +88,28 @@ public class DashBoard extends javax.swing.JFrame {
 
         return actualPrice;
     }
-    
-    public float getDiscount(){
+
+    public float getDiscount() {
         return getTotalPrice() - getActualPrice();
     }
-    
-    
-     public java.sql.Date convertUtilDateToSqlDate(java.util.Date utilDate) {
+
+    public java.sql.Date convertUtilDateToSqlDate(java.util.Date utilDate) {
         if (utilDate != null) {
             return new java.sql.Date(utilDate.getTime());
         }
         return null;
     }
-     
-     
-      String[] salerColumns = { "Seller_Name", "Unit Price", "Quantity", "Total Price", "Discount", "Actual Price"};
-       public void getAllProduct() {
 
-           DefaultTableModel model = new DefaultTableModel();
+    String[] salerColumns = {"Seler_Name", "Unit Price", "Quantity", "Total Price", "Discount", "Actual Price"};
+
+    public void getAllSales() {
+
+        DefaultTableModel model = new DefaultTableModel();
         model.setColumnIdentifiers(salerColumns);
 
         sellerTable.setModel(model);
 
-        sql = "select * from salertable";
+        sql = "select * from selertable";
 
         try {
 
@@ -85,16 +119,14 @@ public class DashBoard extends javax.swing.JFrame {
 
             while (rs.next()) {
 
-                
-                String Seller_Name = rs.getString("Seller_Name");
+                String Seller_Name = rs.getString("Seler_Name");
                 Float Unit_Price = rs.getFloat("Unit_Price");
                 Float Quantity = rs.getFloat("Quantity");
                 Float Total_Price = rs.getFloat("Total_Price");
                 Float Discount = rs.getFloat("Discount");
                 Float Actual_Price = rs.getFloat("Actual_Price");
-                
 
-                model.addRow(new Object[]{Seller_Name, Unit_Price, Quantity,Total_Price,Discount,Actual_Price});
+                model.addRow(new Object[]{Seller_Name, Unit_Price, Quantity, Total_Price, Discount, Actual_Price});
 
             }
             rs.close();
@@ -105,8 +137,10 @@ public class DashBoard extends javax.swing.JFrame {
             Logger.getLogger(DashBoard.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    
+   
 
-       
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -130,7 +164,6 @@ public class DashBoard extends javax.swing.JFrame {
         home = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jPanel13 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         procuctManage = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
@@ -139,14 +172,12 @@ public class DashBoard extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         pID = new javax.swing.JTextField();
         pName = new javax.swing.JTextField();
-        pQuantity = new javax.swing.JTextField();
+        pCode = new javax.swing.JTextField();
         pCategory = new javax.swing.JComboBox<>();
-        pPrice = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        pTable = new javax.swing.JTable();
         jLabel10 = new javax.swing.JLabel();
         jButton7 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
@@ -159,7 +190,6 @@ public class DashBoard extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         sellerId = new javax.swing.JTextField();
         sellerQuantity = new javax.swing.JTextField();
@@ -186,7 +216,6 @@ public class DashBoard extends javax.swing.JFrame {
         sellerCashReceive = new javax.swing.JTextField();
         jLabel36 = new javax.swing.JLabel();
         sellerDAte = new com.toedter.calendar.JDateChooser();
-        jPasswordField1 = new javax.swing.JPasswordField();
         jScrollPane4 = new javax.swing.JScrollPane();
         sellerTable = new javax.swing.JTable();
         jLabel12 = new javax.swing.JLabel();
@@ -230,9 +259,9 @@ public class DashBoard extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("DashBoard");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-190, 0, 1160, 100));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1140, 100));
 
-        jPanel2.setBackground(new java.awt.Color(255, 153, 0));
+        jPanel2.setBackground(new java.awt.Color(153, 255, 153));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton1.setBackground(new java.awt.Color(255, 153, 0));
@@ -244,7 +273,7 @@ public class DashBoard extends javax.swing.JFrame {
                 jButton1MouseClicked(evt);
             }
         });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 560, 160, 60));
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 460, 160, 60));
 
         jButton2.setBackground(new java.awt.Color(255, 153, 0));
         jButton2.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
@@ -255,7 +284,7 @@ public class DashBoard extends javax.swing.JFrame {
                 jButton2MouseClicked(evt);
             }
         });
-        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 160, 60));
+        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 160, 60));
 
         jButton3.setBackground(new java.awt.Color(255, 153, 0));
         jButton3.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
@@ -266,7 +295,7 @@ public class DashBoard extends javax.swing.JFrame {
                 jButton3MouseClicked(evt);
             }
         });
-        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 160, 60));
+        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 160, 60));
 
         jButton4.setBackground(new java.awt.Color(255, 153, 0));
         jButton4.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
@@ -277,7 +306,7 @@ public class DashBoard extends javax.swing.JFrame {
                 jButton4MouseClicked(evt);
             }
         });
-        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, 160, 60));
+        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 160, 60));
 
         jButton5.setBackground(new java.awt.Color(255, 153, 0));
         jButton5.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
@@ -288,7 +317,7 @@ public class DashBoard extends javax.swing.JFrame {
                 jButton5MouseClicked(evt);
             }
         });
-        jPanel2.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 380, 160, 60));
+        jPanel2.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, 160, 60));
 
         jButton6.setBackground(new java.awt.Color(255, 153, 0));
         jButton6.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
@@ -299,7 +328,7 @@ public class DashBoard extends javax.swing.JFrame {
                 jButton6MouseClicked(evt);
             }
         });
-        jPanel2.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 470, 160, 60));
+        jPanel2.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 380, 160, 60));
 
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -307,39 +336,32 @@ public class DashBoard extends javax.swing.JFrame {
 
         jPanel13.setBackground(new java.awt.Color(102, 102, 102));
 
-        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Home");
-
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 970, Short.MAX_VALUE)
+            .addGap(0, 930, Short.MAX_VALUE)
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
+            .addGap(0, 70, Short.MAX_VALUE)
         );
 
-        jPanel4.add(jPanel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 970, 70));
+        jPanel4.add(jPanel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 930, 70));
 
         javax.swing.GroupLayout homeLayout = new javax.swing.GroupLayout(home);
         home.setLayout(homeLayout);
         homeLayout.setHorizontalGroup(
             homeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, homeLayout.createSequentialGroup()
-                .addGap(0, 0, 0)
+            .addGroup(homeLayout.createSequentialGroup()
                 .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+                .addContainerGap())
         );
         homeLayout.setVerticalGroup(
             homeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(homeLayout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 599, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 563, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         mainMenu.addTab("tab1", home);
@@ -358,50 +380,41 @@ public class DashBoard extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 153, 0));
         jLabel5.setText("PRODUCT ID");
-        jPanel7.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 160, 30));
+        jPanel7.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 160, 30));
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 153, 0));
-        jLabel6.setText("NAME");
-        jPanel7.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 100, 30));
+        jLabel6.setText("PRODUCT NAME");
+        jPanel7.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 200, 30));
 
         jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 153, 0));
         jLabel7.setText("CATEGORY");
-        jPanel7.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 140, 30));
+        jPanel7.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 140, 30));
 
         jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 153, 0));
-        jLabel8.setText("QUANTITY");
-        jPanel7.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 130, 30));
-
-        jLabel9.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 153, 0));
-        jLabel9.setText("PRICE");
-        jPanel7.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 130, 30));
+        jLabel8.setText("PRODUCT CODE");
+        jPanel7.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 200, 30));
 
         pID.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         pID.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 0)));
-        jPanel7.add(pID, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 130, 240, 30));
+        jPanel7.add(pID, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 130, 180, 30));
 
         pName.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         pName.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 0)));
-        jPanel7.add(pName, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 190, 240, 30));
+        jPanel7.add(pName, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, 180, 30));
 
-        pQuantity.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        pQuantity.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 0)));
-        jPanel7.add(pQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 300, 240, 30));
+        pCode.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        pCode.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 0)));
+        jPanel7.add(pCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 320, 180, 30));
 
         pCategory.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         pCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Beverage", "Orange" }));
         pCategory.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 0)));
-        jPanel7.add(pCategory, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 240, 240, 30));
+        jPanel7.add(pCategory, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 260, 180, 30));
 
-        pPrice.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        pPrice.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 0)));
-        jPanel7.add(pPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 350, 240, 30));
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        pTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -420,33 +433,38 @@ public class DashBoard extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jTable1.setRowHeight(25);
-        jTable1.setRowMargin(10);
-        jTable1.setSelectionForeground(new java.awt.Color(153, 153, 153));
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
+        pTable.setRowHeight(25);
+        pTable.setRowMargin(10);
+        pTable.setSelectionForeground(new java.awt.Color(153, 153, 153));
+        jScrollPane1.setViewportView(pTable);
+        if (pTable.getColumnModel().getColumnCount() > 0) {
+            pTable.getColumnModel().getColumn(2).setResizable(false);
         }
 
-        jPanel7.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 130, 500, 430));
+        jPanel7.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 130, 460, 300));
 
         jLabel10.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 153, 0));
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setText("PRODUCT LIST");
-        jPanel7.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 90, 500, 30));
+        jPanel7.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 90, 460, 30));
 
         jButton7.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jButton7.setForeground(new java.awt.Color(255, 153, 0));
         jButton7.setText("CLEAR");
         jButton7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel7.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 520, 80, 40));
+        jPanel7.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 470, 80, 40));
 
         jButton11.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jButton11.setForeground(new java.awt.Color(255, 153, 0));
-        jButton11.setText("ADD");
+        jButton11.setText("P-SAVE");
         jButton11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel7.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 520, 80, 40));
+        jButton11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton11MouseClicked(evt);
+            }
+        });
+        jPanel7.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 470, 80, 40));
 
         pUpdate.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         pUpdate.setForeground(new java.awt.Color(255, 153, 0));
@@ -457,13 +475,13 @@ public class DashBoard extends javax.swing.JFrame {
                 pUpdateMouseClicked(evt);
             }
         });
-        jPanel7.add(pUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 520, 80, 40));
+        jPanel7.add(pUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 470, 90, 40));
 
         jButton13.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jButton13.setForeground(new java.awt.Color(255, 153, 0));
         jButton13.setText("DELETE");
         jButton13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel7.add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 520, 90, 40));
+        jPanel7.add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 470, 90, 40));
 
         jPanel6.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 590));
 
@@ -477,15 +495,13 @@ public class DashBoard extends javax.swing.JFrame {
         procuctManage.setLayout(procuctManageLayout);
         procuctManageLayout.setHorizontalGroup(
             procuctManageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(procuctManageLayout.createSequentialGroup()
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 1093, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 85, Short.MAX_VALUE))
+            .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 1010, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         procuctManageLayout.setVerticalGroup(
             procuctManageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(procuctManageLayout.createSequentialGroup()
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 20, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         mainMenu.addTab("tab2", procuctManage);
@@ -505,10 +521,6 @@ public class DashBoard extends javax.swing.JFrame {
         jLabel14.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 153, 0));
         jLabel14.setText("SELLER NAME");
-
-        jLabel15.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(255, 153, 0));
-        jLabel15.setText("PASSWORD");
 
         jLabel16.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(255, 153, 0));
@@ -639,9 +651,6 @@ public class DashBoard extends javax.swing.JFrame {
         sellerDAte.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 0)));
         sellerDAte.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
-        jPasswordField1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jPasswordField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 0)));
-
         sellerTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -672,18 +681,18 @@ public class DashBoard extends javax.swing.JFrame {
                                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(sellerId, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(sellerName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel9Layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
+                                .addGap(18, 18, 18)
                                 .addComponent(addbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(29, 29, 29)
-                                .addComponent(editbtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(36, 36, 36)
+                                .addComponent(editbtn, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
                                 .addComponent(deletebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(31, 31, 31)
+                                .addGap(18, 18, 18)
                                 .addComponent(clearbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel9Layout.createSequentialGroup()
                                 .addGap(1, 1, 1)
@@ -717,22 +726,20 @@ public class DashBoard extends javax.swing.JFrame {
                         .addComponent(sellerTotalPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
+                        .addGap(44, 44, 44)
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(24, 24, 24)
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(sellerGender, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(sellerDAte, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
-                            .addComponent(jPasswordField1)))
+                            .addComponent(sellerDAte, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)))
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane4)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE)
                             .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(868, 868, 868))
+                .addGap(898, 898, 898))
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 1182, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -796,32 +803,25 @@ public class DashBoard extends javax.swing.JFrame {
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(sellerCashReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel34))
-                        .addGap(57, 57, 57)
+                        .addGap(29, 29, 29)
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(clearbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(deletebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(editbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(addbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel9Layout.createSequentialGroup()
-                                .addGap(21, 21, 21)
-                                .addComponent(jLabel15))
-                            .addGroup(jPanel9Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jPasswordField1)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(21, 21, 21)
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(sellerGender, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel28))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel17)
+                        .addGap(18, 18, 18)
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(33, 33, 33))
+                .addGap(61, 61, 61))
         );
 
-        jPanel8.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 970, 600));
+        jPanel8.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 570));
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
@@ -833,11 +833,15 @@ public class DashBoard extends javax.swing.JFrame {
         sales.setLayout(salesLayout);
         salesLayout.setHorizontalGroup(
             salesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(salesLayout.createSequentialGroup()
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 921, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         salesLayout.setVerticalGroup(
             salesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, salesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         mainMenu.addTab("tab3", sales);
@@ -853,20 +857,20 @@ public class DashBoard extends javax.swing.JFrame {
         jLabel19.setText("CATEGORY MANAGE");
         jPanel11.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 1140, 70));
 
-        jLabel21.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel21.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(255, 153, 0));
         jLabel21.setText("CATEGORY ID");
-        jPanel11.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 150, 40));
+        jPanel11.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 170, 40));
 
-        jLabel22.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel22.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(255, 153, 0));
         jLabel22.setText("CATEGORY NAME");
-        jPanel11.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 170, 50));
+        jPanel11.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 180, 50));
 
-        jLabel23.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel23.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(255, 153, 0));
         jLabel23.setText("DISCRIPTION");
-        jPanel11.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 160, 50));
+        jPanel11.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 160, 50));
 
         jButton15.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jButton15.setForeground(new java.awt.Color(255, 153, 0));
@@ -893,13 +897,13 @@ public class DashBoard extends javax.swing.JFrame {
         jPanel11.add(jButton18, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 470, 110, 50));
 
         jTextField8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 0)));
-        jPanel11.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 130, 260, 50));
+        jPanel11.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, 260, 40));
 
         jTextField9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 0)));
-        jPanel11.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 200, 260, 50));
+        jPanel11.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 260, 40));
 
         jTextField10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 0)));
-        jPanel11.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 270, 260, 50));
+        jPanel11.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 300, 260, 40));
 
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -914,7 +918,7 @@ public class DashBoard extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(jTable3);
 
-        jPanel11.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 130, 450, 390));
+        jPanel11.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 140, 390, 390));
 
         jLabel20.setFont(new java.awt.Font("Times New Roman", 1, 30)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(255, 153, 0));
@@ -922,7 +926,7 @@ public class DashBoard extends javax.swing.JFrame {
         jLabel20.setText("CAREGORY LIST");
         jPanel11.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 90, 410, 40));
 
-        jPanel10.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 980, 570));
+        jPanel10.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 960, 570));
 
         jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
@@ -934,13 +938,11 @@ public class DashBoard extends javax.swing.JFrame {
         productCategory.setLayout(productCategoryLayout);
         productCategoryLayout.setHorizontalGroup(
             productCategoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 954, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         productCategoryLayout.setVerticalGroup(
             productCategoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(productCategoryLayout.createSequentialGroup()
-                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 587, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         mainMenu.addTab("tab4", productCategory);
@@ -949,11 +951,11 @@ public class DashBoard extends javax.swing.JFrame {
         productStocks.setLayout(productStocksLayout);
         productStocksLayout.setHorizontalGroup(
             productStocksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 970, Short.MAX_VALUE)
+            .addGap(0, 920, Short.MAX_VALUE)
         );
         productStocksLayout.setVerticalGroup(
             productStocksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 599, Short.MAX_VALUE)
+            .addGap(0, 569, Short.MAX_VALUE)
         );
 
         mainMenu.addTab("tab5", productStocks);
@@ -996,24 +998,29 @@ public class DashBoard extends javax.swing.JFrame {
         jPanel12.setLayout(jPanel12Layout);
         jPanel12Layout.setHorizontalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel12Layout.createSequentialGroup()
-                .addGap(179, 179, 179)
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel27, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
-                        .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jButton19, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jTextField11)
-                        .addComponent(jTextField12, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE))
-                    .addComponent(jButton20, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(87, 87, 87)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addGap(189, 189, 189)
+                        .addComponent(jButton19, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(175, 175, 175)
+                        .addComponent(jButton20, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(jPanel12Layout.createSequentialGroup()
+                            .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel12Layout.createSequentialGroup()
+                            .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(55, 55, 55)
+                            .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(124, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1021,18 +1028,18 @@ public class DashBoard extends javax.swing.JFrame {
                 .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60)
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(61, 61, 61)
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField12)
+                .addGap(53, 53, 53)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(66, 66, 66)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel27, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton20, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
-                    .addComponent(jButton19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton19, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(100, 100, 100))
         );
 
@@ -1053,11 +1060,11 @@ public class DashBoard extends javax.swing.JFrame {
         extra.setLayout(extraLayout);
         extraLayout.setHorizontalGroup(
             extraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 970, Short.MAX_VALUE)
+            .addGap(0, 920, Short.MAX_VALUE)
         );
         extraLayout.setVerticalGroup(
             extraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 599, Short.MAX_VALUE)
+            .addGap(0, 569, Short.MAX_VALUE)
         );
 
         mainMenu.addTab("tab7", extra);
@@ -1066,36 +1073,35 @@ public class DashBoard extends javax.swing.JFrame {
         extra_2.setLayout(extra_2Layout);
         extra_2Layout.setHorizontalGroup(
             extra_2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 970, Short.MAX_VALUE)
+            .addGap(0, 920, Short.MAX_VALUE)
         );
         extra_2Layout.setVerticalGroup(
             extra_2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 599, Short.MAX_VALUE)
+            .addGap(0, 569, Short.MAX_VALUE)
         );
 
         mainMenu.addTab("tab8", extra_2);
 
-        jPanel3.add(mainMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -30, 970, 630));
+        jPanel3.add(mainMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -30, 920, 600));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, 0)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         pack();
@@ -1132,10 +1138,10 @@ public class DashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void addbtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addbtnMouseClicked
-        
-        sql = "insert into salertable( Seller_Name, Unit_Price, Quantity, Total_Price, Discount,Actual_Price, Cash_Receive, Cash_Return, Date,  Gender) values (?,?,?,?,?,?,?,?,?,?)";
+
+        sql = "insert into selertable( Seler_Name, Unit_Price, Quantity, Total_Price, Discount,Actual_Price, Cash_Receive, Cash_Return, Date,  Seler_Gender) values (?,?,?,?,?,?,?,?,?,?)";
         try {
-            ps=con.getCon().prepareStatement(sql);           
+            ps = con.getCon().prepareStatement(sql);
             ps.setString(1, sellerName.getText());
             ps.setFloat(2, Float.parseFloat(sellerUnitPrice.getText()));
             ps.setFloat(3, Float.parseFloat(sellerQuantity.getText()));
@@ -1147,58 +1153,52 @@ public class DashBoard extends javax.swing.JFrame {
             ps.setDate(9, convertUtilDateToSqlDate(sellerDAte.getDate()));
 //            ps.setString(10, sellerPassword.getText());
             ps.setString(10, sellerGender.getSelectedItem().toString());
-            
+
             ps.executeUpdate();
             JOptionPane.showMessageDialog(rootPane, "Data Successfully");
-             getAllProduct();
-            
+            getAllSales();
+
         } catch (SQLException ex) {
             Logger.getLogger(DashBoard.class.getName()).log(Level.SEVERE, null, ex);
         }
-            
+
     }//GEN-LAST:event_addbtnMouseClicked
 
     private void sellerUnitPriceFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_sellerUnitPriceFocusLost
         // TODO add your handling code heret
-        try{
-            if(!sellerUnitPrice.getText().trim().isEmpty()){
-            // your code when the text field is not empty
+        try {
+            if (!sellerUnitPrice.getText().trim().isEmpty()) {
+                // your code when the text field is not empty
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Unit Price cannot be Empty");
+                sellerUnitPrice.requestFocus();
             }
-            else{
-            JOptionPane.showMessageDialog(rootPane, "Unit Price cannot be Empty");
-            sellerUnitPrice.requestFocus();
-            }
-        }
-        catch(Exception e){
-            JOptionPane.showMessageDialog(rootPane, "An error occurred :"+e.getMessage());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "An error occurred :" + e.getMessage());
         }
     }//GEN-LAST:event_sellerUnitPriceFocusLost
 
     private void sellerQuantityFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_sellerQuantityFocusLost
         // TODO add your handling code here:
-        try{
-        if(sellerUnitPrice.getText().trim().isEmpty()){
-        sellerUnitPrice.requestFocus();
-        }
-        else if (!sellerQuantity.getText().trim().isEmpty()){
-            sellerTotalPrice.setText(getTotalPrice()+" ");
-        }
-        else{
-        JOptionPane.showMessageDialog(rootPane, "Quantity can not be Empty");
-        sellerQuantity.requestFocus();
-        
-        }
-        }
-        catch(Exception e){
-            JOptionPane.showMessageDialog(rootPane, "An error :"+e.getMessage());
+        try {
+            if (sellerUnitPrice.getText().trim().isEmpty()) {
+                sellerUnitPrice.requestFocus();
+            } else if (!sellerQuantity.getText().trim().isEmpty()) {
+                sellerTotalPrice.setText(getTotalPrice() + " ");
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Quantity can not be Empty");
+                sellerQuantity.requestFocus();
+
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "An error :" + e.getMessage());
         }
     }//GEN-LAST:event_sellerQuantityFocusLost
 
     private void sellerDiscountFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_sellerDiscountFocusLost
         // TODO add your handling code here:
         float actualPrice = getActualPrice();
-        
-        sellerActualPrice.setText(actualPrice+" ");
+        sellerActualPrice.setText(actualPrice + " ");
     }//GEN-LAST:event_sellerDiscountFocusLost
 
     private void sellerCashReceiveFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_sellerCashReceiveFocusLost
@@ -1206,20 +1206,65 @@ public class DashBoard extends javax.swing.JFrame {
         float actualPrice = getActualPrice();
         float cashReceive = Float.parseFloat(sellerCashReceive.getText().trim());
         float cashReturn = actualPrice - cashReceive;
-        sellerCashReturn.setText(cashReturn+" ");
+        sellerCashReturn.setText(cashReturn + " ");
     }//GEN-LAST:event_sellerCashReceiveFocusLost
 
     private void pUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pUpdateMouseClicked
-        // TODO add your handling code here:
-        
-      
+//        sql ="update producttable set Product_Name=?, Product_Category=?, Product_Code=? where Product_ID=?";
+//        
+//        try {
+//            ps=con.getCon().prepareStatement(sql);
+//            
+//            ps.setString(1, pName.getText().trim());
+//            ps.setString(2, pCategory.getSelectedItem().toString());
+//            ps.setString(3, pCode.getText().trim());
+//            ps.setInt(4, Integer.parseInt(pID.getText().trim()));
+//            
+//            ps.executeUpdate();
+//            ps.close();
+//            con.getCon().close();
+//            
+//            JOptionPane.showMessageDialog(rootPane, "Product is Updated");
+//           
+//        } catch (SQLException ex) {
+//            JOptionPane.showMessageDialog(rootPane, "Product Not Update");
+//            Logger.getLogger(DashBoard.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }//GEN-LAST:event_pUpdateMouseClicked
 
     private void editbtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editbtnMouseClicked
         // TODO add your handling code here:
-        
-        
+
+
     }//GEN-LAST:event_editbtnMouseClicked
+
+    
+    // Product method save botton create
+    
+    private void jButton11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton11MouseClicked
+        // TODO add your handling code here:
+        
+        sql = "insert into producttable (Product_ID, Product_Name, Product_Category, Product_Code) values (?,?,?,?)";
+        
+        try {
+            con.getCon().prepareStatement(sql);
+            
+            ps.setInt(1, Integer.parseInt(pID.getText().trim()));
+            ps.setString(2, pName.getText().trim());
+            ps.setString(3, pCategory.getSelectedItem().toString());
+            ps.setString(4, pCode.getText().trim());
+            
+            ps.executeUpdate();
+           
+            
+            JOptionPane.showMessageDialog(rootPane, "Product is Saved");
+            getAllProduct();
+        } catch (SQLException ex) {
+            
+            JOptionPane.showMessageDialog(rootPane, "Product Not Save");
+            Logger.getLogger(DashBoard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton11MouseClicked
 
     /**
      * @param args the command line arguments
@@ -1285,12 +1330,10 @@ public class DashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
@@ -1314,7 +1357,6 @@ public class DashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
@@ -1327,11 +1369,9 @@ public class DashBoard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable3;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
@@ -1340,10 +1380,10 @@ public class DashBoard extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField9;
     private javax.swing.JTabbedPane mainMenu;
     private javax.swing.JComboBox<String> pCategory;
+    private javax.swing.JTextField pCode;
     private javax.swing.JTextField pID;
     private javax.swing.JTextField pName;
-    private javax.swing.JTextField pPrice;
-    private javax.swing.JTextField pQuantity;
+    private javax.swing.JTable pTable;
     private javax.swing.JButton pUpdate;
     private javax.swing.JPanel procuctManage;
     private javax.swing.JPanel productCategory;
