@@ -21,7 +21,8 @@ public class DashBoard extends javax.swing.JFrame {
      */
     public DashBoard() {
         initComponents();
-         getAllProduct();
+         getAllSales();
+         getAllPurchase();
     }
   
     DbCon con = new DbCon();
@@ -29,6 +30,22 @@ public class DashBoard extends javax.swing.JFrame {
     PreparedStatement ps;
     String sql = " ";
     ResultSet rs;
+    
+    public void reset(){
+    
+         sellerId.setText(null);
+        sellerName.setText(null);
+        sellerUnitPrice.setText(null);
+        sellerQuantity.setText(null);
+        sellerTotalPrice.setText(null);
+        sellerDiscount.setText(null);
+        sellerActualPrice.setText(null);
+        sellerCashReceive.setText(null);
+        sellerCashReturn.setText(null);
+        sellerDAte.setDate(null);
+       
+        sellerGender.setSelectedItem(null);
+    }
     
     // calculate total Price 
     public float getTotalPrice() {
@@ -67,8 +84,8 @@ public class DashBoard extends javax.swing.JFrame {
     }
      
      
-      String[] salerColumns = { "Seller_Name", "Unit Price", "Quantity", "Total Price", "Discount", "Actual Price"};
-       public void getAllProduct() {
+      String[] salerColumns = {"Seller_ID", "Seller_Name", "Unit Price", "Quantity", "Total Price", "Discount", "Actual Price"};
+       public void getAllSales() {
 
            DefaultTableModel model = new DefaultTableModel();
         model.setColumnIdentifiers(salerColumns);
@@ -85,7 +102,7 @@ public class DashBoard extends javax.swing.JFrame {
 
             while (rs.next()) {
 
-                
+                int Seller_ID = rs.getInt("Seller_ID");
                 String Seller_Name = rs.getString("Seller_Name");
                 Float Unit_Price = rs.getFloat("Unit_Price");
                 Float Quantity = rs.getFloat("Quantity");
@@ -94,7 +111,7 @@ public class DashBoard extends javax.swing.JFrame {
                 Float Actual_Price = rs.getFloat("Actual_Price");
                 
 
-                model.addRow(new Object[]{Seller_Name, Unit_Price, Quantity,Total_Price,Discount,Actual_Price});
+                model.addRow(new Object[]{Seller_ID, Seller_Name, Unit_Price, Quantity, Total_Price, Discount, Actual_Price});
 
             }
             rs.close();
@@ -106,6 +123,38 @@ public class DashBoard extends javax.swing.JFrame {
         }
     }
 
+       
+       // purchase getAll Method create
+     String [] purchaseColumnNames={"pID", "pName", "pCategory", "pQuantity"};  
+    public void getAllPurchase() {
+        sql = "select * from purchase";
+
+        DefaultTableModel model = new DefaultTableModel();
+        model.setColumnIdentifiers(purchaseColumnNames);
+
+        pTable.setModel(model);
+
+        try {
+            ps = con.getCon().prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                int id = rs.getInt("pID");
+                String name = rs.getString("pName");
+                String category =rs.getString("pCategory");
+                String quantity = rs .getString("pQuantity");
+
+                model.addRow(new Object[]{id, name, category, quantity});
+            }
+
+            ps.close();
+            con.getCon().close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DashBoard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
        
     /**
      * This method is called from within the constructor to initialize the form.
@@ -139,19 +188,17 @@ public class DashBoard extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         pID = new javax.swing.JTextField();
         pName = new javax.swing.JTextField();
         pQuantity = new javax.swing.JTextField();
         pCategory = new javax.swing.JComboBox<>();
-        pPrice = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        pTable = new javax.swing.JTable();
         jLabel10 = new javax.swing.JLabel();
-        jButton7 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
-        pUpdate = new javax.swing.JButton();
-        jButton13 = new javax.swing.JButton();
+        pClear = new javax.swing.JButton();
+        pSave = new javax.swing.JButton();
+        pEdit = new javax.swing.JButton();
+        pDelete = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         sales = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
@@ -159,7 +206,6 @@ public class DashBoard extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         sellerId = new javax.swing.JTextField();
         sellerQuantity = new javax.swing.JTextField();
@@ -167,7 +213,7 @@ public class DashBoard extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         clearbtn = new javax.swing.JButton();
         addbtn = new javax.swing.JButton();
-        editbtn = new javax.swing.JButton();
+        sUpdate = new javax.swing.JButton();
         deletebtn = new javax.swing.JButton();
         jLabel28 = new javax.swing.JLabel();
         sellerName = new javax.swing.JTextField();
@@ -186,7 +232,6 @@ public class DashBoard extends javax.swing.JFrame {
         sellerCashReceive = new javax.swing.JTextField();
         jLabel36 = new javax.swing.JLabel();
         sellerDAte = new com.toedter.calendar.JDateChooser();
-        jPasswordField1 = new javax.swing.JPasswordField();
         jScrollPane4 = new javax.swing.JScrollPane();
         sellerTable = new javax.swing.JTable();
         jLabel12 = new javax.swing.JLabel();
@@ -224,7 +269,7 @@ public class DashBoard extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(255, 153, 0));
+        jPanel1.setBackground(new java.awt.Color(255, 182, 143));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
@@ -232,11 +277,12 @@ public class DashBoard extends javax.swing.JFrame {
         jLabel1.setText("DashBoard");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-190, 0, 1160, 100));
 
-        jPanel2.setBackground(new java.awt.Color(255, 153, 0));
+        jPanel2.setBackground(new java.awt.Color(255, 182, 143));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setBackground(new java.awt.Color(255, 153, 0));
+        jButton1.setBackground(new java.awt.Color(102, 102, 102));
         jButton1.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Product Update");
         jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -246,8 +292,9 @@ public class DashBoard extends javax.swing.JFrame {
         });
         jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 560, 160, 60));
 
-        jButton2.setBackground(new java.awt.Color(255, 153, 0));
+        jButton2.setBackground(new java.awt.Color(102, 102, 102));
         jButton2.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Home");
         jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -257,9 +304,10 @@ public class DashBoard extends javax.swing.JFrame {
         });
         jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 160, 60));
 
-        jButton3.setBackground(new java.awt.Color(255, 153, 0));
+        jButton3.setBackground(new java.awt.Color(102, 102, 102));
         jButton3.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
-        jButton3.setText("Product Manage");
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setText("PURCHASE ");
         jButton3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -268,9 +316,10 @@ public class DashBoard extends javax.swing.JFrame {
         });
         jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 160, 60));
 
-        jButton4.setBackground(new java.awt.Color(255, 153, 0));
+        jButton4.setBackground(new java.awt.Color(102, 102, 102));
         jButton4.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
-        jButton4.setText("Sales");
+        jButton4.setForeground(new java.awt.Color(255, 255, 255));
+        jButton4.setText("SALES");
         jButton4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -279,8 +328,9 @@ public class DashBoard extends javax.swing.JFrame {
         });
         jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, 160, 60));
 
-        jButton5.setBackground(new java.awt.Color(255, 153, 0));
+        jButton5.setBackground(new java.awt.Color(102, 102, 102));
         jButton5.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
+        jButton5.setForeground(new java.awt.Color(255, 255, 255));
         jButton5.setText("Product Category");
         jButton5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -290,8 +340,9 @@ public class DashBoard extends javax.swing.JFrame {
         });
         jPanel2.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 380, 160, 60));
 
-        jButton6.setBackground(new java.awt.Color(255, 153, 0));
+        jButton6.setBackground(new java.awt.Color(102, 102, 102));
         jButton6.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(255, 255, 255));
         jButton6.setText("Product Stocks");
         jButton6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -316,23 +367,25 @@ public class DashBoard extends javax.swing.JFrame {
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 970, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 981, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
         );
 
-        jPanel4.add(jPanel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 970, 70));
+        jPanel4.add(jPanel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 980, 70));
 
         javax.swing.GroupLayout homeLayout = new javax.swing.GroupLayout(home);
         home.setLayout(homeLayout);
         homeLayout.setHorizontalGroup(
             homeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, homeLayout.createSequentialGroup()
+            .addGroup(homeLayout.createSequentialGroup()
                 .addGap(0, 0, 0)
                 .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+                .addContainerGap())
         );
         homeLayout.setVerticalGroup(
             homeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -352,18 +405,18 @@ public class DashBoard extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 153, 0));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("PRODUCT MANAGE");
+        jLabel4.setText("PURCHASE  MANAGE");
         jPanel7.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 1120, 70));
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 153, 0));
         jLabel5.setText("PRODUCT ID");
-        jPanel7.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 160, 30));
+        jPanel7.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 180, 30));
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 153, 0));
-        jLabel6.setText("NAME");
-        jPanel7.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 100, 30));
+        jLabel6.setText("PURCHASE NAME");
+        jPanel7.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 210, 30));
 
         jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 153, 0));
@@ -375,33 +428,24 @@ public class DashBoard extends javax.swing.JFrame {
         jLabel8.setText("QUANTITY");
         jPanel7.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 130, 30));
 
-        jLabel9.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 153, 0));
-        jLabel9.setText("PRICE");
-        jPanel7.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 130, 30));
-
         pID.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         pID.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 0)));
-        jPanel7.add(pID, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 130, 240, 30));
+        jPanel7.add(pID, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 130, 170, 30));
 
         pName.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         pName.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 0)));
-        jPanel7.add(pName, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 190, 240, 30));
+        jPanel7.add(pName, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 190, 170, 30));
 
         pQuantity.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         pQuantity.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 0)));
-        jPanel7.add(pQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 300, 240, 30));
+        jPanel7.add(pQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 300, 170, 30));
 
         pCategory.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         pCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Beverage", "Orange" }));
         pCategory.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 0)));
-        jPanel7.add(pCategory, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 240, 240, 30));
+        jPanel7.add(pCategory, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 240, 170, 30));
 
-        pPrice.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        pPrice.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 0)));
-        jPanel7.add(pPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 350, 240, 30));
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        pTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -409,7 +453,7 @@ public class DashBoard extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "PRODUCT ID", "PRODUCT NAME", "CATEGORY", "PRICE"
+                "PRODUCT ID", "PRODUCT NAME", "CATEGORY", "Quantity"
             }
         ) {
             Class[] types = new Class [] {
@@ -420,12 +464,12 @@ public class DashBoard extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jTable1.setRowHeight(25);
-        jTable1.setRowMargin(10);
-        jTable1.setSelectionForeground(new java.awt.Color(153, 153, 153));
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
+        pTable.setRowHeight(25);
+        pTable.setRowMargin(10);
+        pTable.setSelectionForeground(new java.awt.Color(153, 153, 153));
+        jScrollPane1.setViewportView(pTable);
+        if (pTable.getColumnModel().getColumnCount() > 0) {
+            pTable.getColumnModel().getColumn(2).setResizable(false);
         }
 
         jPanel7.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 130, 500, 430));
@@ -433,37 +477,42 @@ public class DashBoard extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 153, 0));
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setText("PRODUCT LIST");
+        jLabel10.setText("PURCHASE  LIST");
         jPanel7.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 90, 500, 30));
 
-        jButton7.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jButton7.setForeground(new java.awt.Color(255, 153, 0));
-        jButton7.setText("CLEAR");
-        jButton7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel7.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 520, 80, 40));
+        pClear.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        pClear.setForeground(new java.awt.Color(255, 153, 0));
+        pClear.setText("CLEAR");
+        pClear.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel7.add(pClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 520, 80, 40));
 
-        jButton11.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jButton11.setForeground(new java.awt.Color(255, 153, 0));
-        jButton11.setText("ADD");
-        jButton11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel7.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 520, 80, 40));
-
-        pUpdate.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        pUpdate.setForeground(new java.awt.Color(255, 153, 0));
-        pUpdate.setText("UPDATE");
-        pUpdate.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        pUpdate.addMouseListener(new java.awt.event.MouseAdapter() {
+        pSave.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        pSave.setForeground(new java.awt.Color(255, 153, 0));
+        pSave.setText("SAVE");
+        pSave.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pSave.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                pUpdateMouseClicked(evt);
+                pSaveMouseClicked(evt);
             }
         });
-        jPanel7.add(pUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 520, 80, 40));
+        jPanel7.add(pSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 520, 80, 40));
 
-        jButton13.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jButton13.setForeground(new java.awt.Color(255, 153, 0));
-        jButton13.setText("DELETE");
-        jButton13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel7.add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 520, 90, 40));
+        pEdit.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        pEdit.setForeground(new java.awt.Color(255, 153, 0));
+        pEdit.setText("EDIT");
+        pEdit.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pEdit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pEditMouseClicked(evt);
+            }
+        });
+        jPanel7.add(pEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 520, 80, 40));
+
+        pDelete.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        pDelete.setForeground(new java.awt.Color(255, 153, 0));
+        pDelete.setText("DELETE");
+        pDelete.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel7.add(pDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 520, 90, 40));
 
         jPanel6.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 590));
 
@@ -479,13 +528,13 @@ public class DashBoard extends javax.swing.JFrame {
             procuctManageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(procuctManageLayout.createSequentialGroup()
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 1093, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 85, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         procuctManageLayout.setVerticalGroup(
             procuctManageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(procuctManageLayout.createSequentialGroup()
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 20, Short.MAX_VALUE))
+                .addGap(0, 9, Short.MAX_VALUE))
         );
 
         mainMenu.addTab("tab2", procuctManage);
@@ -505,10 +554,6 @@ public class DashBoard extends javax.swing.JFrame {
         jLabel14.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 153, 0));
         jLabel14.setText("SELLER NAME");
-
-        jLabel15.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(255, 153, 0));
-        jLabel15.setText("PASSWORD");
 
         jLabel16.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(255, 153, 0));
@@ -539,6 +584,11 @@ public class DashBoard extends javax.swing.JFrame {
         clearbtn.setForeground(new java.awt.Color(255, 153, 0));
         clearbtn.setText("CLEAR");
         clearbtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        clearbtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                clearbtnMouseClicked(evt);
+            }
+        });
 
         addbtn.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
         addbtn.setForeground(new java.awt.Color(255, 153, 0));
@@ -550,13 +600,13 @@ public class DashBoard extends javax.swing.JFrame {
             }
         });
 
-        editbtn.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
-        editbtn.setForeground(new java.awt.Color(255, 153, 0));
-        editbtn.setText("UPDATE");
-        editbtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        editbtn.addMouseListener(new java.awt.event.MouseAdapter() {
+        sUpdate.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
+        sUpdate.setForeground(new java.awt.Color(255, 153, 0));
+        sUpdate.setText("UPDATE");
+        sUpdate.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        sUpdate.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                editbtnMouseClicked(evt);
+                sUpdateMouseClicked(evt);
             }
         });
 
@@ -564,6 +614,11 @@ public class DashBoard extends javax.swing.JFrame {
         deletebtn.setForeground(new java.awt.Color(255, 153, 0));
         deletebtn.setText("DELETE");
         deletebtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        deletebtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                deletebtnMouseClicked(evt);
+            }
+        });
 
         jLabel28.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel28.setForeground(new java.awt.Color(255, 153, 0));
@@ -639,9 +694,6 @@ public class DashBoard extends javax.swing.JFrame {
         sellerDAte.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 0)));
         sellerDAte.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
-        jPasswordField1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jPasswordField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 0)));
-
         sellerTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -653,6 +705,11 @@ public class DashBoard extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        sellerTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sellerTableMouseClicked(evt);
+            }
+        });
         jScrollPane4.setViewportView(sellerTable);
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
@@ -680,7 +737,7 @@ public class DashBoard extends javax.swing.JFrame {
                                 .addGap(12, 12, 12)
                                 .addComponent(addbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(29, 29, 29)
-                                .addComponent(editbtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(sUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
                                 .addComponent(deletebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(31, 31, 31)
@@ -719,14 +776,12 @@ public class DashBoard extends javax.swing.JFrame {
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(24, 24, 24)
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(sellerGender, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(sellerDAte, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
-                            .addComponent(jPasswordField1)))
+                            .addComponent(sellerDAte, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)))
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -800,17 +855,10 @@ public class DashBoard extends javax.swing.JFrame {
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(clearbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(deletebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(editbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(addbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel9Layout.createSequentialGroup()
-                                .addGap(21, 21, 21)
-                                .addComponent(jLabel15))
-                            .addGroup(jPanel9Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jPasswordField1)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(21, 21, 21)
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(sellerGender, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel28))
@@ -958,7 +1006,7 @@ public class DashBoard extends javax.swing.JFrame {
 
         mainMenu.addTab("tab5", productStocks);
 
-        jPanel12.setBackground(new java.awt.Color(255, 153, 0));
+        jPanel12.setBackground(new java.awt.Color(204, 204, 204));
 
         jLabel26.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel26.setForeground(new java.awt.Color(255, 255, 255));
@@ -971,11 +1019,11 @@ public class DashBoard extends javax.swing.JFrame {
         jLabel24.setText("UPDATE ADMIN");
 
         jLabel25.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel25.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel25.setForeground(new java.awt.Color(102, 102, 102));
         jLabel25.setText("PRODUCT ID");
 
         jLabel27.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel27.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel27.setForeground(new java.awt.Color(102, 102, 102));
         jLabel27.setText("PRODUCT NAME");
 
         jTextField11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
@@ -1085,9 +1133,7 @@ public class DashBoard extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, 0)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -1150,7 +1196,8 @@ public class DashBoard extends javax.swing.JFrame {
             
             ps.executeUpdate();
             JOptionPane.showMessageDialog(rootPane, "Data Successfully");
-             getAllProduct();
+             getAllSales();
+             reset();
             
         } catch (SQLException ex) {
             Logger.getLogger(DashBoard.class.getName()).log(Level.SEVERE, null, ex);
@@ -1209,17 +1256,122 @@ public class DashBoard extends javax.swing.JFrame {
         sellerCashReturn.setText(cashReturn+" ");
     }//GEN-LAST:event_sellerCashReceiveFocusLost
 
-    private void pUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pUpdateMouseClicked
+    private void pEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pEditMouseClicked
         // TODO add your handling code here:
+        
+        sql ="update purchase set  pName=?, pCategory=? where pQuantity=?, pId=?";
+        
+        
         
       
-    }//GEN-LAST:event_pUpdateMouseClicked
+    }//GEN-LAST:event_pEditMouseClicked
 
-    private void editbtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editbtnMouseClicked
+    private void sUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sUpdateMouseClicked
+        // TODO add your handling code here:
+                sql = "update salertable set Seller_Name=?, Unit_Price=?, Quantity=?, Total_Price=?, Discount=?, Actual_Price=? where Seller_ID =?";
+        try {
+            ps = con.getCon().prepareStatement(sql);
+
+            ps.setString(1, sellerName.getText().trim());
+            ps.setFloat(2, Float.parseFloat(sellerUnitPrice.getText().trim()));
+            ps.setFloat(3, Float.parseFloat(sellerQuantity.getText().trim()));
+            ps.setFloat(4, Float.parseFloat(sellerTotalPrice.getText().trim()));
+            ps.setFloat(5, Float.parseFloat(sellerDiscount.getText().trim()));
+            ps.setFloat(6, Float.parseFloat(sellerActualPrice.getText().trim()));
+            ps.setInt(7, Integer.parseInt(sellerId.getText().toString()));
+            
+
+            ps.executeUpdate();
+            ps.close();
+            con.getCon().close();
+
+            JOptionPane.showMessageDialog(rootPane, "Data Updated");
+            reset();
+            getAllSales();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, "Data not Update");
+
+            Logger.getLogger(DashBoard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+    }//GEN-LAST:event_sUpdateMouseClicked
+    // table to field data pass method
+    private void sellerTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sellerTableMouseClicked
         // TODO add your handling code here:
         
+        int rowIndex = sellerTable.getSelectedRow();
+
+        //int roll=tblStudent.getModel().getValueAt(rowIndex, 0).toString();
+        String Seller_ID = sellerTable.getModel().getValueAt(rowIndex, 0).toString();
+        String Seller_Name = sellerTable.getModel().getValueAt(rowIndex, 1).toString();
+        String unit_Price =sellerTable .getModel().getValueAt(rowIndex, 2).toString();
+        String Quantity = sellerTable.getModel().getValueAt(rowIndex, 3).toString();
+        String Total_Price = sellerTable.getModel().getValueAt(rowIndex, 4).toString();
+        String Discount = sellerTable.getModel().getValueAt(rowIndex, 5).toString();
+        String Actual_Price = sellerTable.getModel().getValueAt(rowIndex, 6).toString();
+
+        sellerId.setText(Seller_ID);
+        sellerName.setText(Seller_Name);
+        sellerUnitPrice.setText(unit_Price);
+        sellerQuantity.setText(Quantity);
+        sellerTotalPrice.setText(Total_Price);
+        sellerDiscount.setText(Discount);
+        sellerActualPrice.setText(Actual_Price);
+    }//GEN-LAST:event_sellerTableMouseClicked
+
+    private void deletebtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deletebtnMouseClicked
+        // TODO add your handling code here:
+         sql="delete from salertable where Seller_ID=?";
+        try {
+            ps=con.getCon().prepareStatement(sql);
+            ps.setInt(1, Integer.parseInt(sellerId.getText()));
+            
+            ps.executeUpdate();
+            ps.close();
+            con.getCon().close();
+            
+            JOptionPane.showMessageDialog(rootPane, "Data Deleted");
+            reset();
+            getAllSales();
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, "Data not Delete");
+            Logger.getLogger(DashBoard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_deletebtnMouseClicked
+    
+    // reset method
+    private void clearbtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clearbtnMouseClicked
+        // TODO add your handling code here:
         
-    }//GEN-LAST:event_editbtnMouseClicked
+        reset();
+    }//GEN-LAST:event_clearbtnMouseClicked
+
+    private void pSaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pSaveMouseClicked
+        // TODO add your handling code here:
+        
+        sql = "insert into purchase ( pName, pCategory, pQuantity) values (?,?,?)";
+        
+        try {
+            ps=con.getCon().prepareStatement(sql);
+            ps.setString(1, pName.getText());
+            ps.setString(2, pCategory.getSelectedItem().toString());
+            ps.setInt(3, Integer.parseInt(pQuantity.getText().trim()));
+            
+            ps.executeUpdate();
+            ps.close();
+            con.getCon().close();
+            
+            JOptionPane.showMessageDialog(rootPane, "Purchase Data is Save");
+//            reset();
+            getAllPurchase();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, "Purchase Data Not Save");
+            Logger.getLogger(DashBoard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_pSaveMouseClicked
 
     /**
      * @param args the command line arguments
@@ -1260,13 +1412,10 @@ public class DashBoard extends javax.swing.JFrame {
     private javax.swing.JButton addbtn;
     private javax.swing.JButton clearbtn;
     private javax.swing.JButton deletebtn;
-    private javax.swing.JButton editbtn;
     private javax.swing.JPanel extra;
     private javax.swing.JPanel extra_2;
     private javax.swing.JPanel home;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
@@ -1278,14 +1427,12 @@ public class DashBoard extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
@@ -1314,7 +1461,6 @@ public class DashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
@@ -1327,11 +1473,9 @@ public class DashBoard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable3;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
@@ -1340,15 +1484,19 @@ public class DashBoard extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField9;
     private javax.swing.JTabbedPane mainMenu;
     private javax.swing.JComboBox<String> pCategory;
+    private javax.swing.JButton pClear;
+    private javax.swing.JButton pDelete;
+    private javax.swing.JButton pEdit;
     private javax.swing.JTextField pID;
     private javax.swing.JTextField pName;
-    private javax.swing.JTextField pPrice;
     private javax.swing.JTextField pQuantity;
-    private javax.swing.JButton pUpdate;
+    private javax.swing.JButton pSave;
+    private javax.swing.JTable pTable;
     private javax.swing.JPanel procuctManage;
     private javax.swing.JPanel productCategory;
     private javax.swing.JPanel productStocks;
     private javax.swing.JPanel productUpdate;
+    private javax.swing.JButton sUpdate;
     private javax.swing.JPanel sales;
     private javax.swing.JTextField sellerActualPrice;
     private javax.swing.JTextField sellerCashReceive;
