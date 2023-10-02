@@ -27,9 +27,11 @@ public class DashBoard extends javax.swing.JFrame {
     PreparedStatement ps;
     String sql = " ";
     ResultSet rs;
+    
     static String ppName = " ";  // product table name field declear
     
     static Float sttFloat =0.00f;
+    
     static String sttName = " ";
 
     /**
