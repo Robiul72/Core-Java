@@ -1,10 +1,10 @@
 
-package examproject;
+package emppoye;
 
-public class ExamProject {
+public class Emppoye {
 
     public static void main(String[] args) {
-
+       
     }
     
 }

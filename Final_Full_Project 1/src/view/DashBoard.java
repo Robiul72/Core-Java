@@ -5,9 +5,12 @@
 package view;
 
 import java.awt.Color;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -43,7 +46,7 @@ public class DashBoard extends javax.swing.JFrame {
 
     }
 
-    // Reset method create
+    // Reset sales method create
     public void reset() {
         sName.setSelectedItem(null);
         sUnitPrice.setText(null);
@@ -53,7 +56,8 @@ public class DashBoard extends javax.swing.JFrame {
         sActualPrice.setText(null);
         sCashReceive.setText(null);
         sCashReturn.setText(null);
-
+        sID.setText(null);
+        sDate.setDate(null);
     }
 
     // Product method Reset
@@ -97,7 +101,7 @@ public class DashBoard extends javax.swing.JFrame {
     }
 
     // table e data show method
-    String[] selerColumns = {"Seler_ID", "Seler_Name", "Unit_Price", "Quantity", "Total_Price", "Discount", "Actual_Price"};
+    String[] selerColumns = {"Seler_ID", "Seler_Name", "Unit_Price", "Quantity", "Total_Price", "Discount", "Actual_Price", "Cash_Receive", "Cash_Return", "Date"};
 
     public void getAllSales() {
         sql = "select * from selertable";
@@ -121,8 +125,13 @@ public class DashBoard extends javax.swing.JFrame {
                 Float Total_Price = rs.getFloat("Total_Price");
                 Float Discount = rs.getFloat("Discount");
                 Float Actual_Price = rs.getFloat("Actual_Price");
+                Float cash_Receive = rs.getFloat("Cash_Receive");
+                Float cash_Return = rs.getFloat("Cash_Return");
+                java.util.Date date = rs.getDate("Date");
+                
+                
 
-                model.addRow(new Object[]{Seler_ID, Seler_Name, Unit_Price, Quantity, Total_Price, Discount, Actual_Price});
+                model.addRow(new Object[]{Seler_ID, Seler_Name, Unit_Price, Quantity, Total_Price, Discount, Actual_Price, cash_Receive, cash_Return, date});
             }
 
             ps.close();
@@ -694,7 +703,7 @@ public class DashBoard extends javax.swing.JFrame {
                 .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel11.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 150, 30));
+        jPanel11.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 150, 30));
 
         jPanel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -716,7 +725,7 @@ public class DashBoard extends javax.swing.JFrame {
                 .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel11.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 150, 30));
+        jPanel11.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 150, 30));
 
         jPanel14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -738,7 +747,7 @@ public class DashBoard extends javax.swing.JFrame {
                 .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel11.add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 150, 30));
+        jPanel11.add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 150, 30));
 
         jPanel16.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -760,7 +769,7 @@ public class DashBoard extends javax.swing.JFrame {
                 .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel11.add(jPanel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 150, 30));
+        jPanel11.add(jPanel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, 150, 30));
 
         jPanel18.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -782,7 +791,7 @@ public class DashBoard extends javax.swing.JFrame {
                 .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel11.add(jPanel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 150, 30));
+        jPanel11.add(jPanel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 150, 30));
 
         jPanel15.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -804,7 +813,7 @@ public class DashBoard extends javax.swing.JFrame {
                 .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel11.add(jPanel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, 150, 30));
+        jPanel11.add(jPanel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 290, 150, 30));
 
         jPanel26.setBackground(new java.awt.Color(153, 255, 204));
         jPanel26.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -915,7 +924,7 @@ public class DashBoard extends javax.swing.JFrame {
                 .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel11.add(jPanel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 450, 150, 30));
+        jPanel11.add(jPanel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 410, 150, 30));
 
         jPanel34.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -937,7 +946,7 @@ public class DashBoard extends javax.swing.JFrame {
                 .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel11.add(jPanel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, 150, 30));
+        jPanel11.add(jPanel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, 150, 30));
 
         jPanel33.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -959,32 +968,32 @@ public class DashBoard extends javax.swing.JFrame {
                 .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel11.add(jPanel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 410, 150, 30));
-        jPanel11.add(prID, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 170, 150, -1));
+        jPanel11.add(jPanel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, 150, 30));
+        jPanel11.add(prID, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 130, 150, 30));
 
         prUnitPrice.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 prUnitPriceFocusLost(evt);
             }
         });
-        jPanel11.add(prUnitPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 290, 150, -1));
-        jPanel11.add(prCompanyName, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 250, 150, -1));
+        jPanel11.add(prUnitPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 250, 150, 30));
+        jPanel11.add(prCompanyName, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, 150, 30));
 
         prQuantity.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 prQuantityFocusLost(evt);
             }
         });
-        jPanel11.add(prQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 330, 150, -1));
-        jPanel11.add(prTotalPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 370, 150, -1));
+        jPanel11.add(prQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, 150, 30));
+        jPanel11.add(prTotalPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 330, 150, 30));
 
         PrCashPay.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 PrCashPayFocusLost(evt);
             }
         });
-        jPanel11.add(PrCashPay, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 410, 150, -1));
-        jPanel11.add(prDueAmount, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 450, 150, -1));
+        jPanel11.add(PrCashPay, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 370, 150, 30));
+        jPanel11.add(prDueAmount, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 410, 150, 30));
 
         prTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -997,13 +1006,23 @@ public class DashBoard extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        prTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                prTableMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(prTable);
 
-        jPanel11.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 130, 600, 340));
+        jPanel11.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 90, 600, 340));
 
         prReset.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         prReset.setText("Reset");
-        jPanel11.add(prReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 500, -1, -1));
+        prReset.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                prResetMouseClicked(evt);
+            }
+        });
+        jPanel11.add(prReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 470, -1, -1));
 
         prSave.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         prSave.setText("Save");
@@ -1012,18 +1031,28 @@ public class DashBoard extends javax.swing.JFrame {
                 prSaveMouseClicked(evt);
             }
         });
-        jPanel11.add(prSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 500, 80, -1));
+        jPanel11.add(prSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 470, 80, -1));
 
         prUpdate.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         prUpdate.setText("Update");
-        jPanel11.add(prUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 500, -1, -1));
+        prUpdate.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                prUpdateMouseClicked(evt);
+            }
+        });
+        jPanel11.add(prUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 470, -1, -1));
 
         prDelete.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         prDelete.setText("Delete");
-        jPanel11.add(prDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 500, -1, -1));
+        prDelete.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                prDeleteMouseClicked(evt);
+            }
+        });
+        jPanel11.add(prDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 470, -1, -1));
 
-        jPanel11.add(prName, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 210, 150, 30));
-        jPanel11.add(prDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 130, 150, -1));
+        jPanel11.add(prName, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, 150, 30));
+        jPanel11.add(prDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 90, 150, 30));
 
         javax.swing.GroupLayout purchaseLayout = new javax.swing.GroupLayout(purchase);
         purchase.setLayout(purchaseLayout);
@@ -1754,7 +1783,7 @@ public class DashBoard extends javax.swing.JFrame {
         try {
             ps = con.getCon().prepareStatement(sql);
             ps.setInt(1, Integer.parseInt(sID.getText()));
-
+            
             ps.executeUpdate();
             ps.close();
             con.getCon().close();
@@ -1821,6 +1850,10 @@ public class DashBoard extends javax.swing.JFrame {
         String Total_Price = sTable.getModel().getValueAt(rowIndex, 4).toString();
         String Discount = sTable.getModel().getValueAt(rowIndex, 5).toString();
         String Actual_Price = sTable.getModel().getValueAt(rowIndex, 6).toString();
+        String cash_Receive = sTable.getModel().getValueAt(rowIndex, 7).toString();
+        String cash_Return = sTable.getModel().getValueAt(rowIndex, 8).toString();
+        String date = sTable.getModel().getValueAt(rowIndex, 9).toString();
+        
 
         sID.setText(Seller_ID);
         sName.setSelectedItem(Seller_Name);
@@ -1829,6 +1862,9 @@ public class DashBoard extends javax.swing.JFrame {
         sTotalPrice.setText(Total_Price);
         sDiscount.setText(Discount);
         sActualPrice.setText(Actual_Price);
+        sCashReceive.setText(cash_Receive);
+        sCashReturn.setText(cash_Return);
+        sDate.setDate(convertStringToDate(date));
 
     }//GEN-LAST:event_sTableMouseClicked
 
@@ -2166,8 +2202,8 @@ public class DashBoard extends javax.swing.JFrame {
         return pTotalPrice;
     }
 
-    // purchase Table calponic table create
-    String[] purchaseColumns = {"purchaseID", "purchaseName", "purchaseUnitPrice", "purchaseQuantity", "purchaseTotalPrice", "purchaseCashPay", "purchaseDueAmount", "purchaseDate"};
+    // purchase Table calponic table create**********
+    String[] purchaseColumns = {"purchaseID", "purchaseName", "purchaseCompanyName", "purchaseUnitPrice", "purchaseQuantity", "purchaseTotalPrice", "purchaseCashPay", "purchaseDueAmount", "purchaseDate"};
 
     public void getAllPurchase() {
         DefaultTableModel model = new DefaultTableModel();
@@ -2183,6 +2219,7 @@ public class DashBoard extends javax.swing.JFrame {
             while (rs.next()) {
                 int id = rs.getInt("purchaseID");
                 String name = rs.getString("purchaseName");
+                String company = rs.getString("purchaseCompanyName");
                 float quantity = rs.getFloat("purchaseQuantity");
                 float unitPrice = rs.getFloat("purchaseUnitPrice");
                 float totalPrice = rs.getFloat("purchaseTotalPrice");
@@ -2190,7 +2227,7 @@ public class DashBoard extends javax.swing.JFrame {
                 float dueAmount = rs.getFloat("purchaseDueAmount");
                 java.util.Date date = rs.getDate("purchaseDate");
 
-                model.addRow(new Object[]{id, name, quantity, unitPrice, totalPrice, cashPay, dueAmount, date});
+                model.addRow(new Object[]{id, name, company, quantity, unitPrice, totalPrice, cashPay, dueAmount, date});
             }
 
             ps.executeQuery();
@@ -2225,7 +2262,8 @@ public class DashBoard extends javax.swing.JFrame {
             getStock();
             getAllPurchase();
             getAllStockTable();  // stock table
-
+            prReset();
+            
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(prCompanyName, "Purchase Data is not Save");
             Logger.getLogger(DashBoard.class.getName()).log(Level.SEVERE, null, ex);
@@ -2272,11 +2310,130 @@ public class DashBoard extends javax.swing.JFrame {
         float prCashReturn = prActualPrice - prCashReceive;
         prDueAmount.setText(prCashReturn + " ");
 
-//        float actualPrice = getActualPrice();
-//        float cashReceive = Float.parseFloat(sCashReceive.getText().trim());
-//        float cashReturn = actualPrice - cashReceive;
-//        sCashReturn.setText(cashReturn + " ");
+
     }//GEN-LAST:event_PrCashPayFocusLost
+
+    // purchase Update create
+    private void prUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prUpdateMouseClicked
+        // TODO add your handling code here:
+        
+        sql = "update purchase set purchaseName=?, purchaseCompanyName=?, purchaseUnitPrice=?, purchaseQuantity=?, purchaseTotalPrice=?, purchaseCashPay=?, purchaseDueAmount=?, purchaseDate=? where purchaseID=? ";
+        
+        try {
+            ps=con.getCon().prepareStatement(sql);
+            
+            
+            ps.setString(1, prName.getSelectedItem().toString());
+            ps.setString(2, prCompanyName.getText());
+            ps.setFloat(3, Float.parseFloat(prUnitPrice.getText()));
+            ps.setFloat(4, Float.parseFloat(prQuantity.getText()));
+            ps.setFloat(5, Float.parseFloat(prTotalPrice.getText()));
+            ps.setFloat(6, Float.parseFloat(PrCashPay.getText()));
+            ps.setFloat(7, Float.parseFloat(prDueAmount.getText()));
+            ps.setDate(8, convertUtilDateToSqlDate(prDate.getDate()));
+            ps.setInt(9, Integer.parseInt(prID.getText()));
+            
+            ps.executeUpdate();
+            ps.close();
+            con.getCon().close();
+            
+            JOptionPane.showMessageDialog(prCompanyName, "Purchase Data is Update");
+            getAllPurchase();
+            prReset();
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(prCompanyName, "Purchase Data is not Update");
+            Logger.getLogger(DashBoard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_prUpdateMouseClicked
+
+    // Date method create **************
+    public java.util.Date convertStringToDate(String dateString) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+       
+        try {
+            return dateFormat.parse(dateString);
+        } 
+        catch (ParseException e) {
+            System.err.println("Parsing failed: " + e.getMessage());
+            return null; // Handle the exception by returning null
+        }
+    }
+
+    
+    // ********* Table to field Data pass******
+    
+    private void prTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prTableMouseClicked
+        // TODO add your handling code here:
+        int row = prTable.getSelectedRow();
+
+        String id = prTable.getModel().getValueAt(row, 0).toString();
+        String name = prTable.getModel().getValueAt(row, 1).toString();
+        String companyName = prTable.getModel().getValueAt(row, 2).toString();
+        String quantity = prTable.getModel().getValueAt(row, 3).toString();
+        String unitPrice = prTable.getModel().getValueAt(row, 4).toString();
+        String totalPrice = prTable.getModel().getValueAt(row, 5).toString();
+        String cashPay = prTable.getModel().getValueAt(row, 6).toString();
+        String dueAmount = prTable.getModel().getValueAt(row, 7).toString();
+        String date = prTable.getModel().getValueAt(row, 8).toString();
+
+        prID.setText(id);
+        prName.setSelectedItem(name);
+        prCompanyName.setText(companyName);
+        prUnitPrice.setText(quantity);
+        prQuantity.setText(unitPrice);
+        prTotalPrice.setText(totalPrice);
+        PrCashPay.setText(cashPay);
+        prDueAmount.setText(dueAmount);
+        prDate.setDate(convertStringToDate(date));
+        
+    }//GEN-LAST:event_prTableMouseClicked
+
+    private void prDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prDeleteMouseClicked
+        // TODO add your handling code here:
+        
+        sql="delete from purchase where purchaseID=?";
+        
+        try {
+            ps=con.getCon().prepareStatement(sql);
+            
+            ps.setInt(1, Integer.parseInt(prID.getText()));
+            
+            ps.executeUpdate();
+            ps.close();
+            con.getCon().close();
+            
+            JOptionPane.showMessageDialog(prCompanyName, "Purchase Data is Delete");
+            getAllPurchase();
+            prReset();
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(prCompanyName, "Purchase Data is Not Delete");
+            Logger.getLogger(DashBoard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_prDeleteMouseClicked
+
+    // **** Reset method create *************
+    
+    public void prReset(){
+        
+        prID.setText(null);
+        prName.setSelectedItem(null);
+        prCompanyName.setText(null);
+        prUnitPrice.setText(null);
+        prQuantity.setText(null);
+        prTotalPrice.setText(null);
+        PrCashPay.setText(null);
+        prDueAmount.setText(null);
+        prDate.setDate(null);
+        
+    }
+    
+    private void prResetMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prResetMouseClicked
+        // TODO add your handling code here:
+        prReset();
+        
+    }//GEN-LAST:event_prResetMouseClicked
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
