@@ -27,11 +27,11 @@ public class DashBoard extends javax.swing.JFrame {
     PreparedStatement ps;
     String sql = " ";
     ResultSet rs;
-    
+
     static String ppName = " ";  // product table name field declear
-    
-    static Float sttFloat =0.00f;
-    
+
+    static Float sttFloat = 0.00f;
+
     static String sttName = " ";
 
     /**
@@ -62,9 +62,6 @@ public class DashBoard extends javax.swing.JFrame {
         sDate.setDate(null);
     }
 
-    
-
-
     // table e data show method****************
     String[] selerColumns = {"Seler_ID", "Seler_Name", "Unit_Price", "Quantity", "Total_Price", "Discount", "Actual_Price", "Cash_Receive", "Cash_Return", "Date"};
 
@@ -93,8 +90,6 @@ public class DashBoard extends javax.swing.JFrame {
                 Float cash_Receive = rs.getFloat("Cash_Receive");
                 Float cash_Return = rs.getFloat("Cash_Return");
                 java.util.Date date = rs.getDate("Date");
-                
-                
 
                 model.addRow(new Object[]{Seler_ID, Seler_Name, Unit_Price, Quantity, Total_Price, Discount, Actual_Price, cash_Receive, cash_Return, date});
             }
@@ -148,6 +143,7 @@ public class DashBoard extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         dSales = new javax.swing.JButton();
@@ -288,6 +284,21 @@ public class DashBoard extends javax.swing.JFrame {
         jPanel25 = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
         report = new javax.swing.JPanel();
+        jPanel40 = new javax.swing.JPanel();
+        jLabel38 = new javax.swing.JLabel();
+        reFromDate = new com.toedter.calendar.JDateChooser();
+        reToDate = new com.toedter.calendar.JDateChooser();
+        reStock = new javax.swing.JRadioButton();
+        rePurchase = new javax.swing.JRadioButton();
+        reSales = new javax.swing.JRadioButton();
+        reView = new javax.swing.JButton();
+        jPanel41 = new javax.swing.JPanel();
+        jLabel40 = new javax.swing.JLabel();
+        jPanel42 = new javax.swing.JPanel();
+        jLabel39 = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        reportTable = new javax.swing.JTable();
+        jPanel43 = new javax.swing.JPanel();
         extra = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -1498,15 +1509,111 @@ public class DashBoard extends javax.swing.JFrame {
 
         mainmenu.addTab("tab5", product);
 
+        jPanel40.setBackground(new java.awt.Color(132, 221, 188));
+        jPanel40.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel38.setBackground(new java.awt.Color(102, 102, 102));
+        jLabel38.setFont(new java.awt.Font("Times New Roman", 3, 36)); // NOI18N
+        jLabel38.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel38.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel38.setText("Report");
+        jPanel40.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 60));
+        jPanel40.add(reFromDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, 180, 30));
+        jPanel40.add(reToDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 110, 200, 30));
+
+        buttonGroup1.add(reStock);
+        reStock.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        reStock.setText("STOCK");
+        jPanel40.add(reStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 190, -1, -1));
+
+        buttonGroup1.add(rePurchase);
+        rePurchase.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        rePurchase.setText("PURCHASE");
+        jPanel40.add(rePurchase, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, -1));
+
+        buttonGroup1.add(reSales);
+        reSales.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        reSales.setText("SALES");
+        jPanel40.add(reSales, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 190, -1, -1));
+
+        reView.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        reView.setText("VIEW");
+        reView.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        reView.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                reViewMouseClicked(evt);
+            }
+        });
+        jPanel40.add(reView, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 190, 70, 30));
+
+        jLabel40.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel40.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel40.setText("TO");
+
+        javax.swing.GroupLayout jPanel41Layout = new javax.swing.GroupLayout(jPanel41);
+        jPanel41.setLayout(jPanel41Layout);
+        jPanel41Layout.setHorizontalGroup(
+            jPanel41Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel40, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+        );
+        jPanel41Layout.setVerticalGroup(
+            jPanel41Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel41Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel40, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jPanel40.add(jPanel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 110, 90, 30));
+
+        jLabel39.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel39.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel39.setText("FROM");
+
+        javax.swing.GroupLayout jPanel42Layout = new javax.swing.GroupLayout(jPanel42);
+        jPanel42.setLayout(jPanel42Layout);
+        jPanel42Layout.setHorizontalGroup(
+            jPanel42Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel42Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel39, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel42Layout.setVerticalGroup(
+            jPanel42Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel42Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel39, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jPanel40.add(jPanel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
+
+        reportTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane5.setViewportView(reportTable);
+
+        jPanel40.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 980, 270));
+
+        jPanel43.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel43.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel40.add(jPanel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 60));
+
         javax.swing.GroupLayout reportLayout = new javax.swing.GroupLayout(report);
         report.setLayout(reportLayout);
         reportLayout.setHorizontalGroup(
             reportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1020, Short.MAX_VALUE)
+            .addComponent(jPanel40, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         reportLayout.setVerticalGroup(
             reportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 549, Short.MAX_VALUE)
+            .addComponent(jPanel40, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         mainmenu.addTab("tab6", report);
@@ -1657,7 +1764,7 @@ public class DashBoard extends javax.swing.JFrame {
             ps.setFloat(1, sttFloat);
 
 //            ps.setString(2, sName.getSelectedItem().toString());
-            ps.setString(2, sttName);   
+            ps.setString(2, sttName);
 
             ps.executeUpdate();
             ps.close();
@@ -1702,10 +1809,10 @@ public class DashBoard extends javax.swing.JFrame {
     private void sSaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sSaveMouseClicked
         // TODO add your handling code here:
         sql = "insert into selertable( Seler_Name, Unit_Price, Quantity, Total_Price, Discount, Actual_Price,  Cash_Receive, Cash_Return, Date) values (?,?,?,?,?,?,?,?,?)";
-        
+
         sttFloat = Float.parseFloat(sQuantity.getText().toString());
         sttName = sName.getSelectedItem().toString();
-        
+
         try {
             ps = con.getCon().prepareStatement(sql);
 
@@ -1728,11 +1835,10 @@ public class DashBoard extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Data Successfully");
             reset();
             getAllSales();
-            
-            getAllStockTable();
-        
-//            addProductToStock(); // stock tabel theke
 
+            getAllStockTable();
+
+//            addProductToStock(); // stock tabel theke
             getAllStockToSeles();
 
         } catch (SQLException ex) {
@@ -1748,7 +1854,7 @@ public class DashBoard extends javax.swing.JFrame {
         try {
             ps = con.getCon().prepareStatement(sql);
             ps.setInt(1, Integer.parseInt(sID.getText()));
-            
+
             ps.executeUpdate();
             ps.close();
             con.getCon().close();
@@ -1818,7 +1924,6 @@ public class DashBoard extends javax.swing.JFrame {
         String cash_Receive = sTable.getModel().getValueAt(rowIndex, 7).toString();
         String cash_Return = sTable.getModel().getValueAt(rowIndex, 8).toString();
         String date = sTable.getModel().getValueAt(rowIndex, 9).toString();
-        
 
         sID.setText(Seller_ID);
         sName.setSelectedItem(Seller_Name);
@@ -1901,18 +2006,13 @@ public class DashBoard extends javax.swing.JFrame {
         dReport.setBackground(Color.WHITE);
     }//GEN-LAST:event_dReportMouseExited
 
-    
-    
-    
-    
-    
     // stock method create purchase add contain to stock*************
     public void getStock() {
         sql = "update stock set stockQuantity = stockQuantity + ? where stockName=?";
 
         try {
             ps = con.getCon().prepareStatement(sql);
-            
+
             ps.setFloat(1, Float.parseFloat(prQuantity.getText().trim()));
             ps.setString(2, prName.getSelectedItem().toString());
 
@@ -1930,10 +2030,6 @@ public class DashBoard extends javax.swing.JFrame {
 
     }
 
-    
-    
-    
-    
     // purchase barar jonno method*************
     public void addProductToStock() {
         sql = " insert into stock (stockName, stockQuantity) values (?,?)";
@@ -1956,8 +2052,6 @@ public class DashBoard extends javax.swing.JFrame {
 
     }
 
-    
-    
     // Product method Reset****************
     public void reset1() {
 
@@ -1967,10 +2061,7 @@ public class DashBoard extends javax.swing.JFrame {
 
     }
 
-    
-    
-    
-        // product method create******************
+    // product method create******************
     String[] productColumns = {"Product_Id", "Product_Name", "Product_Category", "Product_Code"};
 
     public void getAllProduct() {
@@ -2000,17 +2091,14 @@ public class DashBoard extends javax.swing.JFrame {
             Logger.getLogger(DashBoard.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    
-    
-    
+
     // product insert play*************
     private void pSaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pSaveMouseClicked
         // TODO add your handling code here:
         sql = "insert into product (Product_Name, Product_Category, Product_Code) values (?,?,?)";
 
         ppName = pName.getText().trim();   // variable theke data asche
-        
+
         try {
             ps = con.getCon().prepareStatement(sql);
 
@@ -2037,9 +2125,7 @@ public class DashBoard extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_pSaveMouseClicked
 
-    
-    
-    
+
     private void pTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pTableMouseClicked
         // TODO add your handling code here:
         int rowIndex = pTable.getSelectedRow();
@@ -2217,8 +2303,6 @@ public class DashBoard extends javax.swing.JFrame {
             Logger.getLogger(DashBoard.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    
 
     // purchase table calculate  ************* 
     public float getTotalPurchase() {
@@ -2231,7 +2315,7 @@ public class DashBoard extends javax.swing.JFrame {
     }
 
     // purchase Table calponic table create**********
-    String[] purchaseColumns = {"purchaseID", "purchaseName",  "purchaseUnitPrice", "purchaseQuantity", "purchaseTotalPrice", "purchaseCashPay", "purchaseDueAmount", "purchaseDate"};
+    String[] purchaseColumns = {"purchaseID", "purchaseName", "purchaseUnitPrice", "purchaseQuantity", "purchaseTotalPrice", "purchaseCashPay", "purchaseDueAmount", "purchaseDate"};
 
     public void getAllPurchase() {
         DefaultTableModel model = new DefaultTableModel();
@@ -2250,13 +2334,13 @@ public class DashBoard extends javax.swing.JFrame {
 //                String company = rs.getString("purchaseCompanyName");
                 float unitPrice = rs.getFloat("purchaseUnitPrice");
                 float quantity = rs.getFloat("purchaseQuantity");
-                
+
                 float totalPrice = rs.getFloat("purchaseTotalPrice");
                 float cashPay = rs.getFloat("purchaseCashPay");
                 float dueAmount = rs.getFloat("purchaseDueAmount");
                 java.util.Date date = rs.getDate("purchaseDate");
 
-                model.addRow(new Object[]{id, name,  unitPrice, quantity, totalPrice, cashPay, dueAmount, date});
+                model.addRow(new Object[]{id, name, unitPrice, quantity, totalPrice, cashPay, dueAmount, date});
             }
 
             ps.executeQuery();
@@ -2292,7 +2376,7 @@ public class DashBoard extends javax.swing.JFrame {
             getAllPurchase();
             getAllStockTable();  // stock table
             prReset();
-            
+
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(prCompanyName, "Purchase Data is not Save");
             Logger.getLogger(DashBoard.class.getName()).log(Level.SEVERE, null, ex);
@@ -2345,13 +2429,12 @@ public class DashBoard extends javax.swing.JFrame {
     // purchase Update create
     private void prUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prUpdateMouseClicked
         // TODO add your handling code here:
-        
+
         sql = "update purchase set purchaseName=?,  purchaseUnitPrice=?, purchaseQuantity=?, purchaseTotalPrice=?, purchaseCashPay=?, purchaseDueAmount=?, purchaseDate=? where purchaseID=? ";
-        
+
         try {
-            ps=con.getCon().prepareStatement(sql);
-            
-            
+            ps = con.getCon().prepareStatement(sql);
+
             ps.setString(1, prName.getSelectedItem().toString());
 //            ps.setString(2, prCompanyName.getText());
             ps.setFloat(3, Float.parseFloat(prUnitPrice.getText()));
@@ -2361,15 +2444,15 @@ public class DashBoard extends javax.swing.JFrame {
             ps.setFloat(7, Float.parseFloat(prDueAmount.getText()));
             ps.setDate(8, convertUtilDateToSqlDate(prDate.getDate()));
             ps.setInt(9, Integer.parseInt(prID.getText()));
-            
+
             ps.executeUpdate();
             ps.close();
             con.getCon().close();
-            
+
             JOptionPane.showMessageDialog(prCompanyName, "Purchase Data is Update");
             getAllPurchase();
             prReset();
-            
+
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(prCompanyName, "Purchase Data is not Update");
             Logger.getLogger(DashBoard.class.getName()).log(Level.SEVERE, null, ex);
@@ -2379,27 +2462,25 @@ public class DashBoard extends javax.swing.JFrame {
     // Date method create **************
     public java.util.Date convertStringToDate(String dateString) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-       
+
         try {
             return dateFormat.parse(dateString);
-        } 
-        catch (ParseException e) {
+        } catch (ParseException e) {
             System.err.println("Parsing failed: " + e.getMessage());
             return null; // Handle the exception by returning null
         }
     }
 
-    
     // ********* Table to field Data pass******
-    
+
     private void prTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prTableMouseClicked
         // TODO add your handling code here:
         int row = prTable.getSelectedRow();
 
         String id = prTable.getModel().getValueAt(row, 0).toString();
         String name = prTable.getModel().getValueAt(row, 1).toString();
-    //    String companyName = prTable.getModel().getValueAt(row, 2).toString();
-        
+        //    String companyName = prTable.getModel().getValueAt(row, 2).toString();
+
         String unitPrice = prTable.getModel().getValueAt(row, 2).toString();
         String quantity = prTable.getModel().getValueAt(row, 3).toString();
         String totalPrice = prTable.getModel().getValueAt(row, 4).toString();
@@ -2409,34 +2490,34 @@ public class DashBoard extends javax.swing.JFrame {
 
         prID.setText(id);
         prName.setSelectedItem(name);
-    //    prCompanyName.setText(companyName);
+        //    prCompanyName.setText(companyName);
         prUnitPrice.setText(quantity);
         prQuantity.setText(unitPrice);
         prTotalPrice.setText(totalPrice);
         PrCashPay.setText(cashPay);
         prDueAmount.setText(dueAmount);
         prDate.setDate(convertStringToDate(date));
-        
+
     }//GEN-LAST:event_prTableMouseClicked
 
     private void prDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prDeleteMouseClicked
         // TODO add your handling code here:
-        
-        sql="delete from purchase where purchaseID=?";
-        
+
+        sql = "delete from purchase where purchaseID=?";
+
         try {
-            ps=con.getCon().prepareStatement(sql);
-            
+            ps = con.getCon().prepareStatement(sql);
+
             ps.setInt(1, Integer.parseInt(prID.getText()));
-            
+
             ps.executeUpdate();
             ps.close();
             con.getCon().close();
-            
+
             JOptionPane.showMessageDialog(prCompanyName, "Purchase Data is Delete");
             getAllPurchase();
             prReset();
-            
+
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(prCompanyName, "Purchase Data is Not Delete");
             Logger.getLogger(DashBoard.class.getName()).log(Level.SEVERE, null, ex);
@@ -2444,9 +2525,8 @@ public class DashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_prDeleteMouseClicked
 
     // **** Reset method create *************
-    
-    public void prReset(){
-        
+    public void prReset() {
+
         prID.setText(null);
         prName.setSelectedItem(null);
         prCompanyName.setText(null);
@@ -2456,14 +2536,164 @@ public class DashBoard extends javax.swing.JFrame {
         PrCashPay.setText(null);
         prDueAmount.setText(null);
         prDate.setDate(null);
-        
+
     }
-    
+
+    // purchase Table reset method create*****************
     private void prResetMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prResetMouseClicked
         // TODO add your handling code here:
         prReset();
-        
+
     }//GEN-LAST:event_prResetMouseClicked
+
+    
+    
+    
+    
+    // report Stock method create play**************
+    public void getStockReportByDate(java.util.Date fromDate, java.util.Date toDate) {
+
+        String[] columnNames = {"Stock Product Name", "Stock Product Quantity"};
+
+        DefaultTableModel model = new DefaultTableModel();
+        model.setColumnIdentifiers(columnNames);
+
+        reportTable.setModel(model);
+
+        sql = "select * from stock ";
+
+        try {
+            ps = con.getCon().prepareStatement(sql);
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                String name = rs.getString("stockName");
+                Float quantity = rs.getFloat("stockQuantity");
+
+                model.addRow(new Object[]{name, quantity});
+            }
+
+            ps.executeQuery();
+            ps.close();
+            rs.close();
+            con.getCon().close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DashBoard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    
+    
+    
+    // report purchase method create*************
+    public void getPurchaseReportByDate(java.util.Date fromDate, java.util.Date toDate) {
+
+        String[] columnNames = {"Purchase Name", " Purchase Unit Price", "Quantity", "Total Price", "Purchase Cash Pay", "Purchase Due Amount"};
+
+        DefaultTableModel model = new DefaultTableModel();
+        model.setColumnIdentifiers(columnNames);
+
+        reportTable.setModel(model);
+
+        sql = "select * from purchase where purchaseDate between ? and ? ";
+
+        try {
+            ps = con.getCon().prepareStatement(sql);
+
+            ps.setDate(1, convertUtilDateToSqlDate(fromDate));
+            ps.setDate(2, convertUtilDateToSqlDate(toDate));
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                String name = rs.getString("purchaseName");
+                // String company = rs.getString("purchaseCompanyName");
+                Float unitPrice = rs.getFloat("purchaseUnitPrice");
+                Float quantity = rs.getFloat("purchaseQuantity");
+                Float total = rs.getFloat("purchaseTotalPrice");
+                Float cashPay = rs.getFloat("purchaseCashPay");
+                Float due = rs.getFloat("purchaseDueAmount");
+
+                model.addRow(new Object[]{name, unitPrice, quantity, total, cashPay, due});
+            }
+
+            ps.executeQuery();
+            ps.close();
+            rs.close();
+            con.getCon().close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DashBoard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    
+    
+    
+    
+    // Report sales method create play***************
+    public void getSalesReportByDate(java.util.Date fromDate, java.util.Date toDate) {
+
+        String[] columnNames = {"Product Name", "Unit Price", "Quantity", "Discount", "Total Price", "Due Amount"};
+
+        DefaultTableModel model = new DefaultTableModel();
+        model.setColumnIdentifiers(columnNames);
+
+        reportTable.setModel(model);
+
+        sql = "select * from selertable where Date between ? and ? ";
+
+        try {
+            ps = con.getCon().prepareStatement(sql);
+
+            ps.setDate(1, convertUtilDateToSqlDate(fromDate));
+            ps.setDate(2, convertUtilDateToSqlDate(toDate));
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                String name = rs.getString("Seler_Name");
+                Float unitPrice = rs.getFloat("Unit_Price");
+                Float quantity = rs.getFloat("Quantity");
+                Float discount = rs.getFloat("Discount");
+                Float actualPrice = rs.getFloat("Actual_Price");
+
+                model.addRow(new Object[]{name, unitPrice, quantity, discount, actualPrice});
+            }
+
+            ps.executeQuery();
+            ps.close();
+            rs.close();
+            con.getCon().close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DashBoard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    
+        // report view method create ******************
+    private void reViewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reViewMouseClicked
+        // TODO add your handling code here:
+        if (rePurchase.isSelected()) {
+            getPurchaseReportByDate(reFromDate.getDate(), reToDate.getDate());
+        } 
+        else if (reSales.isSelected()) {
+            getSalesReportByDate(reFromDate.getDate(), reToDate.getDate());
+        }
+        else if (reStock.isSelected()) {
+            getStockReportByDate(reFromDate.getDate(), reToDate.getDate());
+        }
+        else{
+            System.out.println(" not ok");
+        }
+
+
+    }//GEN-LAST:event_reViewMouseClicked
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -2499,6 +2729,7 @@ public class DashBoard extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField PrCashPay;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton dHome;
     private javax.swing.JButton dProduct;
     private javax.swing.JButton dPurchase;
@@ -2538,7 +2769,10 @@ public class DashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -2578,6 +2812,10 @@ public class DashBoard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel38;
     private javax.swing.JPanel jPanel39;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel40;
+    private javax.swing.JPanel jPanel41;
+    private javax.swing.JPanel jPanel42;
+    private javax.swing.JPanel jPanel43;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
@@ -2587,6 +2825,7 @@ public class DashBoard extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane mainmenu;
     private javax.swing.JComboBox<String> pCategory;
     private javax.swing.JTextField pCode;
@@ -2612,7 +2851,14 @@ public class DashBoard extends javax.swing.JFrame {
     private javax.swing.JButton prUpdate;
     private javax.swing.JPanel product;
     private javax.swing.JPanel purchase;
+    private com.toedter.calendar.JDateChooser reFromDate;
+    private javax.swing.JRadioButton rePurchase;
+    private javax.swing.JRadioButton reSales;
+    private javax.swing.JRadioButton reStock;
+    private com.toedter.calendar.JDateChooser reToDate;
+    private javax.swing.JButton reView;
     private javax.swing.JPanel report;
+    private javax.swing.JTable reportTable;
     private javax.swing.JTextField sActualPrice;
     private javax.swing.JTextField sCashReceive;
     private javax.swing.JTextField sCashReturn;
