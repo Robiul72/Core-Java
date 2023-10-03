@@ -1,0 +1,9 @@
+
+CREATE TABLE `shoppingmal`.`student_from` (
+  `studentId` INT NOT NULL AUTO_INCREMENT,
+  `studentName` VARCHAR(30) NULL,
+  `studentDateOfBirth` VARCHAR(20) NOT NULL,
+  `subject` VARCHAR(20) NOT NULL,
+  `gender` VARCHAR(10) NOT NULL,
+  `hobby` VARCHAR(20) NULL,
+  PRIMARY KEY (`studentId`));
