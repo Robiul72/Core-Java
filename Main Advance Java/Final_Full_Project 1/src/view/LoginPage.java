@@ -10,7 +10,7 @@ package view;
  */
 public class LoginPage extends javax.swing.JFrame {
         
-    DashBoard fo= new DashBoard();
+//    DashBoard fo= new DashBoard();
     /**
      * Creates new form LoginPage
      */
@@ -138,9 +138,9 @@ public class LoginPage extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         
-        fo.dispose();
-        fo.setVisible(true);
-        fo.setLocationRelativeTo(null);
+//        fo.dispose();
+//        fo.setVisible(true);
+//        fo.setLocationRelativeTo(null);
         
         
     }//GEN-LAST:event_jButton2MouseClicked
