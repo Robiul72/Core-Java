@@ -10,7 +10,7 @@ package view;
  */
 public class Splash extends javax.swing.JFrame {
     
-    LoginPage f = new LoginPage();
+//    LoginPage f = new LoginPage();
     
 
     /**
@@ -92,7 +92,8 @@ public class Splash extends javax.swing.JFrame {
      */
     public static void main(String args[]) {
        Splash mySpah = new Splash();
-                
+        mySpah.setVisible(true);
+        
         try{
             for (int i = 0; i <= 100; i++) {
             Thread.sleep(40);
@@ -103,7 +104,7 @@ public class Splash extends javax.swing.JFrame {
         catch (Exception e){
         
         }
-        mySpah.setLocationRelativeTo(null);
+        
         new LoginPage().setVisible(true);
         mySpah.dispose();
     }
