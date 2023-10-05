@@ -36,7 +36,7 @@ public class DashBoard extends javax.swing.JFrame {
 
     static String sttName = " ";
     
-    static Float sttDueAmount =0.00f;
+//    static Float sttDueAmount =0.00f;
     
     
     public DashBoard() {
