@@ -401,8 +401,10 @@ public class DashBoard extends javax.swing.JFrame {
         jLabel45 = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
         customerTable = new javax.swing.JTable();
-        cusPrint = new javax.swing.JButton();
+        sPrint = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        card = new javax.swing.JTextPane();
         purchase = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
@@ -767,7 +769,7 @@ public class DashBoard extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(51, 51, 51));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("SALES");
-        jPanel6.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 50));
+        jPanel6.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 40));
 
         jPanel5.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 50));
 
@@ -856,7 +858,7 @@ public class DashBoard extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(cusTable);
 
-        jPanel5.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 100, 640, 150));
+        jPanel5.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 80, 650, 90));
 
         sReset.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         sReset.setText("RESET");
@@ -961,15 +963,15 @@ public class DashBoard extends javax.swing.JFrame {
         jLabel41.setText("Cash Receive");
         jPanel5.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 110, 20));
 
-        jLabel42.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
+        jLabel42.setFont(new java.awt.Font("Times New Roman", 1, 30)); // NOI18N
         jLabel42.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel42.setText("Product List");
-        jPanel5.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 50, 640, 40));
+        jPanel5.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 45, 640, -1));
 
-        jLabel45.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
+        jLabel45.setFont(new java.awt.Font("Times New Roman", 1, 30)); // NOI18N
         jLabel45.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel45.setText("Customer List");
-        jPanel5.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 250, 640, 50));
+        jPanel5.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 170, 650, 30));
 
         customerTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -989,23 +991,23 @@ public class DashBoard extends javax.swing.JFrame {
         });
         jScrollPane6.setViewportView(customerTable);
 
-        jPanel5.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 300, 640, 160));
+        jPanel5.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 200, 650, 80));
 
-        cusPrint.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        cusPrint.setText("PRINT");
-        cusPrint.setBorder(null);
-        cusPrint.addMouseListener(new java.awt.event.MouseAdapter() {
+        sPrint.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        sPrint.setText("PRINT");
+        sPrint.setBorder(null);
+        sPrint.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cusPrintMouseClicked(evt);
+                sPrintMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                cusPrintMouseEntered(evt);
+                sPrintMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                cusPrintMouseExited(evt);
+                sPrintMouseExited(evt);
             }
         });
-        jPanel5.add(cusPrint, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 480, 80, 30));
+        jPanel5.add(sPrint, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 480, 80, 30));
 
         jButton1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jButton1.setText("Add To Card");
@@ -1015,6 +1017,10 @@ public class DashBoard extends javax.swing.JFrame {
             }
         });
         jPanel5.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 480, -1, 30));
+
+        jScrollPane7.setViewportView(card);
+
+        jPanel5.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 280, 650, 190));
 
         javax.swing.GroupLayout salesLayout = new javax.swing.GroupLayout(sales);
         sales.setLayout(salesLayout);
@@ -3124,53 +3130,7 @@ public class DashBoard extends javax.swing.JFrame {
 
     
     
-    
-    
-     // Customer Table e data show method****************
-//    String[] customerColumns = {"Seler_Name", "Unit_Price", "Quantity", "Total_Price", "Discount", "Actual_Price", "Cash_Receive", "Due_Amount", "Cash_Return", "Date"};
 
-//    public void getAllCustomer() {
-//        sql = "select * from selertable";
-//
-//        DefaultTableModel model = new DefaultTableModel();
-//        model.setColumnIdentifiers(customerColumns);
-//
-//        customerTable.setModel(model);
-//
-//        try {
-//
-//            ps = con.getCon().prepareStatement(sql);
-//
-//            rs = ps.executeQuery();
-//
-//            while (rs.next()) {
-//                
-//                String Seler_Name = rs.getString("Seler_Name");
-//                Float Unit_Price = rs.getFloat("Unit_Price");
-//                Float Quantity = rs.getFloat("Quantity");
-//                Float Total_Price = rs.getFloat("Total_Price");
-//                Float Discount = rs.getFloat("Discount");
-//                Float Actual_Price = rs.getFloat("Actual_Price");
-//                Float cash_Receive = rs.getFloat("Cash_Receive");
-//                Float dueAmount = rs.getFloat("Due_Amount");
-//                Float cash_Return = rs.getFloat("Cash_Return");
-//                java.util.Date date = rs.getDate("Date");
-//
-//                model.addRow(new Object[]{ Seler_Name, Unit_Price, Quantity, Total_Price, Discount, Actual_Price, cash_Receive, dueAmount, cash_Return, date});
-//            }
-//
-//            ps.close();
-//            con.getCon().close();
-//
-//        } catch (SQLException ex) {
-//            Logger.getLogger(DashBoard.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//    }
-    
-    
-    
-    
-    
     
     
     
@@ -3180,23 +3140,65 @@ public class DashBoard extends javax.swing.JFrame {
         
     }//GEN-LAST:event_customerTableMouseClicked
 
-    private void cusPrintMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cusPrintMouseClicked
-        // TODO add your handling code here:
-        
-        
-    }//GEN-LAST:event_cusPrintMouseClicked
+    
+    
+    private void sPrintMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sPrintMouseClicked
+      
+      try{
+      
+          card.setText(card.getText()+ "\t\t\t\t F, P, S, M \n");
+          card.setText(card.getText()+"\t\t\t Mohammadpur, Dhaka-1207, Bangladesh \n");
+          card.setText(card.getText()+"----------------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
+          card.setText(card.getText()+"P Name"+"\tUnit Price"+"\t  Quantity"+"\tTotal Price"+"\tDiscount"+"\tActual Price"+"\tCash Pay"+"\tCash Return"+"\t    Date"+"\n");
+          card.setText(card.getText()+"----------------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
+          
+          DefaultTableModel model =(DefaultTableModel) customerTable.getModel();
+          
+     // get table product details
+          for (int i = 0; i < customerTable.getRowCount(); i++) {
+              String name = model.getValueAt(i, 1).toString();
+              String unitPrice = model.getValueAt(i, 2).toString();
+              String quantity = model.getValueAt(i, 3).toString();
+              String totalPrice = model.getValueAt(i, 4).toString();
+              String discount = model.getValueAt(i, 5).toString();
+              String actualPrice = model.getValueAt(i, 6).toString();
+              String cashPay = model.getValueAt(i, 7).toString();
+              String cashReturn = model.getValueAt(i, 8).toString();
+              
+              card.setText(card.getText()+"\t"+name+"\t   "+unitPrice+"\t "+quantity+ "\t"+totalPrice+"\t"+discount+"\t"+actualPrice+"\t"+cashPay+"\t"+cashReturn+"\n");
+          }
+          
+            card.setText(card.getText()+"----------------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
 
-    private void cusPrintMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cusPrintMouseEntered
-        // TODO add your handling code here:
-        cusPrint.setBackground(Color.orange);
-        
-    }//GEN-LAST:event_cusPrintMouseEntered
+            card.setText(card.getText()+"\tTotal Price\t       :\t"+getActualPrice()+"\n");
+            card.setText(card.getText()+"\tCash Pay\t       :\t"+sCashReceive.getText()+"\n");
+            card.setText(card.getText()+"\tBalance Back       :\t"+sCashReturn1.getText()+"\n");
+            
+            card.setText(card.getText()+"----------------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
 
-    private void cusPrintMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cusPrintMouseExited
-        // TODO add your handling code here:
-         cusPrint.setBackground(Color.WHITE);
+            card.setText(card.getText()+"\t\t\t\t Thank you so much \n");
+            
+            card.print();
+              
+      }
+     
+      catch(Exception e){
+                System.out.println(e);
+            }
         
-    }//GEN-LAST:event_cusPrintMouseExited
+    }//GEN-LAST:event_sPrintMouseClicked
+
+    private void sPrintMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sPrintMouseEntered
+        // TODO add your handling code here:
+        sPrint.setBackground(Color.orange);
+        
+    }//GEN-LAST:event_sPrintMouseEntered
+
+    private void sPrintMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sPrintMouseExited
+        // TODO add your handling code here:
+         sPrint.setBackground(Color.WHITE);
+        
+    }//GEN-LAST:event_sPrintMouseExited
 
     
     
@@ -3204,7 +3206,7 @@ public class DashBoard extends javax.swing.JFrame {
     
     public void getCardTable(){
     
-        String [] columns = {"Product Name", "Unit Price", "Quantity", "Discount", "Total Price", "Cash Pay", "Cash Return", "Date"};
+        String [] columns = {"Product Name", "Unit Price", "Quantity", "Total Price", "Discount", "Actual Price", "Cash Pay", "Cash Return", "Date"};
         
         DefaultTableModel cardAdd = new DefaultTableModel();
         cardAdd.setColumnIdentifiers(columns);
@@ -3222,9 +3224,10 @@ public class DashBoard extends javax.swing.JFrame {
         
         String productName = sName.getSelectedItem().toString();
         Float unitPrice = Float.parseFloat(sUnitPrice.getText());
-        Float quantity = Float.parseFloat(sQuantity.getText());
-        Float discount = Float.parseFloat(sDiscount.getText());       
+        Float quantity = Float.parseFloat(sQuantity.getText());              
         Float totalPrice = Float.parseFloat(sTotalPrice.getText());
+        Float discount = getDiscount(); 
+        Float actualPrice = getActualPrice(); 
         Float cashPay = Float.parseFloat(sCashReceive.getText());
         Float cashReturn = Float.parseFloat(sCashReturn1.getText());
         
@@ -3232,7 +3235,7 @@ public class DashBoard extends javax.swing.JFrame {
          
          List <Object> productList = new ArrayList<>();
          
-         productList.add(new Object[]{productName, unitPrice, quantity, discount, totalPrice, cashPay, cashReturn, date});
+         productList.add(new Object[]{productName, unitPrice, quantity, totalPrice, discount, actualPrice, cashPay, cashReturn, date});
          
          int row = model.getRowCount();
          
@@ -3278,7 +3281,7 @@ public class DashBoard extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField PrCashPay;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton cusPrint;
+    private javax.swing.JTextPane card;
     private javax.swing.JTable cusTable;
     private javax.swing.JTable customerTable;
     private javax.swing.JButton dHome;
@@ -3401,6 +3404,7 @@ public class DashBoard extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTabbedPane mainmenu;
     private javax.swing.JComboBox<String> pCategory;
     private javax.swing.JTextField pCode;
@@ -3443,6 +3447,7 @@ public class DashBoard extends javax.swing.JFrame {
     private javax.swing.JTextField sDueAmount;
     private javax.swing.JTextField sID;
     private javax.swing.JComboBox<String> sName;
+    private javax.swing.JButton sPrint;
     private javax.swing.JTextField sQuantity;
     private javax.swing.JButton sReset;
     private javax.swing.JButton sSave;
