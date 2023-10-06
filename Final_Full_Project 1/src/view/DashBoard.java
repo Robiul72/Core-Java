@@ -9,7 +9,6 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -44,7 +43,7 @@ public class DashBoard extends javax.swing.JFrame {
     
     public DashBoard() {
         initComponents();
-      
+        
         getAllSales();
         getAllProduct();
         
@@ -306,7 +305,8 @@ public class DashBoard extends javax.swing.JFrame {
 
         return actualPrice;
     }
-  
+
+    
     
     
     // Discount method
@@ -403,8 +403,6 @@ public class DashBoard extends javax.swing.JFrame {
         customerTable = new javax.swing.JTable();
         cusPrint = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        jScrollPane8 = new javax.swing.JScrollPane();
-        card = new javax.swing.JTextArea();
         purchase = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
@@ -765,29 +763,29 @@ public class DashBoard extends javax.swing.JFrame {
         jPanel6.setBackground(new java.awt.Color(153, 255, 204));
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("Times New Roman", 3, 30)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 3, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(51, 51, 51));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("SALES");
-        jPanel6.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 40));
+        jPanel6.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 50));
 
         jPanel5.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 50));
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel3.setText("Sale ID");
-        jPanel5.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 110, 20));
+        jPanel5.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 110, 20));
 
         sID.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         sID.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel5.add(sID, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 200, -1));
+        jPanel5.add(sID, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, 200, -1));
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel4.setText("Sale Name");
-        jPanel5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 110, -1));
+        jPanel5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 110, -1));
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel5.setText("Quantity");
-        jPanel5.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 110, 20));
+        jPanel5.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 110, 20));
 
         sQuantity.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         sQuantity.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -796,7 +794,7 @@ public class DashBoard extends javax.swing.JFrame {
                 sQuantityFocusLost(evt);
             }
         });
-        jPanel5.add(sQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 240, 200, -1));
+        jPanel5.add(sQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, 200, -1));
 
         sUnitPrice.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         sUnitPrice.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -805,11 +803,11 @@ public class DashBoard extends javax.swing.JFrame {
                 sUnitPriceFocusLost(evt);
             }
         });
-        jPanel5.add(sUnitPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 200, 200, -1));
+        jPanel5.add(sUnitPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 180, 200, -1));
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel6.setText("Unit Price");
-        jPanel5.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 110, 20));
+        jPanel5.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 110, 20));
 
         sDiscount.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         sDiscount.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -818,27 +816,27 @@ public class DashBoard extends javax.swing.JFrame {
                 sDiscountFocusLost(evt);
             }
         });
-        jPanel5.add(sDiscount, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 200, -1));
+        jPanel5.add(sDiscount, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 280, 200, -1));
 
         jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel7.setText("Total Price");
-        jPanel5.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 120, 20));
+        jPanel5.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 120, 20));
 
         sTotalPrice.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         sTotalPrice.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel5.add(sTotalPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 280, 200, -1));
+        jPanel5.add(sTotalPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, 200, -1));
 
         jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel8.setText("Discount");
-        jPanel5.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 110, 20));
+        jPanel5.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 110, 20));
 
         jLabel9.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel9.setText("Date");
-        jPanel5.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 60, 20));
+        jPanel5.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 60, 30));
 
         jLabel10.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel10.setText("Actual Price");
-        jPanel5.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, 110, 20));
+        jPanel5.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 110, 20));
 
         cusTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -858,7 +856,7 @@ public class DashBoard extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(cusTable);
 
-        jPanel5.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 80, 670, 90));
+        jPanel5.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 100, 640, 150));
 
         sReset.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         sReset.setText("RESET");
@@ -874,7 +872,7 @@ public class DashBoard extends javax.swing.JFrame {
                 sResetMouseExited(evt);
             }
         });
-        jPanel5.add(sReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 510, 80, 30));
+        jPanel5.add(sReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 480, 80, 30));
 
         sSave.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         sSave.setText("SAVE");
@@ -890,7 +888,7 @@ public class DashBoard extends javax.swing.JFrame {
                 sSaveMouseExited(evt);
             }
         });
-        jPanel5.add(sSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 510, 90, 30));
+        jPanel5.add(sSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 480, 90, 30));
 
         sDelete.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         sDelete.setText("DELETE");
@@ -906,7 +904,7 @@ public class DashBoard extends javax.swing.JFrame {
                 sDeleteMouseExited(evt);
             }
         });
-        jPanel5.add(sDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 510, 90, 30));
+        jPanel5.add(sDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 480, 90, 30));
 
         sUpdate.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         sUpdate.setText("UPDATE");
@@ -922,7 +920,7 @@ public class DashBoard extends javax.swing.JFrame {
                 sUpdateMouseExited(evt);
             }
         });
-        jPanel5.add(sUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 510, 100, 30));
+        jPanel5.add(sUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 480, 100, 30));
 
         sCashReceive.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         sCashReceive.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -931,47 +929,47 @@ public class DashBoard extends javax.swing.JFrame {
                 sCashReceiveFocusLost(evt);
             }
         });
-        jPanel5.add(sCashReceive, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 400, 200, -1));
+        jPanel5.add(sCashReceive, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 360, 200, -1));
 
         jLabel12.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel12.setText("Due Amount");
-        jPanel5.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, 110, 20));
+        jPanel5.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, 110, 20));
 
         sDueAmount.setEditable(false);
         sDueAmount.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         sDueAmount.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel5.add(sDueAmount, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 440, 200, -1));
+        jPanel5.add(sDueAmount, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 400, 200, -1));
 
         jLabel13.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel13.setText("Cash Return");
-        jPanel5.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 480, 110, 20));
-        jPanel5.add(sDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 200, -1));
+        jPanel5.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 440, 110, 20));
+        jPanel5.add(sDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 200, 30));
 
         sName.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jPanel5.add(sName, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 200, -1));
+        jPanel5.add(sName, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 200, -1));
 
         sActualPrice1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         sActualPrice1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel5.add(sActualPrice1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 360, 200, -1));
+        jPanel5.add(sActualPrice1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 320, 200, -1));
 
         sCashReturn1.setEditable(false);
         sCashReturn1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         sCashReturn1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel5.add(sCashReturn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 480, 200, -1));
+        jPanel5.add(sCashReturn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 440, 200, -1));
 
         jLabel41.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel41.setText("Cash Receive");
-        jPanel5.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, 110, 20));
+        jPanel5.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 110, 20));
 
-        jLabel42.setFont(new java.awt.Font("Times New Roman", 1, 30)); // NOI18N
+        jLabel42.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jLabel42.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel42.setText("Product List");
-        jPanel5.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 40, 670, 40));
+        jPanel5.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 50, 640, 40));
 
-        jLabel45.setFont(new java.awt.Font("Times New Roman", 1, 30)); // NOI18N
+        jLabel45.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jLabel45.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel45.setText("Customer List");
-        jPanel5.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 170, 670, -1));
+        jPanel5.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 250, 640, 50));
 
         customerTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -991,7 +989,7 @@ public class DashBoard extends javax.swing.JFrame {
         });
         jScrollPane6.setViewportView(customerTable);
 
-        jPanel5.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 210, 670, 80));
+        jPanel5.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 300, 640, 160));
 
         cusPrint.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         cusPrint.setText("PRINT");
@@ -1007,7 +1005,7 @@ public class DashBoard extends javax.swing.JFrame {
                 cusPrintMouseExited(evt);
             }
         });
-        jPanel5.add(cusPrint, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 510, 80, 30));
+        jPanel5.add(cusPrint, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 480, 80, 30));
 
         jButton1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jButton1.setText("Add To Card");
@@ -1016,13 +1014,7 @@ public class DashBoard extends javax.swing.JFrame {
                 jButton1MouseClicked(evt);
             }
         });
-        jPanel5.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 510, -1, 30));
-
-        card.setColumns(20);
-        card.setRows(5);
-        jScrollPane8.setViewportView(card);
-
-        jPanel5.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 300, 670, 200));
+        jPanel5.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 480, -1, 30));
 
         javax.swing.GroupLayout salesLayout = new javax.swing.GroupLayout(sales);
         sales.setLayout(salesLayout);
@@ -1032,7 +1024,7 @@ public class DashBoard extends javax.swing.JFrame {
         );
         salesLayout.setVerticalGroup(
             salesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 526, Short.MAX_VALUE)
         );
 
         mainmenu.addTab("tab2", sales);
@@ -3126,12 +3118,61 @@ public class DashBoard extends javax.swing.JFrame {
             getStockReportByDate(reFromDate.getDate(), reToDate.getDate());
         }
         else{
-            
+            System.out.println(" not ok");
         }
     }//GEN-LAST:event_reViewMouseClicked
 
     
- 
+    
+    
+    
+     // Customer Table e data show method****************
+//    String[] customerColumns = {"Seler_Name", "Unit_Price", "Quantity", "Total_Price", "Discount", "Actual_Price", "Cash_Receive", "Due_Amount", "Cash_Return", "Date"};
+
+//    public void getAllCustomer() {
+//        sql = "select * from selertable";
+//
+//        DefaultTableModel model = new DefaultTableModel();
+//        model.setColumnIdentifiers(customerColumns);
+//
+//        customerTable.setModel(model);
+//
+//        try {
+//
+//            ps = con.getCon().prepareStatement(sql);
+//
+//            rs = ps.executeQuery();
+//
+//            while (rs.next()) {
+//                
+//                String Seler_Name = rs.getString("Seler_Name");
+//                Float Unit_Price = rs.getFloat("Unit_Price");
+//                Float Quantity = rs.getFloat("Quantity");
+//                Float Total_Price = rs.getFloat("Total_Price");
+//                Float Discount = rs.getFloat("Discount");
+//                Float Actual_Price = rs.getFloat("Actual_Price");
+//                Float cash_Receive = rs.getFloat("Cash_Receive");
+//                Float dueAmount = rs.getFloat("Due_Amount");
+//                Float cash_Return = rs.getFloat("Cash_Return");
+//                java.util.Date date = rs.getDate("Date");
+//
+//                model.addRow(new Object[]{ Seler_Name, Unit_Price, Quantity, Total_Price, Discount, Actual_Price, cash_Receive, dueAmount, cash_Return, date});
+//            }
+//
+//            ps.close();
+//            con.getCon().close();
+//
+//        } catch (SQLException ex) {
+//            Logger.getLogger(DashBoard.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
+    
+    
+    
+    
+    
+    
+    
     
     private void customerTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customerTableMouseClicked
         // TODO add your handling code here:
@@ -3139,56 +3180,8 @@ public class DashBoard extends javax.swing.JFrame {
         
     }//GEN-LAST:event_customerTableMouseClicked
 
-    
-//    public float actualTotalPrice(){
-//    
-//        return getActualPrice() + getActualPrice();
-//      
-//    }
-    
-    
-    
     private void cusPrintMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cusPrintMouseClicked
-       try{
-            card.setText("\n\t\t\t\tF, P, S, M \n");
-            card.setText(card.getText()+ "\t\t\tMohammadpur, Dhaka-1207, Bangladesh\n");
-      
-            card.setText(card.getText()+"-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
-            card.setText(card.getText()+"Product Name" +"\t Unit Price"+"\tQuantity" +"\tTotal Price"+ "\tDiscount" +"\tActual Price"+"\tCash Pay"+"\tCash Return"+"\t    Date"+"\n");
-            card.setText(card.getText()+"-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
-          
-            DefaultTableModel model = (DefaultTableModel) customerTable.getModel();
-            
-        // get table product details
-            for (int i = 0; i < customerTable.getRowCount(); i++) {
-                String name = model.getValueAt(i, 1).toString();
-                String unitPrice = model.getValueAt(i, 2).toString();
-                String quantity = model.getValueAt(i, 3).toString();
-                String totalPrice = model.getValueAt(i, 4).toString();
-                String discount = model.getValueAt(i, 5).toString();
-                String actualPrice = model.getValueAt(i, 6).toString();
-                
-                String cashPay = model.getValueAt(i, 7).toString();
-                String cashReturn = model.getValueAt(i, 8).toString();
-      //          java.util.Date date = convertUtilDateToSqlDate(sDate.getDate());  
-       //         String date = model.getValueAt(i, 8).toString();
-                card.setText(card.getText() +"\t"+ name +"\t"+ unitPrice +"\t"+ quantity+"\t"+ totalPrice+ "\t"+ discount +"\t"+ actualPrice + "\t"+ cashPay +"\t"+ cashReturn+"\n");
-            }           
-                card.setText(card.getText()+"----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
-                card.setText(card.getText()+ "  Sub Total\t\t:\t "+ sActualPrice1.getText()+ "\n");
-                card.setText(card.getText()+ "  Cash     \t\t:\t "+ sCashReceive.getText()+ "\n");
-                card.setText(card.getText()+ "  Balance  \t\t:\t "+ sCashReturn1.getText()+ "\n");
-                
-                card.setText(card.getText()+"----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
-                card.setText(card.getText()+"\t\t\t\tThank you so much\n");
-                
-                getActualPrice();//  Actual price ********
-                
-               card.print();  // print            
-        }
-        catch(Exception e){
-        
-        }     
+        // TODO add your handling code here:
         
         
     }//GEN-LAST:event_cusPrintMouseClicked
@@ -3211,12 +3204,12 @@ public class DashBoard extends javax.swing.JFrame {
     
     public void getCardTable(){
     
-        String [] columns = {"Product Name", "Unit Price", "Quantity", "Total Price", "Discount", "Actual Price", "Cash Pay", "Cash Return", "Date"};
+        String [] columns = {"Product Name", "Unit Price", "Quantity", "Discount", "Total Price", "Cash Pay", "Cash Return", "Date"};
         
         DefaultTableModel cardAdd = new DefaultTableModel();
         cardAdd.setColumnIdentifiers(columns);
-        customerTable.setModel(cardAdd); 
-        
+        customerTable.setModel(cardAdd);
+    
     }
     
     
@@ -3229,25 +3222,23 @@ public class DashBoard extends javax.swing.JFrame {
         
         String productName = sName.getSelectedItem().toString();
         Float unitPrice = Float.parseFloat(sUnitPrice.getText());
-        Float quantity = Float.parseFloat(sQuantity.getText());         
+        Float quantity = Float.parseFloat(sQuantity.getText());
+        Float discount = Float.parseFloat(sDiscount.getText());       
         Float totalPrice = Float.parseFloat(sTotalPrice.getText());
-        Float discount = Float.parseFloat(sDiscount.getText());
-        Float actualPrice = getActualPrice();
         Float cashPay = Float.parseFloat(sCashReceive.getText());
-        Float cashReturn = Float.parseFloat(sCashReturn1.getText());        
-        java.util.Date date = convertUtilDateToSqlDate(sDate.getDate());
+        Float cashReturn = Float.parseFloat(sCashReturn1.getText());
+        
+         java.util.Date date = convertUtilDateToSqlDate(sDate.getDate());
          
          List <Object> productList = new ArrayList<>();
          
-         productList.add(new Object[]{ productName, unitPrice, quantity, totalPrice, discount, actualPrice, cashPay, cashReturn, date});
-          
+         productList.add(new Object[]{productName, unitPrice, quantity, discount, totalPrice, cashPay, cashReturn, date});
          
          int row = model.getRowCount();
          
          for (Object i : productList) {
             model.insertRow(row, (Object[]) i);
-        }
-         
+        }              
     }//GEN-LAST:event_jButton1MouseClicked
 
     
@@ -3287,7 +3278,6 @@ public class DashBoard extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField PrCashPay;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JTextArea card;
     private javax.swing.JButton cusPrint;
     private javax.swing.JTable cusTable;
     private javax.swing.JTable customerTable;
@@ -3411,7 +3401,6 @@ public class DashBoard extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JTabbedPane mainmenu;
     private javax.swing.JComboBox<String> pCategory;
     private javax.swing.JTextField pCode;
