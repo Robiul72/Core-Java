@@ -37,191 +37,167 @@ public class DashBoard extends javax.swing.JFrame {
     static Float sttQuantity = 0.00f;
 
     static String sttName = " ";
-    
-    static Float sttDueAmount =0.00f;
-    
-    
+
+    static Float sttDueAmount = 0.00f;
+
+    static Float actualPrice = 0.0f;
+
     public DashBoard() {
         initComponents();
-        
+
         getAllSales();
         getAllProduct();
-        
+
         getPurchaseComboName();
         getAllPurchase();
-        
+
         getSelesComboName();
         getAllStockTable();
-        
+
         todayPurchaseReport();
         monthlyPurchaseReport();
-        
+
         todaySalesReport();
         monthlySalesReport();
-         
+
         todayDueReport();
         monthlyDueReport();
-        
-        getCardTable();   // Card Add method 
-        
-     //   getAllCustomer();  // customer table method 
 
+        getCardTable();   // Card Add method 
+
+        //   getAllCustomer();  // customer table method 
     }
-    
-    
-  // Home DashBoard er Calculation Start********************************
-     LocalDate currentDate = LocalDate.now();
-     java.sql.Date sqlDate = java.sql.Date.valueOf(currentDate);
-      
-     // purchase today report method create ***********************
-     
-     public void todayPurchaseReport(){
-         sql = "select sum(purchaseTotalPrice) from purchase where purchaseDate =? ";
-         
+
+    // Home DashBoard er Calculation Start********************************
+    LocalDate currentDate = LocalDate.now();
+    java.sql.Date sqlDate = java.sql.Date.valueOf(currentDate);
+
+    // purchase today report method create ***********************
+    public void todayPurchaseReport() {
+        sql = "select sum(purchaseTotalPrice) from purchase where purchaseDate =? ";
+
         try {
-            ps=con.getCon().prepareStatement(sql);
+            ps = con.getCon().prepareStatement(sql);
             ps.setDate(1, sqlDate);
-                       
-            rs=ps.executeQuery();
-            
-            while (rs.next()){
-            
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+
                 Float totalPrice = rs.getFloat("sum(purchaseTotalPrice)");
-                
+
                 homeTodayPurchase.setText(totalPrice + "");
             }
-                       
+
         } catch (SQLException ex) {
             Logger.getLogger(DashBoard.class.getName()).log(Level.SEVERE, null, ex);
         }
-     
-     }
-     
-     
-     
-     // Monthly Purchase report method create *********************
-      public void monthlyPurchaseReport() {
 
-        
+    }
+
+    // Monthly Purchase report method create *********************
+    public void monthlyPurchaseReport() {
+
         sql = "select sum(purchaseTotalPrice) from purchase where purchaseDate like ? ";
         try {
             ps = con.getCon().prepareStatement(sql);
-            ps.setString(1, sqlDate.toString().substring(0, 8) + "%" );
+            ps.setString(1, sqlDate.toString().substring(0, 8) + "%");
 
             rs = ps.executeQuery();
-            
-            while(rs.next()){
-                
-               Float totalPrice=rs.getFloat("sum(purchaseTotalPrice)");
-               homeMonthlyPurchase.setText(totalPrice + " ");                
+
+            while (rs.next()) {
+
+                Float totalPrice = rs.getFloat("sum(purchaseTotalPrice)");
+                homeMonthlyPurchase.setText(totalPrice + " ");
             }
         } catch (SQLException ex) {
             Logger.getLogger(DashBoard.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-     
-      
-      
-      
-     
-     // *** Sales report start *********************
-     
-     public void todaySalesReport(){
-         sql = "select sum(Actual_Price) from selertable where Date =? ";
-         
+
+    // *** Sales report start *********************
+    public void todaySalesReport() {
+        sql = "select sum(Actual_Price) from selertable where Date =? ";
+
         try {
-            ps=con.getCon().prepareStatement(sql);
+            ps = con.getCon().prepareStatement(sql);
             ps.setDate(1, sqlDate);
-                    
-            rs=ps.executeQuery();
-            
-            while (rs.next()){
-            
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+
                 Float totalPrice = rs.getFloat("sum(Actual_Price)");
-                
+
                 homeTodaySales.setText(totalPrice + " ");
             }
-                     
+
         } catch (SQLException ex) {
             Logger.getLogger(DashBoard.class.getName()).log(Level.SEVERE, null, ex);
-        }  
-     }
+        }
+    }
 
-  
-     
-     // Monthly Sales report method create *********************
-      public void monthlySalesReport() {
+    // Monthly Sales report method create *********************
+    public void monthlySalesReport() {
 
-       
         sql = "select sum(Actual_Price) from selertable where Date like ? ";
         try {
             ps = con.getCon().prepareStatement(sql);
-            ps.setString(1, sqlDate.toString().substring(0, 8) + "%" );
+            ps.setString(1, sqlDate.toString().substring(0, 8) + "%");
 
             rs = ps.executeQuery();
-            
-            while(rs.next()){
-                
-               Float totalPrice=rs.getFloat("sum(Actual_Price)");
-               homeMonthlySales.setText(totalPrice + " ");                
+
+            while (rs.next()) {
+
+                Float totalPrice = rs.getFloat("sum(Actual_Price)");
+                homeMonthlySales.setText(totalPrice + " ");
             }
         } catch (SQLException ex) {
             Logger.getLogger(DashBoard.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-     
-     
-      
-      
-     // ********* Due report start *********************
-     
-     public void todayDueReport(){
-         sql = "select sum(Due_Amount) from selertable where Date =? ";
-         
+
+    // ********* Due report start *********************
+    public void todayDueReport() {
+        sql = "select sum(Due_Amount) from selertable where Date =? ";
+
         try {
-            ps=con.getCon().prepareStatement(sql);
+            ps = con.getCon().prepareStatement(sql);
             ps.setDate(1, sqlDate);
 
-            rs=ps.executeQuery();
-            
-            while (rs.next()){
-            
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+
                 Float totalPrice = rs.getFloat("sum(Due_Amount)");
 
                 homeTodayDue.setText(totalPrice + " ");
             }
-                   
+
         } catch (SQLException ex) {
             Logger.getLogger(DashBoard.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-     }
-     
-   
-     
-      // Monthly Due report method create *********************
-      public void monthlyDueReport() {
+        }
+    }
 
-       
+    // Monthly Due report method create *********************
+    public void monthlyDueReport() {
+
         sql = "select sum(Actual_Price) from selertable where Date like ? ";
         try {
             ps = con.getCon().prepareStatement(sql);
-            ps.setString(1, sqlDate.toString().substring(0, 8) + "%" );
+            ps.setString(1, sqlDate.toString().substring(0, 8) + "%");
 
             rs = ps.executeQuery();
-            
-            while(rs.next()){
-                
-               Float totalPrice=rs.getFloat("sum(Actual_Price)");
-               homeMonthlyDue.setText(totalPrice + " ");                
+
+            while (rs.next()) {
+
+                Float totalPrice = rs.getFloat("sum(Actual_Price)");
+                homeMonthlyDue.setText(totalPrice + " ");
             }
         } catch (SQLException ex) {
             Logger.getLogger(DashBoard.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-     
-
-      
-      
 
     // Reset sales method create
     public void reset() {
@@ -279,9 +255,6 @@ public class DashBoard extends javax.swing.JFrame {
         }
     }
 
-    
-    
-    
     // calculate total Price 
     public float getTotalPrice() {
 
@@ -306,17 +279,11 @@ public class DashBoard extends javax.swing.JFrame {
         return actualPrice;
     }
 
-    
-    
-    
     // Discount method
     public float getDiscount() {
         return getTotalPrice() - getActualPrice();
     }
 
-    
-    
-    
     // Date method
     public java.sql.Date convertUtilDateToSqlDate(java.util.Date utilDate) {
         if (utilDate != null) {
@@ -325,8 +292,6 @@ public class DashBoard extends javax.swing.JFrame {
         return null;
     }
 
-    
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -991,7 +956,7 @@ public class DashBoard extends javax.swing.JFrame {
         });
         jScrollPane6.setViewportView(customerTable);
 
-        jPanel5.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 200, 650, 80));
+        jPanel5.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 200, 650, 90));
 
         sPrint.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         sPrint.setText("PRINT");
@@ -1020,7 +985,7 @@ public class DashBoard extends javax.swing.JFrame {
 
         jScrollPane7.setViewportView(card);
 
-        jPanel5.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 280, 650, 190));
+        jPanel5.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 300, 650, 170));
 
         javax.swing.GroupLayout salesLayout = new javax.swing.GroupLayout(sales);
         sales.setLayout(salesLayout);
@@ -2061,8 +2026,6 @@ public class DashBoard extends javax.swing.JFrame {
         mainmenu.setSelectedIndex(5);
     }//GEN-LAST:event_dReportActionPerformed
 
-  
-    
 // unit price focus lost
     private void sUnitPriceFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_sUnitPriceFocusLost
         // TODO add your handling code here:
@@ -2073,36 +2036,28 @@ public class DashBoard extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, "Unit Price cannot be Empty");
                 sUnitPrice.requestFocus();
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, "An error occurred :" + e.getMessage());
         }
     }//GEN-LAST:event_sUnitPriceFocusLost
 
-    
-    
     // quantity price focus lost
     private void sQuantityFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_sQuantityFocusLost
         // TODO add your handling code here:
         try {
             if (sUnitPrice.getText().trim().isEmpty()) {
                 sUnitPrice.requestFocus();
-            }
-            else if (!sQuantity.getText().trim().isEmpty()) {
+            } else if (!sQuantity.getText().trim().isEmpty()) {
                 sTotalPrice.setText(getTotalPrice() + " ");
-            }
-            else {
+            } else {
                 JOptionPane.showMessageDialog(rootPane, "Quantity can not be Empty");
                 sQuantity.requestFocus();
             }
-        } 
-        catch (Exception e) {
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, "An error :" + e.getMessage());
         }
     }//GEN-LAST:event_sQuantityFocusLost
 
-    
-    
     // discount fosus lost
     private void sDiscountFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_sDiscountFocusLost
         // TODO add your handling code here:
@@ -2110,8 +2065,6 @@ public class DashBoard extends javax.swing.JFrame {
         sActualPrice1.setText(actualPrice + " ");
 
     }//GEN-LAST:event_sDiscountFocusLost
-
-    
 
     // stock method create Seles add contain to stock
     public void getAllStockToSeles() {
@@ -2162,8 +2115,6 @@ public class DashBoard extends javax.swing.JFrame {
             Logger.getLogger(DashBoard.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-     
 
     // Save method create
     private void sSaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sSaveMouseClicked
@@ -2173,21 +2124,20 @@ public class DashBoard extends javax.swing.JFrame {
 
         sttQuantity = Float.parseFloat(sQuantity.getText().toString());
         sttName = sName.getSelectedItem().toString();
-        
-       // sttDueAmount = Float.parseFloat(sDueAmount.getText().toString());
 
+        // sttDueAmount = Float.parseFloat(sDueAmount.getText().toString());
         try {
             ps = con.getCon().prepareStatement(sql);
 
             ps.setString(1, sttName);
-            ps.setFloat(2, Float.parseFloat(sUnitPrice.getText()));          
+            ps.setFloat(2, Float.parseFloat(sUnitPrice.getText()));
             ps.setFloat(3, sttQuantity);
             ps.setFloat(4, getTotalPrice());
             ps.setFloat(5, getDiscount());
             ps.setFloat(6, getActualPrice());
-            ps.setFloat(7, Float.parseFloat(sCashReceive.getText()));           
-            ps.setFloat(8, Float.parseFloat(sDueAmount.getText().toString()));           
-            ps.setFloat(9, Float.parseFloat(sCashReturn1.getText()));            
+            ps.setFloat(7, Float.parseFloat(sCashReceive.getText()));
+            ps.setFloat(8, Float.parseFloat(sDueAmount.getText().toString()));
+            ps.setFloat(9, Float.parseFloat(sCashReturn1.getText()));
             ps.setDate(10, convertUtilDateToSqlDate(sDate.getDate()));
 
             ps.executeUpdate();
@@ -2195,31 +2145,28 @@ public class DashBoard extends javax.swing.JFrame {
             con.getCon().close();
 
             JOptionPane.showMessageDialog(rootPane, "Data Successfully");
-            
+
             reset();
             getAllSales();
 
             getAllStockTable();
             getAllStockToSeles();
-            
+
             todaySalesReport();
             monthlySalesReport();
-            
+
             todayDueReport();
             monthlyDueReport();
-            
+
             todayPurchaseReport();
             monthlyPurchaseReport();
-            
-          //  getAllCustomer();    // customer table method
-            
+
+            //  getAllCustomer();    // customer table method
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, "Data Not Successfully");
             Logger.getLogger(DashBoard.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_sSaveMouseClicked
-
-    
 
     // sales Delete method create ******************
     private void sDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sDeleteMouseClicked
@@ -2278,14 +2225,13 @@ public class DashBoard extends javax.swing.JFrame {
         float actualPrice = getActualPrice();
         float cashReceive = Float.parseFloat(sCashReceive.getText().trim());
         float cashReturn = actualPrice - cashReceive;
- 
-        if(cashReturn > 0){
-          sDueAmount.setText(cashReturn + " ");
-          sCashReturn1.setText( 00+"");
-        }  
-        else{
-          sCashReturn1.setText(cashReturn + " ");
-          sDueAmount.setText( 00+"");
+
+        if (cashReturn > 0) {
+            sDueAmount.setText(cashReturn + " ");
+            sCashReturn1.setText(00 + "");
+        } else {
+            sCashReturn1.setText(cashReturn + " ");
+            sDueAmount.setText(00 + "");
         }
     }//GEN-LAST:event_sCashReceiveFocusLost
 
@@ -2388,9 +2334,6 @@ public class DashBoard extends javax.swing.JFrame {
         dReport.setBackground(Color.WHITE);
     }//GEN-LAST:event_dReportMouseExited
 
-    
-    
-    
     // colponick stock table create 
     String[] stockColumns = {"stockID", "stockName", "stockQuantity", "stockCode"};
 
@@ -2412,8 +2355,8 @@ public class DashBoard extends javax.swing.JFrame {
                 String name = rs.getString("stockName");
                 Float quantity = rs.getFloat("stockQuantity");
                 String code = rs.getString("stockCode");
-                
-                model.addRow(new Object[]{ID, name, quantity, code });
+
+                model.addRow(new Object[]{ID, name, quantity, code});
             }
 
             ps.executeQuery();
@@ -2425,10 +2368,7 @@ public class DashBoard extends javax.swing.JFrame {
         }
 
     }
-    
-    
-    
-    
+
     // stock method create purchase add contain to stock*************
     public void getStock() {
         sql = "update stock set stockQuantity = stockQuantity + ? where stockName=?";
@@ -2463,7 +2403,7 @@ public class DashBoard extends javax.swing.JFrame {
             ps.setString(1, ppName);
 
             ps.setFloat(2, 0.0f);
-            
+
             ps.setString(3, ppCode);
 
             ps.executeUpdate();
@@ -2730,9 +2670,6 @@ public class DashBoard extends javax.swing.JFrame {
         }
     }
 
-    
-    
-    
     // purchase table calculate  ************* 
     public float getTotalPurchase() {
         float pUnitPrice = Float.parseFloat(prUnitPrice.getText().trim());
@@ -2807,7 +2744,7 @@ public class DashBoard extends javax.swing.JFrame {
             getAllStockTable();  // stock table
             prReset();
             todayPurchaseReport();
-            
+
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(prCompanyName, "Purchase Data is not Save");
             Logger.getLogger(DashBoard.class.getName()).log(Level.SEVERE, null, ex);
@@ -2834,17 +2771,15 @@ public class DashBoard extends javax.swing.JFrame {
         try {
             if (prUnitPrice.getText().trim().isEmpty()) {
                 prUnitPrice.requestFocus();
-                
-            }
-            else if (!prQuantity.getText().trim().isEmpty()) {
+
+            } else if (!prQuantity.getText().trim().isEmpty()) {
                 prTotalPrice.setText(getTotalPurchase() + " ");
-            } 
-            else {
+            } else {
                 JOptionPane.showMessageDialog(rootPane, "Quantity can not be Empty");
                 prQuantity.requestFocus();
-           
+
             }
-            
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, "An error :" + e.getMessage());
         }
@@ -2984,7 +2919,6 @@ public class DashBoard extends javax.swing.JFrame {
     
     
     
-    
     // report Stock method create play**************
     public void getStockReportByDate(java.util.Date fromDate, java.util.Date toDate) {
 
@@ -3069,7 +3003,6 @@ public class DashBoard extends javax.swing.JFrame {
     
     
     
-    
     // Report sales method create play***************
     public void getSalesReportByDate(java.util.Date fromDate, java.util.Date toDate) {
 
@@ -3111,19 +3044,17 @@ public class DashBoard extends javax.swing.JFrame {
     }
 
     
-        // report view method create ******************
+    
+    // report view method create ******************
     private void reViewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reViewMouseClicked
         // TODO add your handling code here:
         if (rePurchase.isSelected()) {
             getPurchaseReportByDate(reFromDate.getDate(), reToDate.getDate());
-        } 
-        else if (reSales.isSelected()) {
+        } else if (reSales.isSelected()) {
             getSalesReportByDate(reFromDate.getDate(), reToDate.getDate());
-        }
-        else if (reStock.isSelected()) {
+        } else if (reStock.isSelected()) {
             getStockReportByDate(reFromDate.getDate(), reToDate.getDate());
-        }
-        else{
+        } else {
             System.out.println(" not ok");
         }
     }//GEN-LAST:event_reViewMouseClicked
@@ -3131,121 +3062,160 @@ public class DashBoard extends javax.swing.JFrame {
     
     
 
-    
-    
-    
     private void customerTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customerTableMouseClicked
         // TODO add your handling code here:
-        
-        
+
     }//GEN-LAST:event_customerTableMouseClicked
 
     
     
+// Print total price from cuatomer table **************    
+    public float getActualTotalPrice() {
+
+        float ff = 0.0f;
+
+        DefaultTableModel model = (DefaultTableModel) customerTable.getModel();
+        int row = model.getRowCount();
+
+        for (int i = 0; i < row; i++) {
+            float aPrice = Float.valueOf(customerTable.getModel().getValueAt(i, 5).toString());
+            ff += aPrice;
+
+        }
+        return ff;
+    }
+
+    // cash Pay method create ****************************   
+    public float cashPay() {
+
+        float ff = 0.0f;
+
+        DefaultTableModel model = (DefaultTableModel) customerTable.getModel();
+        int row = model.getRowCount();
+
+        for (int i = 0; i < row; i++) {
+            float aPrice = Float.valueOf(customerTable.getModel().getValueAt(i, 6).toString());
+            ff += aPrice;
+        }
+        return ff;
+    }
+
+    
+    
+ // Customer k Tk back method create ****************************   
+    public float balance() {
+        Float balance = 0.0f;
+
+        if (getActualTotalPrice() < cashPay()) {
+            balance = cashPay() - getActualTotalPrice();
+        } 
+        else {
+            float bala = getActualTotalPrice() - cashPay();
+            balance=bala*(-1);
+        }
+        return balance;
+    }
+
+    
+    
+// Print method create start *************************************************    
     private void sPrintMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sPrintMouseClicked
-      
-      try{
-      
-          card.setText(card.getText()+ "\t\t\t\t F, P, S, M \n");
-          card.setText(card.getText()+"\t\t\t Mohammadpur, Dhaka-1207, Bangladesh \n");
-          card.setText(card.getText()+"----------------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
-          card.setText(card.getText()+"P Name"+"\tUnit Price"+"\t  Quantity"+"\tTotal Price"+"\tDiscount"+"\tActual Price"+"\tCash Pay"+"\tCash Return"+"\t    Date"+"\n");
-          card.setText(card.getText()+"----------------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
-          
-          DefaultTableModel model =(DefaultTableModel) customerTable.getModel();
-          
-     // get table product details
-          for (int i = 0; i < customerTable.getRowCount(); i++) {
-              String name = model.getValueAt(i, 1).toString();
-              String unitPrice = model.getValueAt(i, 2).toString();
-              String quantity = model.getValueAt(i, 3).toString();
-              String totalPrice = model.getValueAt(i, 4).toString();
-              String discount = model.getValueAt(i, 5).toString();
-              String actualPrice = model.getValueAt(i, 6).toString();
-              String cashPay = model.getValueAt(i, 7).toString();
-              String cashReturn = model.getValueAt(i, 8).toString();
-              
-              card.setText(card.getText()+"\t"+name+"\t   "+unitPrice+"\t "+quantity+ "\t"+totalPrice+"\t"+discount+"\t"+actualPrice+"\t"+cashPay+"\t"+cashReturn+"\n");
-          }
-          
-            card.setText(card.getText()+"----------------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
 
-            card.setText(card.getText()+"\tTotal Price\t       :\t"+getActualPrice()+"\n");
-            card.setText(card.getText()+"\tCash Pay\t       :\t"+sCashReceive.getText()+"\n");
-            card.setText(card.getText()+"\tBalance Back       :\t"+sCashReturn1.getText()+"\n");
-            
-            card.setText(card.getText()+"----------------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
+        try {
 
-            card.setText(card.getText()+"\t\t\t\t Thank you so much \n");
-            
-            card.print();
-              
-      }
-     
-      catch(Exception e){
-                System.out.println(e);
+            card.setText(card.getText() + "\t\t\t\t F, P, S, M \n");
+            card.setText(card.getText() + "\t\t\t Mohammadpur, Dhaka-1207, Bangladesh \n");
+            card.setText(card.getText() + "----------------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
+            card.setText(card.getText() + "P Name" + "\tUnit Price" + "\t  Quantity" + "\tTotal Price" + "\tDiscount" + "\tActual Price" + "\tCash Pay" + "\t    Date" + "\n");
+            card.setText(card.getText() + "----------------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
+
+            DefaultTableModel model = (DefaultTableModel) customerTable.getModel();  //  Data from customer table ********
+
+            // get table product details
+            for (int i = 0; i < model.getRowCount(); i++) {
+                String name = model.getValueAt(i, 0).toString();
+                String unitPrice = model.getValueAt(i, 1).toString();
+                String quantity = model.getValueAt(i, 2).toString();
+                String totalPrice = model.getValueAt(i, 3).toString();
+                String discount = model.getValueAt(i, 4).toString();
+                String actualPrice = model.getValueAt(i, 5).toString();
+                String cashPay = model.getValueAt(i, 6).toString();
+//              String cashReturn = model.getValueAt(i, 7).toString();
+                String date = model.getValueAt(i, 7).toString();
+
+                card.setText(card.getText() + name + "\t   " + unitPrice + "\t " + quantity + "\t" + totalPrice + "\t" + discount + "\t" + actualPrice + "\t" + cashPay + "\t" + date + "\n");
+
             }
-        
+
+            card.setText(card.getText() + "----------------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
+
+            card.setText(card.getText() + "\tTotal Price\t       :\t" + getActualTotalPrice() + "\n");
+            card.setText(card.getText() + "\tCash Pay\t       :\t" + cashPay() + "\n");
+            card.setText(card.getText() + "\tBalance Back      :\t" + balance() + "\n");
+
+            card.setText(card.getText() + "----------------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
+
+            card.setText(card.getText() + "\t\t\t\t Thank you so much \n\n");
+
+            card.print();
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
     }//GEN-LAST:event_sPrintMouseClicked
 
     private void sPrintMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sPrintMouseEntered
         // TODO add your handling code here:
         sPrint.setBackground(Color.orange);
-        
+
     }//GEN-LAST:event_sPrintMouseEntered
 
     private void sPrintMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sPrintMouseExited
         // TODO add your handling code here:
-         sPrint.setBackground(Color.WHITE);
-        
+        sPrint.setBackground(Color.WHITE);
+
     }//GEN-LAST:event_sPrintMouseExited
 
-    
-    
     // ********* Card method Play ******************
-    
-    public void getCardTable(){
-    
-        String [] columns = {"Product Name", "Unit Price", "Quantity", "Total Price", "Discount", "Actual Price", "Cash Pay", "Cash Return", "Date"};
-        
+    public void getCardTable() {
+
+        String[] columns = {"Product Name", "Unit Price", "Quantity", "Total Price", "Discount", "Actual Price", "Cash Pay", "Date"};
+
         DefaultTableModel cardAdd = new DefaultTableModel();
         cardAdd.setColumnIdentifiers(columns);
         customerTable.setModel(cardAdd);
-    
+
     }
-    
-    
-    
+
     // **** Add to Card method create *************
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
-        
-        DefaultTableModel model =  (DefaultTableModel) customerTable.getModel();
-        
+
+        DefaultTableModel model = (DefaultTableModel) customerTable.getModel();
+
         String productName = sName.getSelectedItem().toString();
         Float unitPrice = Float.parseFloat(sUnitPrice.getText());
-        Float quantity = Float.parseFloat(sQuantity.getText());              
+        Float quantity = Float.parseFloat(sQuantity.getText());
         Float totalPrice = Float.parseFloat(sTotalPrice.getText());
-        Float discount = getDiscount(); 
-        Float actualPrice = getActualPrice(); 
+        Float discount = getDiscount();
+        actualPrice = getActualPrice();
         Float cashPay = Float.parseFloat(sCashReceive.getText());
-        Float cashReturn = Float.parseFloat(sCashReturn1.getText());
-        
-         java.util.Date date = convertUtilDateToSqlDate(sDate.getDate());
-         
-         List <Object> productList = new ArrayList<>();
-         
-         productList.add(new Object[]{productName, unitPrice, quantity, totalPrice, discount, actualPrice, cashPay, cashReturn, date});
-         
-         int row = model.getRowCount();
-         
-         for (Object i : productList) {
+//        Float cashReturn = Float.parseFloat(sCashReturn1.getText());
+
+        java.util.Date date = convertUtilDateToSqlDate(sDate.getDate());
+
+        List<Object> productList = new ArrayList<>();
+
+        productList.add(new Object[]{productName, unitPrice, quantity, totalPrice, discount, actualPrice, cashPay, date});
+
+        int row = model.getRowCount();
+
+        for (Object i : productList) {
             model.insertRow(row, (Object[]) i);
-        }              
+        }
     }//GEN-LAST:event_jButton1MouseClicked
 
-    
-    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
