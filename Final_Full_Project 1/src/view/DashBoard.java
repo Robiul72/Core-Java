@@ -841,6 +841,7 @@ public class DashBoard extends javax.swing.JFrame {
         });
         jPanel5.add(sReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 480, 80, 30));
 
+        sSave.setBackground(new java.awt.Color(51, 204, 0));
         sSave.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         sSave.setText("SAVE");
         sSave.setBorder(null);
@@ -2081,10 +2082,10 @@ public class DashBoard extends javax.swing.JFrame {
             ps.close();
             con.getCon().close();
 
-            JOptionPane.showMessageDialog(prCompanyName, "Stock Data is Update and Decreament");
+//            JOptionPane.showMessageDialog(prCompanyName, "Stock Data is Update and Decreament");
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(prCompanyName, "Stock Data is Not Update and Decreament");
+//            JOptionPane.showMessageDialog(prCompanyName, "Stock Data is Not Update and Decreament");
 
             Logger.getLogger(DashBoard.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -2145,6 +2146,29 @@ public class DashBoard extends javax.swing.JFrame {
             con.getCon().close();
 
             JOptionPane.showMessageDialog(rootPane, "Data Successfully");
+            
+  // **** Add to Card method create  start  *************
+        DefaultTableModel model = (DefaultTableModel) customerTable.getModel();
+
+        String productName = sName.getSelectedItem().toString();
+        Float unitPrice = Float.parseFloat(sUnitPrice.getText());
+        Float quantity = Float.parseFloat(sQuantity.getText());
+        Float totalPrice = Float.parseFloat(sTotalPrice.getText());
+        Float discount = getDiscount();
+        actualPrice = getActualPrice();
+        Float cashPay = Float.parseFloat(sCashReceive.getText());   
+        java.util.Date date = convertUtilDateToSqlDate(sDate.getDate());
+
+        List<Object> productList = new ArrayList<>();
+
+        productList.add(new Object[]{productName, unitPrice, quantity, totalPrice, discount, actualPrice, cashPay, date});
+
+        int row = model.getRowCount();
+
+        for (Object i : productList) {
+            model.insertRow(row, (Object[]) i);
+        }
+  // **** Add to Card method create end  *************    
 
             reset();
             getAllSales();
@@ -2860,7 +2884,7 @@ public class DashBoard extends javax.swing.JFrame {
 
         prID.setText(id);
         prName.setSelectedItem(name);
-        //    prCompanyName.setText(companyName);
+  //  prCompanyName.setText(companyName);
         prUnitPrice.setText(quantity);
         prQuantity.setText(unitPrice);
         prTotalPrice.setText(totalPrice);
@@ -2919,7 +2943,7 @@ public class DashBoard extends javax.swing.JFrame {
     
     
     
-    // report Stock method create play**************
+ // report Stock method create play**************
     public void getStockReportByDate(java.util.Date fromDate, java.util.Date toDate) {
 
         String[] columnNames = {"Stock Product Name", "Stock Product Quantity"};
@@ -2957,7 +2981,7 @@ public class DashBoard extends javax.swing.JFrame {
     
     
     
-    // report purchase method create*************
+ // report purchase method create*************
     public void getPurchaseReportByDate(java.util.Date fromDate, java.util.Date toDate) {
 
         String[] columnNames = {"Purchase Name", " Purchase Unit Price", "Quantity", "Total Price", "Purchase Cash Pay", "Purchase Due Amount"};
@@ -3003,7 +3027,7 @@ public class DashBoard extends javax.swing.JFrame {
     
     
     
-    // Report sales method create play***************
+  // Report sales method create play***************
     public void getSalesReportByDate(java.util.Date fromDate, java.util.Date toDate) {
 
         String[] columnNames = {"Product Name", "Unit Price", "Quantity", "Discount", "Total Price", "Due Amount"};
@@ -3037,6 +3061,7 @@ public class DashBoard extends javax.swing.JFrame {
             ps.close();
             rs.close();
             con.getCon().close();
+            
 
         } catch (SQLException ex) {
             Logger.getLogger(DashBoard.class.getName()).log(Level.SEVERE, null, ex);
@@ -3050,13 +3075,19 @@ public class DashBoard extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (rePurchase.isSelected()) {
             getPurchaseReportByDate(reFromDate.getDate(), reToDate.getDate());
-        } else if (reSales.isSelected()) {
+            
+        } 
+        else if (reSales.isSelected()) {
             getSalesReportByDate(reFromDate.getDate(), reToDate.getDate());
-        } else if (reStock.isSelected()) {
+        }
+        else if (reStock.isSelected()) {
             getStockReportByDate(reFromDate.getDate(), reToDate.getDate());
-        } else {
+        }
+        else {
             System.out.println(" not ok");
         }
+        
+      
     }//GEN-LAST:event_reViewMouseClicked
 
     
@@ -3190,30 +3221,29 @@ public class DashBoard extends javax.swing.JFrame {
 
     // **** Add to Card method create *************
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        // TODO add your handling code here:
-
-        DefaultTableModel model = (DefaultTableModel) customerTable.getModel();
-
-        String productName = sName.getSelectedItem().toString();
-        Float unitPrice = Float.parseFloat(sUnitPrice.getText());
-        Float quantity = Float.parseFloat(sQuantity.getText());
-        Float totalPrice = Float.parseFloat(sTotalPrice.getText());
-        Float discount = getDiscount();
-        actualPrice = getActualPrice();
-        Float cashPay = Float.parseFloat(sCashReceive.getText());
-//        Float cashReturn = Float.parseFloat(sCashReturn1.getText());
-
-        java.util.Date date = convertUtilDateToSqlDate(sDate.getDate());
-
-        List<Object> productList = new ArrayList<>();
-
-        productList.add(new Object[]{productName, unitPrice, quantity, totalPrice, discount, actualPrice, cashPay, date});
-
-        int row = model.getRowCount();
-
-        for (Object i : productList) {
-            model.insertRow(row, (Object[]) i);
-        }
+        
+ // **** Add to Card method create  start  *************
+//        DefaultTableModel model = (DefaultTableModel) customerTable.getModel();
+//
+//        String productName = sName.getSelectedItem().toString();
+//        Float unitPrice = Float.parseFloat(sUnitPrice.getText());
+//        Float quantity = Float.parseFloat(sQuantity.getText());
+//        Float totalPrice = Float.parseFloat(sTotalPrice.getText());
+//        Float discount = getDiscount();
+//        actualPrice = getActualPrice();
+//        Float cashPay = Float.parseFloat(sCashReceive.getText());   
+//        java.util.Date date = convertUtilDateToSqlDate(sDate.getDate());
+//
+//        List<Object> productList = new ArrayList<>();
+//
+//        productList.add(new Object[]{productName, unitPrice, quantity, totalPrice, discount, actualPrice, cashPay, date});
+//
+//        int row = model.getRowCount();
+//
+//        for (Object i : productList) {
+//            model.insertRow(row, (Object[]) i);
+//        }
+  // **** Add to Card method create end  *************       
     }//GEN-LAST:event_jButton1MouseClicked
 
     public static void main(String args[]) {
