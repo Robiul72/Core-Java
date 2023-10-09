@@ -481,6 +481,8 @@ public class DashBoard extends javax.swing.JFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         reportTable = new javax.swing.JTable();
         jPanel43 = new javax.swing.JPanel();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        reportTotal = new javax.swing.JTextPane();
         extra = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -1945,11 +1947,15 @@ public class DashBoard extends javax.swing.JFrame {
         ));
         jScrollPane5.setViewportView(reportTable);
 
-        jPanel40.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 980, 280));
+        jPanel40.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 980, 170));
 
         jPanel43.setBackground(new java.awt.Color(102, 102, 102));
         jPanel43.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel40.add(jPanel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 60));
+
+        jScrollPane8.setViewportView(reportTotal);
+
+        jPanel40.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 430, 980, 80));
 
         javax.swing.GroupLayout reportLayout = new javax.swing.GroupLayout(report);
         report.setLayout(reportLayout);
@@ -2145,6 +2151,33 @@ public class DashBoard extends javax.swing.JFrame {
             con.getCon().close();
 
             JOptionPane.showMessageDialog(rootPane, "Data Successfully");
+            
+   //****************  Add to Card  Start ****************************
+        DefaultTableModel model = (DefaultTableModel) customerTable.getModel();
+
+        String productName = sName.getSelectedItem().toString();
+        Float unitPrice = Float.parseFloat(sUnitPrice.getText());
+        Float quantity = Float.parseFloat(sQuantity.getText());
+        Float totalPrice = Float.parseFloat(sTotalPrice.getText());
+        Float discount = getDiscount();
+        actualPrice = getActualPrice();
+        Float cashPay = Float.parseFloat(sCashReceive.getText());
+
+        java.util.Date date = convertUtilDateToSqlDate(sDate.getDate());
+
+        List<Object> productList = new ArrayList<>();
+
+        productList.add(new Object[]{productName, unitPrice, quantity, totalPrice, discount, actualPrice, cashPay, date});
+
+        int row = model.getRowCount();
+
+        for (Object i : productList) {
+            model.insertRow(row, (Object[]) i);
+        }
+        
+        JOptionPane.showMessageDialog(prCompanyName, "Add to Card");
+        
+  //**********************  Add to Card  end   **********************
 
             reset();
             getAllSales();
@@ -2161,7 +2194,6 @@ public class DashBoard extends javax.swing.JFrame {
             todayPurchaseReport();
             monthlyPurchaseReport();
 
-            //  getAllCustomer();    // customer table method
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, "Data Not Successfully");
             Logger.getLogger(DashBoard.class.getName()).log(Level.SEVERE, null, ex);
@@ -3045,9 +3077,26 @@ public class DashBoard extends javax.swing.JFrame {
 
     
     
+//    public float viewSaleTotal() {
+//
+//        float ff = 0.0f;
+//
+//        DefaultTableModel model = (DefaultTableModel) reportTable.getModel();
+//        int row = model.getRowCount();
+//
+//        for (int i = 0; i < row; i++) {
+//            float aPrice = Float.valueOf(reportTable.getModel().getValueAt(i, 4).toString());
+//            ff += aPrice;
+//        }
+//        return ff;
+//    }
+
+    
+    
+    
     // report view method create ******************
     private void reViewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reViewMouseClicked
-        // TODO add your handling code here:
+        
         if (rePurchase.isSelected()) {
             getPurchaseReportByDate(reFromDate.getDate(), reToDate.getDate());
         } else if (reSales.isSelected()) {
@@ -3057,6 +3106,14 @@ public class DashBoard extends javax.swing.JFrame {
         } else {
             System.out.println(" not ok");
         }
+        
+//        try{
+//            card.setText(card.getText() + "\tTotal Sales\t       :\t" + viewSaleTotal() + "\n");
+//
+//        }
+//        catch(Exception e){
+//
+//        }
     }//GEN-LAST:event_reViewMouseClicked
 
     
@@ -3190,30 +3247,28 @@ public class DashBoard extends javax.swing.JFrame {
 
     // **** Add to Card method create *************
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        // TODO add your handling code here:
-
-        DefaultTableModel model = (DefaultTableModel) customerTable.getModel();
-
-        String productName = sName.getSelectedItem().toString();
-        Float unitPrice = Float.parseFloat(sUnitPrice.getText());
-        Float quantity = Float.parseFloat(sQuantity.getText());
-        Float totalPrice = Float.parseFloat(sTotalPrice.getText());
-        Float discount = getDiscount();
-        actualPrice = getActualPrice();
-        Float cashPay = Float.parseFloat(sCashReceive.getText());
-//        Float cashReturn = Float.parseFloat(sCashReturn1.getText());
-
-        java.util.Date date = convertUtilDateToSqlDate(sDate.getDate());
-
-        List<Object> productList = new ArrayList<>();
-
-        productList.add(new Object[]{productName, unitPrice, quantity, totalPrice, discount, actualPrice, cashPay, date});
-
-        int row = model.getRowCount();
-
-        for (Object i : productList) {
-            model.insertRow(row, (Object[]) i);
-        }
+    
+//        DefaultTableModel model = (DefaultTableModel) customerTable.getModel();
+//
+//        String productName = sName.getSelectedItem().toString();
+//        Float unitPrice = Float.parseFloat(sUnitPrice.getText());
+//        Float quantity = Float.parseFloat(sQuantity.getText());
+//        Float totalPrice = Float.parseFloat(sTotalPrice.getText());
+//        Float discount = getDiscount();
+//        actualPrice = getActualPrice();
+//        Float cashPay = Float.parseFloat(sCashReceive.getText());
+//
+//        java.util.Date date = convertUtilDateToSqlDate(sDate.getDate());
+//
+//        List<Object> productList = new ArrayList<>();
+//
+//        productList.add(new Object[]{productName, unitPrice, quantity, totalPrice, discount, actualPrice, cashPay, date});
+//
+//        int row = model.getRowCount();
+//
+//        for (Object i : productList) {
+//            model.insertRow(row, (Object[]) i);
+//        }
     }//GEN-LAST:event_jButton1MouseClicked
 
     public static void main(String args[]) {
@@ -3375,6 +3430,7 @@ public class DashBoard extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JTabbedPane mainmenu;
     private javax.swing.JComboBox<String> pCategory;
     private javax.swing.JTextField pCode;
@@ -3408,6 +3464,7 @@ public class DashBoard extends javax.swing.JFrame {
     private javax.swing.JButton reView;
     private javax.swing.JPanel report;
     private javax.swing.JTable reportTable;
+    private javax.swing.JTextPane reportTotal;
     private javax.swing.JTextField sActualPrice1;
     private javax.swing.JTextField sCashReceive;
     private javax.swing.JTextField sCashReturn1;
