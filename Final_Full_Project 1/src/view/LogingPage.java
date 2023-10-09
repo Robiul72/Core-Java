@@ -37,7 +37,7 @@ public class LogingPage extends javax.swing.JFrame {
         txtUser.setForeground(new java.awt.Color(51, 51, 51));
         txtUser.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ADMIN", "MANAGER", " " }));
         txtUser.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(txtUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 170, 210, 30));
+        jPanel1.add(txtUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 170, 210, 40));
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(51, 51, 51));
@@ -58,10 +58,10 @@ public class LogingPage extends javax.swing.JFrame {
 
         txtPass.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         txtPass.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(txtPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 250, 210, 30));
+        jPanel1.add(txtPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 250, 210, 40));
 
-        btnSubmit.setBackground(new java.awt.Color(153, 204, 0));
-        btnSubmit.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
+        btnSubmit.setBackground(new java.awt.Color(255, 153, 0));
+        btnSubmit.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         btnSubmit.setForeground(new java.awt.Color(51, 51, 51));
         btnSubmit.setText("SUBMIT");
         btnSubmit.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
