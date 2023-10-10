@@ -42,7 +42,6 @@ public class DashBoard extends javax.swing.JFrame {
 
     static Float actualPrice = 0.0f;
     
-//    static String cusName=" ";
 
     public DashBoard() {
         initComponents();
@@ -339,8 +338,8 @@ public class DashBoard extends javax.swing.JFrame {
         jScrollPane11 = new javax.swing.JScrollPane();
         cusSearchTable = new javax.swing.JTable();
         jLabel59 = new javax.swing.JLabel();
-        customerSearch = new javax.swing.JButton();
-        customerSearch1 = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
         sales = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
@@ -772,28 +771,20 @@ public class DashBoard extends javax.swing.JFrame {
         ));
         jScrollPane11.setViewportView(cusSearchTable);
 
-        jPanel44.add(jScrollPane11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, 940, 150));
+        jPanel44.add(jScrollPane11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 940, 160));
 
-        jLabel59.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jLabel59.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel59.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel59.setText("ID");
-        jPanel44.add(jLabel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 50, 30));
+        jPanel44.add(jLabel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, -1, -1));
 
-        customerSearch.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        customerSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assit/search (1).png"))); // NOI18N
-        customerSearch.setActionCommand("");
-        customerSearch.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        customerSearch.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        customerSearch.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jPanel44.add(customerSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 340, 90, 30));
+        jTextField1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jPanel44.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 337, 120, 30));
 
-        customerSearch1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        customerSearch1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assit/search (1).png"))); // NOI18N
-        customerSearch1.setText("Search");
-        customerSearch1.setActionCommand("");
-        customerSearch1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        customerSearch1.setSelected(true);
-        jPanel44.add(customerSearch1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 340, 90, 30));
+        jButton2.setBackground(new java.awt.Color(153, 153, 153));
+        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jButton2.setText("Search");
+        jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 102)));
+        jPanel44.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 337, 120, 30));
 
         javax.swing.GroupLayout homeLayout = new javax.swing.GroupLayout(home);
         home.setLayout(homeLayout);
@@ -3318,21 +3309,6 @@ public class DashBoard extends javax.swing.JFrame {
         }
     }
 
-    
-    
-//    public float viewSaleTotal() {
-//
-//        float ff = 0.0f;
-//
-//        DefaultTableModel model = (DefaultTableModel) reportTable.getModel();
-//        int row = model.getRowCount();
-//
-//        for (int i = 0; i < row; i++) {
-//            float aPrice = Float.valueOf(reportTable.getModel().getValueAt(i, 4).toString());
-//            ff += aPrice;
-//        }
-//        return ff;
-//    }
 
     
     
@@ -3349,14 +3325,7 @@ public class DashBoard extends javax.swing.JFrame {
         } else {
             System.out.println(" not ok");
         }
-        
-//        try{
-//            card.setText(card.getText() + "\tTotal Sales\t       :\t" + viewSaleTotal() + "\n");
-//
-//        }
-//        catch(Exception e){
-//
-//        }
+
     }//GEN-LAST:event_reViewMouseClicked
 
     
@@ -3612,8 +3581,6 @@ public class DashBoard extends javax.swing.JFrame {
     private javax.swing.JTable cusTable;
     private javax.swing.JComboBox<String> customName;
     private javax.swing.JPanel customer;
-    private javax.swing.JButton customerSearch;
-    private javax.swing.JButton customerSearch1;
     private javax.swing.JTable customerTable;
     private javax.swing.JButton dCustomer;
     private javax.swing.JButton dHome;
@@ -3630,6 +3597,7 @@ public class DashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel homeTodayPurchase;
     private javax.swing.JLabel homeTodaySales;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -3753,6 +3721,7 @@ public class DashBoard extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTabbedPane mainmenu;
     private javax.swing.JComboBox<String> pCategory;
