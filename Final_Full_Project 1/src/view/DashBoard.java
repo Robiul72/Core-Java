@@ -42,6 +42,11 @@ public class DashBoard extends javax.swing.JFrame {
 
     static Float actualPrice = 0.0f;
     
+    static String custName=" ";
+    static String custEmail=" ";
+    static String custPhone=" ";
+    static String custAddress=" ";
+    
 
     public DashBoard() {
         initComponents();
@@ -68,9 +73,11 @@ public class DashBoard extends javax.swing.JFrame {
 
         getCardTable();   // Card Add method 
         
-        getAllCustomer();  // customer data method 
+        getAllCustomer();  // customer data method
+        
+        getAllCustomerDueTable();
 
-        //   getAllCustomer();  // customer table method 
+       
     }
 
     // Home DashBoard er Calculation Start********************************
@@ -539,7 +546,7 @@ public class DashBoard extends javax.swing.JFrame {
         jTextArea1 = new javax.swing.JTextArea();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jScrollPane13 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        cuDueUpdate = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -1617,7 +1624,7 @@ public class DashBoard extends javax.swing.JFrame {
         jPanel13.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 140, 500, 240));
 
         jLabel37.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jLabel37.setText("Stock Cetagory");
+        jLabel37.setText("Stock Code");
 
         javax.swing.GroupLayout jPanel39Layout = new javax.swing.GroupLayout(jPanel39);
         jPanel39.setLayout(jPanel39Layout);
@@ -2115,7 +2122,7 @@ public class DashBoard extends javax.swing.JFrame {
 
         jLabel50.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel50.setText("Customer Name");
-        jPanel48.add(jLabel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 170, 30));
+        jPanel48.add(jLabel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 170, 30));
 
         jLabel53.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel53.setText("Address");
@@ -2130,6 +2137,7 @@ public class DashBoard extends javax.swing.JFrame {
         jPanel48.add(jLabel55, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 170, 30));
 
         cusDate.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cusDate.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jPanel48.add(cusDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 100, 280, -1));
 
         cusEmail.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -2141,15 +2149,16 @@ public class DashBoard extends javax.swing.JFrame {
         jPanel48.add(cusID, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 140, 280, 30));
 
         cusAddress.setColumns(20);
+        cusAddress.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         cusAddress.setRows(5);
         cusAddress.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jScrollPane9.setViewportView(cusAddress);
 
-        jPanel48.add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 240, 280, 50));
+        jPanel48.add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 220, 280, 70));
 
         cusName.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         cusName.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel48.add(cusName, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 190, 280, 30));
+        jPanel48.add(cusName, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 180, 280, 30));
 
         customTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -2228,57 +2237,57 @@ public class DashBoard extends javax.swing.JFrame {
         jLabel60.setText("CUSTOMER DUE UPDATE");
         jPanel52.add(jLabel60, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 60));
 
-        jLabel61.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel61.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel61.setText("Cus Address");
-        jPanel52.add(jLabel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 150, 100, 30));
+        jPanel52.add(jLabel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 150, 150, 30));
 
-        jLabel62.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel62.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel62.setText("Cus Due Id");
-        jPanel52.add(jLabel62, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 100, 30));
+        jPanel52.add(jLabel62, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 150, 30));
 
-        jLabel63.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel63.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel63.setText("Customer Name");
-        jPanel52.add(jLabel63, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 140, 30));
+        jPanel52.add(jLabel63, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 170, 30));
 
-        jLabel64.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel64.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel64.setText("Date");
         jPanel52.add(jLabel64, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 80, 100, 30));
 
-        jLabel65.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel65.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel65.setText("Customer Due");
-        jPanel52.add(jLabel65, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, 120, 30));
+        jPanel52.add(jLabel65, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 160, 30));
 
-        jLabel66.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel66.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel66.setText("Phone Number");
-        jPanel52.add(jLabel66, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 120, 30));
+        jPanel52.add(jLabel66, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 160, 30));
 
-        jLabel67.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel67.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel67.setText("Email");
-        jPanel52.add(jLabel67, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 220, 100, 30));
+        jPanel52.add(jLabel67, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 230, 100, 30));
 
         jTextField2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jPanel52.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 170, 250, -1));
+        jPanel52.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 180, 250, -1));
 
         jTextField3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jPanel52.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 90, 250, -1));
+        jPanel52.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 80, 250, -1));
 
         jTextField4.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jPanel52.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 130, 250, -1));
 
         jTextField5.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jPanel52.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 220, 250, -1));
+        jPanel52.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 230, 250, -1));
 
         jTextField6.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jPanel52.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 220, 330, -1));
+        jPanel52.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 230, 330, -1));
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane12.setViewportView(jTextArea1);
 
-        jPanel52.add(jScrollPane12, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 120, 330, 90));
+        jPanel52.add(jScrollPane12, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 120, 330, 100));
         jPanel52.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 80, 330, 30));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        cuDueUpdate.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -2289,9 +2298,9 @@ public class DashBoard extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane13.setViewportView(jTable1);
+        jScrollPane13.setViewportView(cuDueUpdate);
 
-        jPanel52.add(jScrollPane13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 1000, 220));
+        jPanel52.add(jScrollPane13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 1000, 210));
 
         javax.swing.GroupLayout cusDueUpdateLayout = new javax.swing.GroupLayout(cusDueUpdate);
         cusDueUpdate.setLayout(cusDueUpdateLayout);
@@ -2403,21 +2412,18 @@ public class DashBoard extends javax.swing.JFrame {
             ps = con.getCon().prepareStatement(sql);
 
             ps.setFloat(1, sttQuantity);
-
             ps.setString(2, sttName);
 
             ps.executeUpdate();
             ps.close();
             con.getCon().close();
 
-            JOptionPane.showMessageDialog(prCompanyName, "Stock Data is Update and Decreament");
+            JOptionPane.showMessageDialog(prCompanyName, "Stock Data is  Decreament");
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(prCompanyName, "Stock Data is Not Update and Decreament");
-
+            JOptionPane.showMessageDialog(prCompanyName, "Stock Data is Not Decreament");
             Logger.getLogger(DashBoard.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     // Seles combo field er method
@@ -2481,7 +2487,7 @@ public class DashBoard extends javax.swing.JFrame {
 
         sql = "insert into selertable( Seler_Name, Unit_Price, Quantity, Total_Price, Discount, Actual_Price,  Cash_Receive, Due_Amount, Cash_Return, customerName, Date ) values (?,?,?,?,?,?,?,?,?,?,?)";
 
-        sttQuantity = Float.valueOf(sQuantity.getText().toString());
+        sttQuantity = Float.valueOf(sQuantity.getText());
         sttName = sName.getSelectedItem().toString();
 
        
@@ -2556,7 +2562,7 @@ public class DashBoard extends javax.swing.JFrame {
             todayPurchaseReport();
             monthlyPurchaseReport();
             
-            getCustomerDue();
+           getCustomerDueIncreament();
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, "Data Not Successfully");
@@ -2733,20 +2739,15 @@ public class DashBoard extends javax.swing.JFrame {
         dReport.setBackground(Color.WHITE);
     }//GEN-LAST:event_dReportMouseExited
 
-    // colponick stock table create 
+ // colponick stock table create 
     String[] stockColumns = {"stockID", "stockName", "stockQuantity", "stockCode"};
-
     public void getAllStockTable() {
         sql = "select * from stock";
-
         DefaultTableModel model = new DefaultTableModel();
         model.setColumnIdentifiers(stockColumns);
-
         stTable.setModel(model);
-
         try {
             ps = con.getCon().prepareStatement(sql);
-
             rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -2754,18 +2755,14 @@ public class DashBoard extends javax.swing.JFrame {
                 String name = rs.getString("stockName");
                 Float quantity = rs.getFloat("stockQuantity");
                 String code = rs.getString("stockCode");
-
                 model.addRow(new Object[]{ID, name, quantity, code});
             }
-
             ps.executeQuery();
             ps.close();
             con.getCon().close();
-
         } catch (SQLException ex) {
             Logger.getLogger(DashBoard.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     // stock method create purchase add contain to stock*************
@@ -2789,7 +2786,6 @@ public class DashBoard extends javax.swing.JFrame {
 
             Logger.getLogger(DashBoard.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     // purchase barar jonno method*************
@@ -2798,22 +2794,17 @@ public class DashBoard extends javax.swing.JFrame {
 
         try {
             ps = con.getCon().prepareStatement(sql);
-
             ps.setString(1, ppName);
-
             ps.setFloat(2, 0.0f);
-
             ps.setString(3, ppCode);
-
+            
             ps.executeUpdate();
-
             ps.close();
             con.getCon().close();
 
         } catch (SQLException ex) {
             Logger.getLogger(DashBoard.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     // Product method Reset****************
@@ -3377,8 +3368,7 @@ public class DashBoard extends javax.swing.JFrame {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                String name = rs.getString("purchaseName");
-                // String company = rs.getString("purchaseCompanyName");
+                String name = rs.getString("purchaseName");              
                 Float unitPrice = rs.getFloat("purchaseUnitPrice");
                 Float quantity = rs.getFloat("purchaseQuantity");
                 Float total = rs.getFloat("purchaseTotalPrice");
@@ -3623,6 +3613,7 @@ public class DashBoard extends javax.swing.JFrame {
 
     private void dCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dCustomerActionPerformed
         mainmenu.setSelectedIndex(7);
+        getAllCustomerDueTable();
     }//GEN-LAST:event_dCustomerActionPerformed
 
     private void dCustomerMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dCustomerMouseEntered
@@ -3638,36 +3629,24 @@ public class DashBoard extends javax.swing.JFrame {
     
     
     // customer Default table create *****************************************
-    String[] customerColumns = {"customer_id", "customerName", "address", "phoneNumber", "email",  "customerDue", "date"};
-
+    String[] customerColumns = {"customer_id", "customerName", "address", "phoneNumber", "email",  "date"};
     public void getAllCustomer() {
         DefaultTableModel model = new DefaultTableModel();
         model.setColumnIdentifiers(customerColumns);
         customTable.setModel(model);
-
-        sql = "select * from customer";
-
-       
+        sql = "select * from customer";      
         try {
-            ps = con.getCon().prepareStatement(sql);
-            
+            ps = con.getCon().prepareStatement(sql);           
              rs = ps.executeQuery();
-
             while (rs.next()) {
                 int custId = rs.getInt("customer_id");
                 String custName = rs.getString("customerName");
                 String address = rs.getString("address");
                 String phoneNumber = rs.getString("phoneNumber");
-                String email = rs.getString("email");
-                float customDue = rs.getFloat("customerDue");
-                java.util.Date date = rs.getDate("date");
-                 
-
-                model.addRow(new Object[]{ custId, custName,  address, phoneNumber, email, customDue, date});
-                
-         
+                String email = rs.getString("email");             
+                java.util.Date date = rs.getDate("date");                
+                model.addRow(new Object[]{ custId, custName,  address, phoneNumber, email,  date});   
             }
-//               ps.executeQuery();
             rs.close();
             ps.close();
             con.getCon().close();
@@ -3678,58 +3657,27 @@ public class DashBoard extends javax.swing.JFrame {
     
     
     
-    
-    // customer table Due add method create*********************************
-    public void getCustomerDue() {
-  //      sql = "update stock set stockQuantity = stockQuantity + ? where stockName=?";
-        
-        sql = "update customer set customerDue = customerDue + ? where phoneNumber =?";
-
-        try {
-            ps = con.getCon().prepareStatement(sql);
-
-            ps.setFloat(1, Float.parseFloat(sDueAmount.getText().trim()));
-            ps.setString(2, customName.getSelectedItem().toString());
-
-            ps.executeUpdate();
-            ps.close();
-            con.getCon().close();
-
-            JOptionPane.showMessageDialog(prCompanyName, "Customer Due is  Increament");
-
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(prCompanyName, "Customer Due is Not  Increament");
-
-            Logger.getLogger(DashBoard.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
-    
-    
-    
     // customer table create ***********************************************
     private void btnCustomerSubmitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCustomerSubmitMouseClicked
         
-        sql = "insert into customer ( customerName, address, phoneNumber, email, customerDue, date) values (?,?,?,?,?,?)";
+        sql = "insert into customer ( customerName, address, phoneNumber, email, date) values (?,?,?,?,?)";
         
         try {
-            ps=con.getCon().prepareStatement(sql);
-            
+            ps=con.getCon().prepareStatement(sql);           
             ps.setString(1, cusName.getText().toString());
             ps.setString(2, cusAddress.getText().toString());
             ps.setString(3, cusPhone.getText().toString());
-            ps.setString(4, cusEmail.getText().toString());
-            ps.setFloat(5, 0.00f);
-            
-            ps.setDate(6, convertUtilDateToSqlDate(cusDate.getDate()));
+            ps.setString(4, cusEmail.getText().toString());           
+            ps.setDate(5, convertUtilDateToSqlDate(cusDate.getDate()));
 
             ps.executeUpdate();
             ps.close();
             con.getCon().close();
-
             JOptionPane.showMessageDialog(prCompanyName, "Customer Data is Save");
-            getSelesCustomerName();
-            getAllCustomer();
+            
+            getAllCustomer(); 
+            addCustomerToDue();  // getCustomerToDue method
+            getAllCustomerDueTable();  // 
             
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(prCompanyName, "Customer Data is not Save");
@@ -3737,13 +3685,6 @@ public class DashBoard extends javax.swing.JFrame {
         }        
     }//GEN-LAST:event_btnCustomerSubmitMouseClicked
 
-    
-    
- 
-            
-
-           
-        
     
     
 // customer table data from customer field***********************   
@@ -3757,17 +3698,13 @@ public class DashBoard extends javax.swing.JFrame {
         String address = customTable.getModel().getValueAt(rowIndex, 2).toString();
         String phoneNumber = customTable.getModel().getValueAt(rowIndex, 3).toString();
         String email = customTable.getModel().getValueAt(rowIndex, 4).toString();
-        String customerDue = customTable.getModel().getValueAt(rowIndex, 5).toString();
-        String date = customTable.getModel().getValueAt(rowIndex, 6).toString();
+        String date = customTable.getModel().getValueAt(rowIndex, 5).toString();
         
-        
-
         cusID.setText(customer_ID);
         cusName.setText(customerName);               
         cusAddress.setText(address);
         cusPhone.setText(phoneNumber);
         cusEmail.setText(email);
-        cusDue.setText(customerDue);   
         sDate.setDate(convertStringToDate(date));
     }//GEN-LAST:event_customTableMouseClicked
 
@@ -3783,6 +3720,116 @@ public class DashBoard extends javax.swing.JFrame {
          mainmenu.setSelectedIndex(6);
     }//GEN-LAST:event_dCustomer1ActionPerformed
 
+    
+    
+        // purchase barar jonno method*************
+    public void addCustomerToDue() {
+        sql = " insert into customerdueupdate (customerDueName, customerPhoneNumber, customerAddress, customerEmail, customerDate, customerDue) values (?,?,?,?,?,?)";
+        custName = cusName.getText();
+        custPhone = cusPhone.getText();
+        custAddress = cusAddress.getText();
+        custEmail = cusEmail.getText();
+        try {
+            ps = con.getCon().prepareStatement(sql);
+            
+            ps.setString(1, custName);
+            ps.setString(2, custPhone);
+            ps.setString(3, custAddress);
+            ps.setString(4, custEmail);
+            ps.setDate(5, convertUtilDateToSqlDate(cusDate.getDate()));
+            ps.setFloat(6, 0.0f);
+            
+            ps.executeUpdate();
+            ps.close();
+            con.getCon().close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DashBoard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+// Default Customer Due Table create ************************
+    String[] customerDueColumn = {"customerDueId", "customerDueName","customerPhoneNumber", "customerAddress",  "customerEmail",  "customerDate", "customerDue"};
+
+    public void getAllCustomerDueTable() {
+        DefaultTableModel model = new DefaultTableModel();
+        model.setColumnIdentifiers(customerDueColumn);
+        cuDueUpdate.setModel(model);
+
+        sql = "select * from customerdueupdate";
+      
+        try {
+            ps = con.getCon().prepareStatement(sql);
+            
+             rs = ps.executeQuery();
+
+            while (rs.next()) {
+                int cuId = rs.getInt("customerDueId");
+                String custName = rs.getString("customerDueName");              
+                String cuphoneNumber = rs.getString("customerPhoneNumber");
+                String cuaddress = rs.getString("customerAddress");
+                String cuemail = rs.getString("customerEmail");             
+                java.util.Date cudate = rs.getDate("customerDate");
+                Float cudue = rs.getFloat("customerDue");
+                 
+                model.addRow(new Object[]{ cuId, custName, cuphoneNumber,  cuaddress,  cuemail,  cudate, cudue});   
+            }
+            rs.close();
+            ps.close();
+            con.getCon().close();
+        } catch (SQLException ex) {
+            Logger.getLogger(DashBoard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    } 
+    
+
+  // Customer Due Decreament method create Data from Customer Table**************
+    public void getAllCustomerDueDecreament() {
+        sql = "update customerdueupdate set customerDue = customerDue - ? where customerDueName=?";
+
+        try {
+            ps = con.getCon().prepareStatement(sql);
+
+            ps.setFloat(1, sttQuantity);
+            ps.setString(2, sttName);
+
+            ps.executeUpdate();
+            ps.close();
+            con.getCon().close();
+
+            JOptionPane.showMessageDialog(prCompanyName, "Stock Data is  Decreament");
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(prCompanyName, "Stock Data is Not Decreament");
+            Logger.getLogger(DashBoard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
+    
+    // stock method create purchase add contain to stock*************
+    public void getCustomerDueIncreament() {
+        sql = "update customerdueupdate set customerDue = customerDue + ? where customerDueName=?";
+
+        try {
+            ps = con.getCon().prepareStatement(sql);
+
+            ps.setFloat(1, Float.parseFloat(sDueAmount.getText().trim()));
+            System.out.println("ok");
+            ps.setString(2, customName.getSelectedItem().toString());
+            System.out.println("well");
+            ps.executeUpdate();
+            ps.close();
+            con.getCon().close();
+
+            JOptionPane.showMessageDialog(prCompanyName, "Due Data is  Increament");
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(prCompanyName, "Due Data is Not Increament");
+
+            Logger.getLogger(DashBoard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
     
     
@@ -3823,6 +3870,7 @@ public class DashBoard extends javax.swing.JFrame {
     private javax.swing.JButton btnCustomerSubmit;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JTextPane card;
+    private javax.swing.JTable cuDueUpdate;
     private javax.swing.JTextArea cusAddress;
     private com.toedter.calendar.JDateChooser cusDate;
     private javax.swing.JTextField cusDue;
@@ -3988,7 +4036,6 @@ public class DashBoard extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
