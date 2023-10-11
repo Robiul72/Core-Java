@@ -67,6 +67,8 @@ public class DashBoard extends javax.swing.JFrame {
         getSelesCustomerName(); // customer name add method
 
         getCardTable();   // Card Add method 
+        
+        getAllCustomer();  // customer data method 
 
         //   getAllCustomer();  // customer table method 
     }
@@ -303,14 +305,15 @@ public class DashBoard extends javax.swing.JFrame {
         buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        dSales = new javax.swing.JButton();
-        dReport = new javax.swing.JButton();
         dHome = new javax.swing.JButton();
+        dSales = new javax.swing.JButton();
         dPurchase = new javax.swing.JButton();
         dStock = new javax.swing.JButton();
         dProduct = new javax.swing.JButton();
+        dReport = new javax.swing.JButton();
         dCustomer = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
+        dCustomer1 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel46 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
@@ -505,18 +508,38 @@ public class DashBoard extends javax.swing.JFrame {
         jLabel55 = new javax.swing.JLabel();
         cusDate = new com.toedter.calendar.JDateChooser();
         cusEmail = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        cusID = new javax.swing.JTextField();
         jScrollPane9 = new javax.swing.JScrollPane();
         cusAddress = new javax.swing.JTextArea();
         cusName = new javax.swing.JTextField();
         jScrollPane10 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        customTable = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
         btnCustomerSubmit = new javax.swing.JButton();
         cusPhone = new javax.swing.JTextField();
         jLabel57 = new javax.swing.JLabel();
         jLabel58 = new javax.swing.JLabel();
         cusDue = new javax.swing.JTextField();
+        cusDueUpdate = new javax.swing.JPanel();
+        jPanel52 = new javax.swing.JPanel();
+        jLabel60 = new javax.swing.JLabel();
+        jLabel61 = new javax.swing.JLabel();
+        jLabel62 = new javax.swing.JLabel();
+        jLabel63 = new javax.swing.JLabel();
+        jLabel64 = new javax.swing.JLabel();
+        jLabel65 = new javax.swing.JLabel();
+        jLabel66 = new javax.swing.JLabel();
+        jLabel67 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
+        jTextField3 = new javax.swing.JTextField();
+        jTextField4 = new javax.swing.JTextField();
+        jTextField5 = new javax.swing.JTextField();
+        jTextField6 = new javax.swing.JTextField();
+        jScrollPane12 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jScrollPane13 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -526,44 +549,8 @@ public class DashBoard extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(153, 205, 242));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        dSales.setBackground(new java.awt.Color(153, 153, 153));
-        dSales.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        dSales.setText("SALES");
-        dSales.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                dSalesMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                dSalesMouseExited(evt);
-            }
-        });
-        dSales.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dSalesActionPerformed(evt);
-            }
-        });
-        jPanel2.add(dSales, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 180, 50));
-
-        dReport.setBackground(new java.awt.Color(153, 153, 153));
-        dReport.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        dReport.setText("REPORT");
-        dReport.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                dReportMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                dReportMouseExited(evt);
-            }
-        });
-        dReport.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dReportActionPerformed(evt);
-            }
-        });
-        jPanel2.add(dReport, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 480, 180, 50));
-
         dHome.setBackground(new java.awt.Color(153, 153, 153));
-        dHome.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        dHome.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
         dHome.setText("HOME");
         dHome.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -578,10 +565,28 @@ public class DashBoard extends javax.swing.JFrame {
                 dHomeActionPerformed(evt);
             }
         });
-        jPanel2.add(dHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 180, 50));
+        jPanel2.add(dHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 180, 50));
+
+        dSales.setBackground(new java.awt.Color(153, 153, 153));
+        dSales.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
+        dSales.setText("SALES");
+        dSales.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                dSalesMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                dSalesMouseExited(evt);
+            }
+        });
+        dSales.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dSalesActionPerformed(evt);
+            }
+        });
+        jPanel2.add(dSales, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 180, 50));
 
         dPurchase.setBackground(new java.awt.Color(153, 153, 153));
-        dPurchase.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        dPurchase.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
         dPurchase.setText("PURCHASE");
         dPurchase.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -596,10 +601,10 @@ public class DashBoard extends javax.swing.JFrame {
                 dPurchaseActionPerformed(evt);
             }
         });
-        jPanel2.add(dPurchase, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 270, 180, 50));
+        jPanel2.add(dPurchase, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, 180, 50));
 
         dStock.setBackground(new java.awt.Color(153, 153, 153));
-        dStock.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        dStock.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
         dStock.setText("STOCK");
         dStock.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -614,10 +619,10 @@ public class DashBoard extends javax.swing.JFrame {
                 dStockActionPerformed(evt);
             }
         });
-        jPanel2.add(dStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 180, 50));
+        jPanel2.add(dStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 330, 180, 50));
 
         dProduct.setBackground(new java.awt.Color(153, 153, 153));
-        dProduct.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        dProduct.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
         dProduct.setText("PRODUCT");
         dProduct.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -632,11 +637,29 @@ public class DashBoard extends javax.swing.JFrame {
                 dProductActionPerformed(evt);
             }
         });
-        jPanel2.add(dProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 410, 180, 50));
+        jPanel2.add(dProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 400, 180, 50));
+
+        dReport.setBackground(new java.awt.Color(153, 153, 153));
+        dReport.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
+        dReport.setText("REPORT");
+        dReport.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                dReportMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                dReportMouseExited(evt);
+            }
+        });
+        dReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dReportActionPerformed(evt);
+            }
+        });
+        jPanel2.add(dReport, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 470, 180, 50));
 
         dCustomer.setBackground(new java.awt.Color(153, 153, 153));
-        dCustomer.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        dCustomer.setText("CUSTOMER");
+        dCustomer.setFont(new java.awt.Font("Times New Roman", 1, 22)); // NOI18N
+        dCustomer.setText("CusDueUpdate");
         dCustomer.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 dCustomerMouseEntered(evt);
@@ -650,10 +673,28 @@ public class DashBoard extends javax.swing.JFrame {
                 dCustomerActionPerformed(evt);
             }
         });
-        jPanel2.add(dCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 550, 180, 50));
+        jPanel2.add(dCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 600, 180, 50));
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assit/mini logo.png"))); // NOI18N
         jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 140, 110));
+
+        dCustomer1.setBackground(new java.awt.Color(153, 153, 153));
+        dCustomer1.setFont(new java.awt.Font("Times New Roman", 1, 22)); // NOI18N
+        dCustomer1.setText("CUSTOMER");
+        dCustomer1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                dCustomer1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                dCustomer1MouseExited(evt);
+            }
+        });
+        dCustomer1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dCustomer1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(dCustomer1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 540, 180, 50));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 660));
 
@@ -780,26 +821,25 @@ public class DashBoard extends javax.swing.JFrame {
         jTextField1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jPanel44.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 337, 120, 30));
 
-        jButton2.setBackground(new java.awt.Color(153, 153, 153));
+        jButton2.setBackground(new java.awt.Color(204, 204, 204));
         jButton2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jButton2.setText("Search");
         jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 102)));
-        jPanel44.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 337, 120, 30));
+        jPanel44.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 337, 90, 30));
 
         javax.swing.GroupLayout homeLayout = new javax.swing.GroupLayout(home);
         home.setLayout(homeLayout);
         homeLayout.setHorizontalGroup(
             homeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(homeLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel44, javax.swing.GroupLayout.DEFAULT_SIZE, 1008, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, homeLayout.createSequentialGroup()
+                .addComponent(jPanel44, javax.swing.GroupLayout.DEFAULT_SIZE, 1014, Short.MAX_VALUE)
                 .addContainerGap())
         );
         homeLayout.setVerticalGroup(
             homeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, homeLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel44, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
+                .addComponent(jPanel44, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1089,7 +1129,7 @@ public class DashBoard extends javax.swing.JFrame {
         );
         salesLayout.setVerticalGroup(
             salesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
+            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         mainmenu.addTab("tab2", sales);
@@ -2096,9 +2136,9 @@ public class DashBoard extends javax.swing.JFrame {
         cusEmail.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel48.add(cusEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 340, 280, 30));
 
-        jTextField2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jTextField2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel48.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 140, 280, 30));
+        cusID.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        cusID.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel48.add(cusID, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 140, 280, 30));
 
         cusAddress.setColumns(20);
         cusAddress.setRows(5);
@@ -2111,7 +2151,7 @@ public class DashBoard extends javax.swing.JFrame {
         cusName.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel48.add(cusName, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 190, 280, 30));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        customTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -2122,7 +2162,12 @@ public class DashBoard extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane10.setViewportView(jTable1);
+        customTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                customTableMouseClicked(evt);
+            }
+        });
+        jScrollPane10.setViewportView(customTable);
 
         jPanel48.add(jScrollPane10, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 100, 480, 320));
 
@@ -2174,6 +2219,92 @@ public class DashBoard extends javax.swing.JFrame {
         );
 
         mainmenu.addTab("tab7", customer);
+
+        jPanel52.setBackground(new java.awt.Color(153, 255, 204));
+        jPanel52.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel60.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
+        jLabel60.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel60.setText("CUSTOMER DUE UPDATE");
+        jPanel52.add(jLabel60, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 60));
+
+        jLabel61.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel61.setText("Cus Address");
+        jPanel52.add(jLabel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 150, 100, 30));
+
+        jLabel62.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel62.setText("Cus Due Id");
+        jPanel52.add(jLabel62, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 100, 30));
+
+        jLabel63.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel63.setText("Customer Name");
+        jPanel52.add(jLabel63, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 140, 30));
+
+        jLabel64.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel64.setText("Date");
+        jPanel52.add(jLabel64, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 80, 100, 30));
+
+        jLabel65.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel65.setText("Customer Due");
+        jPanel52.add(jLabel65, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, 120, 30));
+
+        jLabel66.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel66.setText("Phone Number");
+        jPanel52.add(jLabel66, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 120, 30));
+
+        jLabel67.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel67.setText("Email");
+        jPanel52.add(jLabel67, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 220, 100, 30));
+
+        jTextField2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jPanel52.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 170, 250, -1));
+
+        jTextField3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jPanel52.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 90, 250, -1));
+
+        jTextField4.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jPanel52.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 130, 250, -1));
+
+        jTextField5.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jPanel52.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 220, 250, -1));
+
+        jTextField6.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jPanel52.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 220, 330, -1));
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane12.setViewportView(jTextArea1);
+
+        jPanel52.add(jScrollPane12, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 120, 330, 90));
+        jPanel52.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 80, 330, 30));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane13.setViewportView(jTable1);
+
+        jPanel52.add(jScrollPane13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 1000, 220));
+
+        javax.swing.GroupLayout cusDueUpdateLayout = new javax.swing.GroupLayout(cusDueUpdate);
+        cusDueUpdate.setLayout(cusDueUpdateLayout);
+        cusDueUpdateLayout.setHorizontalGroup(
+            cusDueUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel52, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        cusDueUpdateLayout.setVerticalGroup(
+            cusDueUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel52, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        mainmenu.addTab("tab8", cusDueUpdate);
 
         jPanel4.add(mainmenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -30, 1020, 580));
 
@@ -2424,6 +2555,8 @@ public class DashBoard extends javax.swing.JFrame {
 
             todayPurchaseReport();
             monthlyPurchaseReport();
+            
+            getCustomerDue();
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, "Data Not Successfully");
@@ -3489,7 +3622,7 @@ public class DashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void dCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dCustomerActionPerformed
-        mainmenu.setSelectedIndex(6);
+        mainmenu.setSelectedIndex(7);
     }//GEN-LAST:event_dCustomerActionPerformed
 
     private void dCustomerMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dCustomerMouseEntered
@@ -3504,10 +3637,80 @@ public class DashBoard extends javax.swing.JFrame {
 
     
     
+    // customer Default table create *****************************************
+    String[] customerColumns = {"customer_id", "customerName", "address", "phoneNumber", "email",  "customerDue", "date"};
+
+    public void getAllCustomer() {
+        DefaultTableModel model = new DefaultTableModel();
+        model.setColumnIdentifiers(customerColumns);
+        customTable.setModel(model);
+
+        sql = "select * from customer";
+
+       
+        try {
+            ps = con.getCon().prepareStatement(sql);
+            
+             rs = ps.executeQuery();
+
+            while (rs.next()) {
+                int custId = rs.getInt("customer_id");
+                String custName = rs.getString("customerName");
+                String address = rs.getString("address");
+                String phoneNumber = rs.getString("phoneNumber");
+                String email = rs.getString("email");
+                float customDue = rs.getFloat("customerDue");
+                java.util.Date date = rs.getDate("date");
+                 
+
+                model.addRow(new Object[]{ custId, custName,  address, phoneNumber, email, customDue, date});
+                
+         
+            }
+//               ps.executeQuery();
+            rs.close();
+            ps.close();
+            con.getCon().close();
+        } catch (SQLException ex) {
+            Logger.getLogger(DashBoard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }    
+    
+    
+    
+    
+    // customer table Due add method create*********************************
+    public void getCustomerDue() {
+  //      sql = "update stock set stockQuantity = stockQuantity + ? where stockName=?";
+        
+        sql = "update customer set customerDue = customerDue + ? where phoneNumber =?";
+
+        try {
+            ps = con.getCon().prepareStatement(sql);
+
+            ps.setFloat(1, Float.parseFloat(sDueAmount.getText().trim()));
+            ps.setString(2, customName.getSelectedItem().toString());
+
+            ps.executeUpdate();
+            ps.close();
+            con.getCon().close();
+
+            JOptionPane.showMessageDialog(prCompanyName, "Customer Due is  Increament");
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(prCompanyName, "Customer Due is Not  Increament");
+
+            Logger.getLogger(DashBoard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    
+    
+    
     // customer table create ***********************************************
     private void btnCustomerSubmitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCustomerSubmitMouseClicked
         
-        sql = "insert into customer ( customerName, address, phoneNumber, email, date) values (?,?,?,?,?)";
+        sql = "insert into customer ( customerName, address, phoneNumber, email, customerDue, date) values (?,?,?,?,?,?)";
         
         try {
             ps=con.getCon().prepareStatement(sql);
@@ -3516,8 +3719,9 @@ public class DashBoard extends javax.swing.JFrame {
             ps.setString(2, cusAddress.getText().toString());
             ps.setString(3, cusPhone.getText().toString());
             ps.setString(4, cusEmail.getText().toString());
+            ps.setFloat(5, 0.00f);
             
-            ps.setDate(5, convertUtilDateToSqlDate(cusDate.getDate()));
+            ps.setDate(6, convertUtilDateToSqlDate(cusDate.getDate()));
 
             ps.executeUpdate();
             ps.close();
@@ -3525,15 +3729,63 @@ public class DashBoard extends javax.swing.JFrame {
 
             JOptionPane.showMessageDialog(prCompanyName, "Customer Data is Save");
             getSelesCustomerName();
+            getAllCustomer();
             
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(prCompanyName, "Customer Data is not Save");
             Logger.getLogger(DashBoard.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        
+        }        
     }//GEN-LAST:event_btnCustomerSubmitMouseClicked
 
+    
+    
+ 
+            
+
+           
+        
+    
+    
+// customer table data from customer field***********************   
+
+    private void customTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customTableMouseClicked
+  
+        int rowIndex = customTable.getSelectedRow();
+
+        String customer_ID = customTable.getModel().getValueAt(rowIndex, 0).toString();
+        String customerName = customTable.getModel().getValueAt(rowIndex, 1).toString();
+        String address = customTable.getModel().getValueAt(rowIndex, 2).toString();
+        String phoneNumber = customTable.getModel().getValueAt(rowIndex, 3).toString();
+        String email = customTable.getModel().getValueAt(rowIndex, 4).toString();
+        String customerDue = customTable.getModel().getValueAt(rowIndex, 5).toString();
+        String date = customTable.getModel().getValueAt(rowIndex, 6).toString();
+        
+        
+
+        cusID.setText(customer_ID);
+        cusName.setText(customerName);               
+        cusAddress.setText(address);
+        cusPhone.setText(phoneNumber);
+        cusEmail.setText(email);
+        cusDue.setText(customerDue);   
+        sDate.setDate(convertStringToDate(date));
+    }//GEN-LAST:event_customTableMouseClicked
+
+    private void dCustomer1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dCustomer1MouseEntered
+         dCustomer1.setBackground(new Color(153, 250, 218));
+    }//GEN-LAST:event_dCustomer1MouseEntered
+
+    private void dCustomer1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dCustomer1MouseExited
+         dCustomer1.setBackground(Color.WHITE);
+    }//GEN-LAST:event_dCustomer1MouseExited
+
+    private void dCustomer1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dCustomer1ActionPerformed
+         mainmenu.setSelectedIndex(6);
+    }//GEN-LAST:event_dCustomer1ActionPerformed
+
+    
+    
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -3574,15 +3826,19 @@ public class DashBoard extends javax.swing.JFrame {
     private javax.swing.JTextArea cusAddress;
     private com.toedter.calendar.JDateChooser cusDate;
     private javax.swing.JTextField cusDue;
+    private javax.swing.JPanel cusDueUpdate;
     private javax.swing.JTextField cusEmail;
+    private javax.swing.JTextField cusID;
     private javax.swing.JTextField cusName;
     private javax.swing.JTextField cusPhone;
     private javax.swing.JTable cusSearchTable;
     private javax.swing.JTable cusTable;
     private javax.swing.JComboBox<String> customName;
+    private javax.swing.JTable customTable;
     private javax.swing.JPanel customer;
     private javax.swing.JTable customerTable;
     private javax.swing.JButton dCustomer;
+    private javax.swing.JButton dCustomer1;
     private javax.swing.JButton dHome;
     private javax.swing.JButton dProduct;
     private javax.swing.JButton dPurchase;
@@ -3599,6 +3855,7 @@ public class DashBoard extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -3655,6 +3912,14 @@ public class DashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel58;
     private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel60;
+    private javax.swing.JLabel jLabel61;
+    private javax.swing.JLabel jLabel62;
+    private javax.swing.JLabel jLabel63;
+    private javax.swing.JLabel jLabel64;
+    private javax.swing.JLabel jLabel65;
+    private javax.swing.JLabel jLabel66;
+    private javax.swing.JLabel jLabel67;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -3705,6 +3970,7 @@ public class DashBoard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel50;
     private javax.swing.JPanel jPanel51;
+    private javax.swing.JPanel jPanel52;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
@@ -3712,6 +3978,8 @@ public class DashBoard extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
+    private javax.swing.JScrollPane jScrollPane12;
+    private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -3721,8 +3989,13 @@ public class DashBoard extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
     private javax.swing.JTabbedPane mainmenu;
     private javax.swing.JComboBox<String> pCategory;
     private javax.swing.JTextField pCode;
