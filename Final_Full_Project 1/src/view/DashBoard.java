@@ -53,11 +53,11 @@ public class DashBoard extends javax.swing.JFrame {
 // customerDue Update table method create ********************  
     public float getDue() {
         if (sDueAmount.getText().isEmpty()) {
-<<<<<<< HEAD
+
             sDueAmount.setText("0");                    
-=======
+
             sDueAmount.setText("0");
->>>>>>> 55889d70c1965d63eb37eb3e39c9d2a1d13e02b7
+
             return salesDue;
         }
         else {
@@ -68,10 +68,7 @@ public class DashBoard extends javax.swing.JFrame {
 
     
     
-<<<<<<< HEAD
-=======
-    
->>>>>>> 55889d70c1965d63eb37eb3e39c9d2a1d13e02b7
+
     public DashBoard() {
         initComponents();
         
@@ -2606,9 +2603,7 @@ public class DashBoard extends javax.swing.JFrame {
 
     }//GEN-LAST:event_sDiscountFocusLost
 
-<<<<<<< HEAD
-   
-=======
+
     // stock method create Seles add contain to stock
     public void getAllStockToSeles() {
         sql = "update stock set stockQuantity = stockQuantity - ? where stockName=?";
@@ -2630,7 +2625,6 @@ public class DashBoard extends javax.swing.JFrame {
             Logger.getLogger(DashBoard.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
->>>>>>> 55889d70c1965d63eb37eb3e39c9d2a1d13e02b7
 
     // Seles combo field er method
     public void getSelesComboName() {
@@ -3927,7 +3921,7 @@ public class DashBoard extends javax.swing.JFrame {
 
     
     
-<<<<<<< HEAD
+
      // Customer Due Decreament method create Data from Customer Table**************
     public void getAllCustomerDueDecreament() {
         sql = "update customerdueupdate set customerDue = customerDue - ? where customerDueName=?";
@@ -3953,7 +3947,7 @@ public class DashBoard extends javax.swing.JFrame {
     static Float payDu = 0.0f;
     static String payNa="";
     
-    private void paySubmitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paySubmitMouseClicked
+    private void paySubmitMouseClicked(java.awt.event.MouseEvent evt) {                                       
         // TODO add your handling code her
         
         sql="insert into customerduepay (payName, payNumber, payEmail, payAddress, payDate, payDue) values (?,?,?,?,?,?)";
@@ -3986,10 +3980,10 @@ public class DashBoard extends javax.swing.JFrame {
         }
         
        
-    }//GEN-LAST:event_paySubmitMouseClicked
+    }                                      
 
     // purchase barar jonno method*************
-=======
+
  // Customer Due Pay method create start ***********************************   
     private void paySubmitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paySubmitMouseClicked
       
@@ -4038,7 +4032,7 @@ public class DashBoard extends javax.swing.JFrame {
 
     
     // Customer  barar jonno method*************
->>>>>>> 55889d70c1965d63eb37eb3e39c9d2a1d13e02b7
+
     public void addCustomerToDue() {
         sql = " insert into customerdueupdate (customerDueName, customerPhoneNumber, customerAddress, customerEmail, customerDate, customerDue) values (?,?,?,?,?,?)";
         custName = cusName.getText();
@@ -4099,9 +4093,7 @@ public class DashBoard extends javax.swing.JFrame {
         }
     }
 
-<<<<<<< HEAD
-   
-=======
+
     
     
     // Customer Due Decreament method create Data from Customer Table**************
@@ -4123,21 +4115,17 @@ public class DashBoard extends javax.swing.JFrame {
             Logger.getLogger(DashBoard.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
->>>>>>> 55889d70c1965d63eb37eb3e39c9d2a1d13e02b7
+
 
     
     
     // stock method create purchase add contain to stock*************
     public void getCustomerDueIncreament() {
         sql = "update customerdueupdate set  customerDue = customerDue + ? where customerDueName=?";
-<<<<<<< HEAD
-           
-        try {
-            //String data=sDueAmount.getText();
-=======
+
           
         try {           
->>>>>>> 55889d70c1965d63eb37eb3e39c9d2a1d13e02b7
+
             ps = con.getCon().prepareStatement(sql);
 
             ps.setFloat(1, getDue());
