@@ -52,17 +52,17 @@ public class DashBoard extends javax.swing.JFrame {
 // customerDue Update table method create ********************  
     public float getDue() {
         if (sDueAmount.getText().isEmpty()) {
-            sDueAmount.setText("0");
-            System.out.println(sDueAmount);
-            
+            sDueAmount.setText("0");                    
             return salesDue;
-        } else {
-            salesDue = Float.parseFloat(sDueAmount.getText());
-            System.out.println(salesDue);
+        }
+        else {
+            salesDue = Float.parseFloat(sDueAmount.getText());          
             return salesDue;
         }
     }
 
+    
+    
     public DashBoard() {
         initComponents();
 
@@ -566,22 +566,23 @@ public class DashBoard extends javax.swing.JFrame {
         jPanel53 = new javax.swing.JPanel();
         jLabel68 = new javax.swing.JLabel();
         jLabel69 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        payID = new javax.swing.JTextField();
         jLabel70 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
         jLabel71 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
+        payNumber = new javax.swing.JTextField();
         jLabel72 = new javax.swing.JLabel();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        payDate = new com.toedter.calendar.JDateChooser();
         jLabel73 = new javax.swing.JLabel();
         jScrollPane14 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
-        jTextField10 = new javax.swing.JTextField();
+        payAddress = new javax.swing.JTextArea();
+        payEmail = new javax.swing.JTextField();
         jLabel74 = new javax.swing.JLabel();
-        jTextField11 = new javax.swing.JTextField();
+        payDue = new javax.swing.JTextField();
         jLabel75 = new javax.swing.JLabel();
         jScrollPane15 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        payTable = new javax.swing.JTable();
+        paySubmit = new javax.swing.JButton();
+        payName = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -2373,59 +2374,56 @@ public class DashBoard extends javax.swing.JFrame {
         jLabel69.setText("PayId");
         jPanel53.add(jLabel69, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 100, 30));
 
-        jTextField7.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jPanel53.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 100, 170, 30));
+        payID.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jPanel53.add(payID, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 100, 170, 30));
 
         jLabel70.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel70.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel70.setText("CustomerPayName");
         jPanel53.add(jLabel70, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 230, 30));
 
-        jTextField8.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jPanel53.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 160, 170, 30));
-
         jLabel71.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel71.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel71.setText("CustomerPhoneNumber");
         jPanel53.add(jLabel71, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 270, 30));
 
-        jTextField9.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jPanel53.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 220, 170, 30));
+        payNumber.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jPanel53.add(payNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 220, 170, 30));
 
         jLabel72.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel72.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel72.setText("Address");
-        jPanel53.add(jLabel72, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 170, 110, 30));
-        jPanel53.add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 100, 260, 30));
+        jPanel53.add(jLabel72, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 190, 110, 30));
+        jPanel53.add(payDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 100, 300, 30));
 
         jLabel73.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel73.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel73.setText("Date");
         jPanel53.add(jLabel73, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 100, 90, 30));
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane14.setViewportView(jTextArea2);
+        payAddress.setColumns(20);
+        payAddress.setRows(5);
+        jScrollPane14.setViewportView(payAddress);
 
-        jPanel53.add(jScrollPane14, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 150, 260, -1));
+        jPanel53.add(jScrollPane14, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 150, 300, -1));
 
-        jTextField10.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jPanel53.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 270, 170, 30));
+        payEmail.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jPanel53.add(payEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 270, 170, 30));
 
         jLabel74.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel74.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel74.setText("CustomerEmail");
         jPanel53.add(jLabel74, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 270, 180, 30));
 
-        jTextField11.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jPanel53.add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 260, 260, 30));
+        payDue.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jPanel53.add(payDue, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 270, 300, 30));
 
         jLabel75.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel75.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel75.setText("CustomerDue");
-        jPanel53.add(jLabel75, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 260, 180, 30));
+        jPanel53.add(jLabel75, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 270, 180, 30));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        payTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -2436,9 +2434,22 @@ public class DashBoard extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane15.setViewportView(jTable1);
+        jScrollPane15.setViewportView(payTable);
 
-        jPanel53.add(jScrollPane15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, 980, 250));
+        jPanel53.add(jScrollPane15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, 980, 190));
+
+        paySubmit.setBackground(new java.awt.Color(102, 204, 0));
+        paySubmit.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        paySubmit.setText("Submit");
+        paySubmit.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        paySubmit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                paySubmitMouseClicked(evt);
+            }
+        });
+        jPanel53.add(paySubmit, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 330, 110, 40));
+
+        jPanel53.add(payName, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 160, 170, -1));
 
         javax.swing.GroupLayout cusDuePayLayout = new javax.swing.GroupLayout(cusDuePay);
         cusDuePay.setLayout(cusDuePayLayout);
@@ -2448,7 +2459,7 @@ public class DashBoard extends javax.swing.JFrame {
         );
         cusDuePayLayout.setVerticalGroup(
             cusDuePayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel53, javax.swing.GroupLayout.DEFAULT_SIZE, 613, Short.MAX_VALUE)
+            .addComponent(jPanel53, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         mainmenu.addTab("tab9", cusDuePay);
@@ -2542,27 +2553,7 @@ public class DashBoard extends javax.swing.JFrame {
 
     }//GEN-LAST:event_sDiscountFocusLost
 
-    // stock method create Seles add contain to stock
-    public void getAllStockToSeles() {
-        sql = "update stock set stockQuantity = stockQuantity - ? where stockName=?";
-
-        try {
-            ps = con.getCon().prepareStatement(sql);
-
-            ps.setFloat(1, sttQuantity);
-            ps.setString(2, sttName);
-
-            ps.executeUpdate();
-            ps.close();
-            con.getCon().close();
-
-            JOptionPane.showMessageDialog(prCompanyName, "Stock Data is  Decreament");
-
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(prCompanyName, "Stock Data is Not Decreament");
-            Logger.getLogger(DashBoard.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+   
 
     // Seles combo field er method
     public void getSelesComboName() {
@@ -2614,6 +2605,32 @@ public class DashBoard extends javax.swing.JFrame {
         }
     }
 
+    
+    
+     // stock method create Seles add contain to stock
+    public void getAllStockToSeles() {
+        sql = "update stock set stockQuantity = stockQuantity - ? where stockName=?";
+
+        try {
+            ps = con.getCon().prepareStatement(sql);
+
+            ps.setFloat(1, sttQuantity);
+            ps.setString(2, sttName);
+
+            ps.executeUpdate();
+            ps.close();
+            con.getCon().close();
+
+            JOptionPane.showMessageDialog(prCompanyName, "Stock Data is  Decreament");
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(prCompanyName, "Stock Data is Not Decreament");
+            Logger.getLogger(DashBoard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
+    
     // Save method create
     private void sSaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sSaveMouseClicked
 
@@ -3581,7 +3598,7 @@ public class DashBoard extends javax.swing.JFrame {
         int row = model.getRowCount();
 
         for (int i = 0; i < row; i++) {
-            float aPrice = Float.valueOf(customerTable.getModel().getValueAt(i, 5).toString());
+            float aPrice = Float.valueOf(customerTable.getModel().getValueAt(i, 6).toString());
             ff += aPrice;
 
         }
@@ -3597,7 +3614,7 @@ public class DashBoard extends javax.swing.JFrame {
         int row = model.getRowCount();
 
         for (int i = 0; i < row; i++) {
-            float aPrice = Float.valueOf(customerTable.getModel().getValueAt(i, 6).toString());
+            float aPrice = Float.valueOf(customerTable.getModel().getValueAt(i, 7).toString());
             ff += aPrice;
         }
         return ff;
@@ -3822,6 +3839,68 @@ public class DashBoard extends javax.swing.JFrame {
         mainmenu.setSelectedIndex(8);
     }//GEN-LAST:event_CusDuePayActionPerformed
 
+    
+    
+     // Customer Due Decreament method create Data from Customer Table**************
+    public void getAllCustomerDueDecreament() {
+        sql = "update customerdueupdate set customerDue = customerDue - ? where customerDueName=?";
+
+        try {
+            ps = con.getCon().prepareStatement(sql);
+
+            ps.setFloat(1, payDu);
+            ps.setString(2, payNa);
+
+            ps.executeUpdate();
+            ps.close();
+            con.getCon().close();
+
+            JOptionPane.showMessageDialog(prCompanyName, "Customer Due  is  Decreament");
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(prCompanyName, "Customer Due is Not Decreament");
+            Logger.getLogger(DashBoard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    static Float payDu = 0.0f;
+    static String payNa="";
+    
+    private void paySubmitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paySubmitMouseClicked
+        // TODO add your handling code her
+        
+        sql="insert into customerduepay (payName, payNumber, payEmail, payAddress, payDate, payDue) values (?,?,?,?,?,?)";
+        
+        payDu=Float.valueOf(payDue.getText());
+        payNa=payName.getSelectedItem().toString();
+        
+        try {
+            ps=con.getCon().prepareStatement(sql);
+            
+            ps.setString(1, payNa);
+            ps.setString(2, payNumber.getText());
+            ps.setString(3, payEmail.getText());
+            ps.setString(4, payAddress.getText());
+            
+            ps.setDate(5, convertUtilDateToSqlDate(payDate.getDate()));
+            
+            ps.setFloat(6, payDu);
+            
+            ps.executeUpdate();
+            ps.close();
+            con.getCon().close();
+            
+            JOptionPane.showMessageDialog(prCompanyName, "Pay Data is Save");
+             getAllCustomerDueDecreament();
+             
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(prCompanyName, "Pay Data is not Save");
+            Logger.getLogger(DashBoard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+       
+    }//GEN-LAST:event_paySubmitMouseClicked
+
     // purchase barar jonno method*************
     public void addCustomerToDue() {
         sql = " insert into customerdueupdate (customerDueName, customerPhoneNumber, customerAddress, customerEmail, customerDate, customerDue) values (?,?,?,?,?,?)";
@@ -3882,42 +3961,17 @@ public class DashBoard extends javax.swing.JFrame {
         }
     }
 
-    // Customer Due Decreament method create Data from Customer Table**************
-    public void getAllCustomerDueDecreament() {
-        sql = "update customerdueupdate set customerDue = customerDue - ? where customerDueName=?";
-
-        try {
-            ps = con.getCon().prepareStatement(sql);
-
-            ps.setFloat(1, sttQuantity);
-            ps.setString(2, customName.getSelectedItem().toString());
-
-            ps.executeUpdate();
-            ps.close();
-            con.getCon().close();
-
-            JOptionPane.showMessageDialog(prCompanyName, "Stock Data is  Decreament");
-
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(prCompanyName, "Stock Data is Not Decreament");
-            Logger.getLogger(DashBoard.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+   
 
     // stock method create purchase add contain to stock*************
     public void getCustomerDueIncreament() {
         sql = "update customerdueupdate set  customerDue = customerDue + ? where customerDueName=?";
-        
-   
+           
         try {
             //String data=sDueAmount.getText();
             ps = con.getCon().prepareStatement(sql);
 
             ps.setFloat(1, getDue());
-            
-            
-            
-
             ps.setString(2, customName.getSelectedItem().toString());
 
             ps.executeUpdate();
@@ -4007,7 +4061,6 @@ public class DashBoard extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private com.toedter.calendar.JDateChooser jDateChooser1;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -4151,20 +4204,13 @@ public class DashBoard extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
     private javax.swing.JTabbedPane mainmenu;
     private javax.swing.JComboBox<String> pCategory;
     private javax.swing.JTextField pCode;
@@ -4175,6 +4221,15 @@ public class DashBoard extends javax.swing.JFrame {
     private javax.swing.JButton pSave;
     private javax.swing.JTable pTable;
     private javax.swing.JButton pUpdate;
+    private javax.swing.JTextArea payAddress;
+    private com.toedter.calendar.JDateChooser payDate;
+    private javax.swing.JTextField payDue;
+    private javax.swing.JTextField payEmail;
+    private javax.swing.JTextField payID;
+    private javax.swing.JComboBox<String> payName;
+    private javax.swing.JTextField payNumber;
+    private javax.swing.JButton paySubmit;
+    private javax.swing.JTable payTable;
     private javax.swing.JTextField prCompanyName;
     private com.toedter.calendar.JDateChooser prDate;
     private javax.swing.JButton prDelete;
