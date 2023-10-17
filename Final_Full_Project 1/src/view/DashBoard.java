@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package view;
 
 import java.awt.Color;
@@ -21,10 +18,7 @@ import javax.swing.table.DefaultTableModel;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import util.DbCon;
 
-/**
- *
- * @author USER
- */
+
 public class DashBoard extends javax.swing.JFrame {
 
     DbCon con = new DbCon();
@@ -369,11 +363,6 @@ public class DashBoard extends javax.swing.JFrame {
         jPanel51 = new javax.swing.JPanel();
         homeMonthlyDue = new javax.swing.JLabel();
         jLabel52 = new javax.swing.JLabel();
-        jScrollPane11 = new javax.swing.JScrollPane();
-        cusSearchTable = new javax.swing.JTable();
-        jLabel59 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
         sales = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
@@ -775,6 +764,7 @@ public class DashBoard extends javax.swing.JFrame {
         jPanel44.setBackground(new java.awt.Color(153, 255, 204));
         jPanel44.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel46.setBackground(new java.awt.Color(153, 153, 153));
         jPanel46.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         homeTodayPurchase.setFont(new java.awt.Font("Times New Roman", 1, 30)); // NOI18N
@@ -787,8 +777,9 @@ public class DashBoard extends javax.swing.JFrame {
         jLabel43.setText("TODAY PURCHASE");
         jPanel46.add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 260, 60));
 
-        jPanel44.add(jPanel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 260, 140));
+        jPanel44.add(jPanel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 260, 140));
 
+        jPanel47.setBackground(new java.awt.Color(153, 153, 153));
         jPanel47.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         homeTodaySales.setFont(new java.awt.Font("Times New Roman", 1, 30)); // NOI18N
@@ -801,8 +792,9 @@ public class DashBoard extends javax.swing.JFrame {
         jLabel44.setText("TODAY SALES");
         jPanel47.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 260, 60));
 
-        jPanel44.add(jPanel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, 260, 140));
+        jPanel44.add(jPanel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 80, 260, 140));
 
+        jPanel49.setBackground(new java.awt.Color(153, 153, 153));
         jPanel49.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel47.setFont(new java.awt.Font("Times New Roman", 1, 26)); // NOI18N
@@ -815,8 +807,9 @@ public class DashBoard extends javax.swing.JFrame {
         homeTodayDue.setText("0.00");
         jPanel49.add(homeTodayDue, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 260, 60));
 
-        jPanel44.add(jPanel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 20, 260, 140));
+        jPanel44.add(jPanel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 80, 260, 140));
 
+        jPanel45.setBackground(new java.awt.Color(153, 153, 153));
         jPanel45.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         homeMonthlyPurchase.setFont(new java.awt.Font("Times New Roman", 1, 30)); // NOI18N
@@ -829,8 +822,9 @@ public class DashBoard extends javax.swing.JFrame {
         jLabel49.setText("MONTHLY PURCHASE");
         jPanel45.add(jLabel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 260, 60));
 
-        jPanel44.add(jPanel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 260, 140));
+        jPanel44.add(jPanel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 260, 140));
 
+        jPanel50.setBackground(new java.awt.Color(153, 153, 153));
         jPanel50.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel51.setFont(new java.awt.Font("Times New Roman", 1, 26)); // NOI18N
@@ -843,8 +837,9 @@ public class DashBoard extends javax.swing.JFrame {
         homeMonthlySales.setText("0.00");
         jPanel50.add(homeMonthlySales, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 260, 60));
 
-        jPanel44.add(jPanel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 180, 260, 140));
+        jPanel44.add(jPanel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 290, 260, 140));
 
+        jPanel51.setBackground(new java.awt.Color(153, 153, 153));
         jPanel51.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         homeMonthlyDue.setFont(new java.awt.Font("Times New Roman", 1, 30)); // NOI18N
@@ -857,35 +852,7 @@ public class DashBoard extends javax.swing.JFrame {
         jLabel52.setText("MONTHLY DUE");
         jPanel51.add(jLabel52, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 260, 60));
 
-        jPanel44.add(jPanel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 180, 260, 140));
-
-        cusSearchTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane11.setViewportView(cusSearchTable);
-
-        jPanel44.add(jScrollPane11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 940, 160));
-
-        jLabel59.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel59.setText("ID");
-        jPanel44.add(jLabel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, -1, -1));
-
-        jTextField1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jPanel44.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 337, 120, 30));
-
-        jButton2.setBackground(new java.awt.Color(204, 204, 204));
-        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jButton2.setText("Search");
-        jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 102)));
-        jPanel44.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 337, 90, 30));
+        jPanel44.add(jPanel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 290, 260, 140));
 
         javax.swing.GroupLayout homeLayout = new javax.swing.GroupLayout(home);
         home.setLayout(homeLayout);
@@ -897,10 +864,7 @@ public class DashBoard extends javax.swing.JFrame {
         );
         homeLayout.setVerticalGroup(
             homeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, homeLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel44, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel44, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         mainmenu.addTab("tab1", home);
@@ -3889,8 +3853,9 @@ public class DashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_paySubmitMouseClicked
 
     private void payNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_payNameKeyReleased
-        // TODO add your handling code here:
-     //   nameSelectedToDueTable();
+ 
+        
+        
     }//GEN-LAST:event_payNameKeyReleased
 
     private void payNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_payNameMouseClicked
@@ -4111,7 +4076,6 @@ public class DashBoard extends javax.swing.JFrame {
     private javax.swing.JTextField cusID;
     private javax.swing.JTextField cusName;
     private javax.swing.JTextField cusPhone;
-    private javax.swing.JTable cusSearchTable;
     private javax.swing.JTable cusTable;
     private javax.swing.JComboBox<String> customName;
     private javax.swing.JTable customTable;
@@ -4133,7 +4097,6 @@ public class DashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel homeTodayPurchase;
     private javax.swing.JLabel homeTodaySales;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
@@ -4189,7 +4152,6 @@ public class DashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel55;
     private javax.swing.JLabel jLabel56;
     private javax.swing.JLabel jLabel57;
-    private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel60;
     private javax.swing.JLabel jLabel61;
@@ -4265,7 +4227,6 @@ public class DashBoard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
-    private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JScrollPane jScrollPane14;
@@ -4279,7 +4240,6 @@ public class DashBoard extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
