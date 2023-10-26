@@ -63,7 +63,7 @@ public class DashBoard extends javax.swing.JFrame {
     }
 
     // table e data show method****************
-    String[] selerColumns = {"Seler_ID", "Seler_Name", "Unit_Price", "Quantity", "Total_Price", "Discount", "Actual_Price", "Cash_Receive", "Cash_Return", "Date"};
+    String[] selerColumns = {"ID", "Seler_Name", "Unit_Price", "Quantity", "Total_Price", "Discount", "Actual_Price", "Cash_Receive", "Cash_Return", "Date"};
 
     public void getAllSales() {
         sql = "select * from selertable";
@@ -80,7 +80,7 @@ public class DashBoard extends javax.swing.JFrame {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                int Seler_ID = rs.getInt("Seler_ID");
+                int Seler_ID = rs.getInt("ID");
                 String Seler_Name = rs.getString("Seler_Name");
                 Float Unit_Price = rs.getFloat("Unit_Price");
                 Float Quantity = rs.getFloat("Quantity");
