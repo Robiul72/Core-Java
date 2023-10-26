@@ -103,7 +103,7 @@ public class LogingPage extends javax.swing.JFrame {
         
         if(userName.equalsIgnoreCase(userNameU) && pass.equals(passU)){
         
-        JOptionPane.showMessageDialog(rootPane, "Welcome");
+        JOptionPane.showMessageDialog(rootPane, "Welcome Admin Or Manager");
             dispose();
             fo.setLocationRelativeTo(null);
             fo.setVisible(true);

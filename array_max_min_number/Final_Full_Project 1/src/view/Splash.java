@@ -1,13 +1,16 @@
 
 package view;
 
+
 public class Splash extends javax.swing.JFrame {
     
     LogingPage from = new LogingPage();
-       
+   
+    
     public Splash() {
         initComponents();
-              
+       
+        
     }
 
     public void prograss(){
@@ -86,39 +89,13 @@ public class Splash extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-//    public void showSplash(){
-//         Splash mySpah = new Splash();
-//       mySpah.setVisible(true);
-//                
-//        try{
-//            for (int i = 0; i <= 100; i++) {
-//            Thread.sleep(40);
-//            mySpah.progressBar.setValue(i);
-//            mySpah.percentege.setText(Integer.toString(i)+"%");
-//            }
-//            
-//        }
-//        catch (Exception e){
-//        
-//        }   
-//        
-//        new LogingPage().setVisible(true);
-//        mySpah.dispose();
-//
-//            java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//            }
-//        });
-//    
-//    }
-    public static void main(String args[]) {
-        
-       Splash mySpah = new Splash();
+    public void showSplash(){
+         Splash mySpah = new Splash();
        mySpah.setVisible(true);
                 
         try{
             for (int i = 0; i <= 100; i++) {
-            Thread.sleep(30);
+            Thread.sleep(40);
             mySpah.progressBar.setValue(i);
             mySpah.percentege.setText(Integer.toString(i)+"%");
             }
@@ -126,7 +103,35 @@ public class Splash extends javax.swing.JFrame {
         }
         catch (Exception e){
         
-        }          
+        }   
+        
+        new LogingPage().setVisible(true);
+        mySpah.dispose();
+
+            java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+//                new LogingPage().setVisible(true);
+            }
+        });
+    
+    }
+    public static void main(String args[]) {
+        
+         Splash mySpah = new Splash();
+       mySpah.setVisible(true);
+                
+        try{
+            for (int i = 0; i <= 100; i++) {
+            Thread.sleep(40);
+            mySpah.progressBar.setValue(i);
+            mySpah.percentege.setText(Integer.toString(i)+"%");
+            }
+            
+        }
+        catch (Exception e){
+        
+        }   
+        
         new LogingPage().setVisible(true);
         mySpah.dispose();
 
@@ -135,7 +140,10 @@ public class Splash extends javax.swing.JFrame {
                 new LogingPage().setVisible(true);
             }
         });
-    
+        
+       
+      
+         
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -145,8 +153,4 @@ public class Splash extends javax.swing.JFrame {
     private javax.swing.JLabel percentege;
     private javax.swing.JProgressBar progressBar;
     // End of variables declaration//GEN-END:variables
-
-    public void showSplash() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }
