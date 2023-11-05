@@ -1,0 +1,61 @@
+01-Nov-2023 22:04:38.768 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version name:   Apache Tomcat/10.1.15
+01-Nov-2023 22:04:38.776 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:          Oct 11 2023 23:38:40 UTC
+01-Nov-2023 22:04:38.776 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version number: 10.1.15.0
+01-Nov-2023 22:04:38.776 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:               Windows 11
+01-Nov-2023 22:04:38.776 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Version:            10.0
+01-Nov-2023 22:04:38.776 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Architecture:          amd64
+01-Nov-2023 22:04:38.777 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:             C:\Program Files\Java\jdk-17.0.5
+01-Nov-2023 22:04:38.777 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:           17.0.5+9-LTS-191
+01-Nov-2023 22:04:38.777 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Vendor:            Oracle Corporation
+01-Nov-2023 22:04:38.777 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:         C:\Users\USER\OneDrive\Documents\Git\JSP-Robiul\tomcet file\apache-tomcat-10.1.15-windows-x64\apache-tomcat-10.1.15
+01-Nov-2023 22:04:38.777 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:         C:\Users\USER\OneDrive\Documents\Git\JSP-Robiul\tomcet file\apache-tomcat-10.1.15-windows-x64\apache-tomcat-10.1.15
+01-Nov-2023 22:04:38.798 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.config.file=C:\Users\USER\OneDrive\Documents\Git\JSP-Robiul\tomcet file\apache-tomcat-10.1.15-windows-x64\apache-tomcat-10.1.15\conf\logging.properties
+01-Nov-2023 22:04:38.799 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+01-Nov-2023 22:04:38.799 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dhttp.nonProxyHosts=localhost|127.0.0.1|HMRobiul
+01-Nov-2023 22:04:38.799 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+01-Nov-2023 22:04:38.799 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.protocol.handler.pkgs=org.apache.catalina.webresources
+01-Nov-2023 22:04:38.799 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.lang=ALL-UNNAMED
+01-Nov-2023 22:04:38.799 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.io=ALL-UNNAMED
+01-Nov-2023 22:04:38.799 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.util=ALL-UNNAMED
+01-Nov-2023 22:04:38.799 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.util.concurrent=ALL-UNNAMED
+01-Nov-2023 22:04:38.799 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
+01-Nov-2023 22:04:38.799 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.base=C:\Users\USER\OneDrive\Documents\Git\JSP-Robiul\tomcet file\apache-tomcat-10.1.15-windows-x64\apache-tomcat-10.1.15
+01-Nov-2023 22:04:38.800 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.home=C:\Users\USER\OneDrive\Documents\Git\JSP-Robiul\tomcet file\apache-tomcat-10.1.15-windows-x64\apache-tomcat-10.1.15
+01-Nov-2023 22:04:38.800 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.io.tmpdir=C:\Users\USER\OneDrive\Documents\Git\JSP-Robiul\tomcet file\apache-tomcat-10.1.15-windows-x64\apache-tomcat-10.1.15\temp
+01-Nov-2023 22:04:38.931 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent Loaded Apache Tomcat Native library [2.0.6] using APR version [1.7.4].
+01-Nov-2023 22:04:38.987 INFO [main] org.apache.catalina.core.AprLifecycleListener.initializeSSL OpenSSL successfully initialized [OpenSSL 3.0.11 19 Sep 2023]
+01-Nov-2023 22:04:39.499 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-nio-8080"]
+01-Nov-2023 22:04:39.569 INFO [main] org.apache.catalina.startup.Catalina.load Server initialization in [1284] milliseconds
+01-Nov-2023 22:04:39.663 INFO [main] org.apache.catalina.core.StandardService.startInternal Starting service [Catalina]
+01-Nov-2023 22:04:39.663 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet engine: [Apache Tomcat/10.1.15]
+01-Nov-2023 22:04:39.689 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [C:\Users\USER\OneDrive\Documents\Git\JSP-Robiul\tomcet file\apache-tomcat-10.1.15-windows-x64\apache-tomcat-10.1.15\webapps\docs]
+01-Nov-2023 22:04:40.293 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\Users\USER\OneDrive\Documents\Git\JSP-Robiul\tomcet file\apache-tomcat-10.1.15-windows-x64\apache-tomcat-10.1.15\webapps\docs] has finished in [604] ms
+01-Nov-2023 22:04:40.293 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [C:\Users\USER\OneDrive\Documents\Git\JSP-Robiul\tomcet file\apache-tomcat-10.1.15-windows-x64\apache-tomcat-10.1.15\webapps\examples]
+01-Nov-2023 22:04:41.143 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\Users\USER\OneDrive\Documents\Git\JSP-Robiul\tomcet file\apache-tomcat-10.1.15-windows-x64\apache-tomcat-10.1.15\webapps\examples] has finished in [850] ms
+01-Nov-2023 22:04:41.144 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [C:\Users\USER\OneDrive\Documents\Git\JSP-Robiul\tomcet file\apache-tomcat-10.1.15-windows-x64\apache-tomcat-10.1.15\webapps\host-manager]
+01-Nov-2023 22:04:41.254 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\Users\USER\OneDrive\Documents\Git\JSP-Robiul\tomcet file\apache-tomcat-10.1.15-windows-x64\apache-tomcat-10.1.15\webapps\host-manager] has finished in [109] ms
+01-Nov-2023 22:04:41.255 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [C:\Users\USER\OneDrive\Documents\Git\JSP-Robiul\tomcet file\apache-tomcat-10.1.15-windows-x64\apache-tomcat-10.1.15\webapps\manager]
+01-Nov-2023 22:04:41.358 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\Users\USER\OneDrive\Documents\Git\JSP-Robiul\tomcet file\apache-tomcat-10.1.15-windows-x64\apache-tomcat-10.1.15\webapps\manager] has finished in [104] ms
+01-Nov-2023 22:04:41.358 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [C:\Users\USER\OneDrive\Documents\Git\JSP-Robiul\tomcet file\apache-tomcat-10.1.15-windows-x64\apache-tomcat-10.1.15\webapps\ROOT]
+01-Nov-2023 22:04:41.410 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\Users\USER\OneDrive\Documents\Git\JSP-Robiul\tomcet file\apache-tomcat-10.1.15-windows-x64\apache-tomcat-10.1.15\webapps\ROOT] has finished in [52] ms
+01-Nov-2023 22:04:41.421 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-8080"]
+01-Nov-2023 22:04:41.497 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in [1926] milliseconds
+01-Nov-2023 22:05:02.328 INFO [http-nio-8080-exec-8] org.apache.catalina.startup.HostConfig.deployDescriptor Deploying deployment descriptor [C:\Users\USER\OneDrive\Documents\Git\JSP-Robiul\tomcet file\apache-tomcat-10.1.15-windows-x64\apache-tomcat-10.1.15\conf\Catalina\localhost\WebApplication1.xml]
+01-Nov-2023 22:05:02.330 WARNING [http-nio-8080-exec-8] org.apache.catalina.startup.HostConfig.deployDescriptor The path attribute with value [/WebApplication1] in deployment descriptor [C:\Users\USER\OneDrive\Documents\Git\JSP-Robiul\tomcet file\apache-tomcat-10.1.15-windows-x64\apache-tomcat-10.1.15\conf\Catalina\localhost\WebApplication1.xml] has been ignored
+01-Nov-2023 22:05:02.410 INFO [http-nio-8080-exec-8] org.apache.catalina.startup.HostConfig.deployDescriptor Deployment of deployment descriptor [C:\Users\USER\OneDrive\Documents\Git\JSP-Robiul\tomcet file\apache-tomcat-10.1.15-windows-x64\apache-tomcat-10.1.15\conf\Catalina\localhost\WebApplication1.xml] has finished in [83] ms
+01-Nov-2023 22:05:02.419 INFO [http-nio-8080-exec-10] org.apache.catalina.util.LifecycleBase.start The start() method was called on component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/WebApplication1]] after start() had already been called. The second call will be ignored.
+01-Nov-2023 22:08:51.793 INFO [Catalina-utility-2] org.apache.catalina.startup.HostConfig.reload Reloading context [/WebApplication1]
+01-Nov-2023 22:08:51.794 INFO [Catalina-utility-2] org.apache.catalina.core.StandardContext.reload Reloading Context with name [/WebApplication1] has started
+01-Nov-2023 22:08:51.841 INFO [Catalina-utility-2] org.apache.catalina.core.StandardContext.reload Reloading Context with name [/WebApplication1] is completed
+01-Nov-2023 22:09:31.901 INFO [Catalina-utility-2] org.apache.catalina.startup.HostConfig.reload Reloading context [/WebApplication1]
+01-Nov-2023 22:09:31.901 INFO [Catalina-utility-2] org.apache.catalina.core.StandardContext.reload Reloading Context with name [/WebApplication1] has started
+01-Nov-2023 22:09:31.952 INFO [Catalina-utility-2] org.apache.catalina.core.StandardContext.reload Reloading Context with name [/WebApplication1] is completed
+01-Nov-2023 22:24:03.420 INFO [http-nio-8080-exec-19] org.apache.catalina.core.StandardContext.reload Reloading Context with name [/WebApplication1] has started
+01-Nov-2023 22:24:04.208 INFO [http-nio-8080-exec-19] org.apache.jasper.servlet.TldScanner.scanJars At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+01-Nov-2023 22:24:04.211 INFO [http-nio-8080-exec-19] org.apache.catalina.core.StandardContext.reload Reloading Context with name [/WebApplication1] is completed
+01-Nov-2023 22:25:30.389 INFO [http-nio-8080-exec-28] org.apache.catalina.core.StandardContext.reload Reloading Context with name [/WebApplication1] has started
+01-Nov-2023 22:25:31.542 INFO [http-nio-8080-exec-28] org.apache.jasper.servlet.TldScanner.scanJars At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+01-Nov-2023 22:25:31.563 INFO [http-nio-8080-exec-28] org.apache.catalina.core.StandardContext.reload Reloading Context with name [/WebApplication1] is completed
+01-Nov-2023 22:25:31.903 INFO [http-nio-8080-exec-18] org.apache.catalina.core.StandardContext.reload Reloading Context with name [/WebApplication1] has started
+01-Nov-2023 22:25:32.899 INFO [http-nio-8080-exec-18] org.apache.jasper.servlet.TldScanner.scanJars At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+01-Nov-2023 22:25:32.923 INFO [http-nio-8080-exec-18] org.apache.catalina.core.StandardContext.reload Reloading Context with name [/WebApplication1] is completed
