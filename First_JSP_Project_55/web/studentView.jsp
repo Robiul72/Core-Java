@@ -1,14 +1,18 @@
 
 <%@include file="header.jsp" %>
 
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="hasan" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<%@page import="model.student, dao.studentDao, java.util.* " %>
+<%@page import="model.Student"%>
+<%@page import="daos.StudentDao"%>
+<%@page import="java.util.*"%>
 
 
 <%
-List<student> list = studentDao.getAllStudent();
+//List<student> list = StudentDao.getAllStudent();
+List<Student> list = StudentDao.getAllStudent();
 request.setAttribute("list", list);
+int counter = 0;
 %>
 
 <div class="container my-3 py-3">

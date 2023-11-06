@@ -1,6 +1,6 @@
 
 
-<h1 class="text-success" >Student Not Saved</h1>
+<h1 class="text-danger" >Student Not Saved</h1>
 
 
  

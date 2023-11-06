@@ -9,24 +9,14 @@
 <%@page import="java.util.*"%>
 
 
-<!--//List<Student> list = StudentDao.getAllStudent();
-////request.setAttribute("list" list);
-//request.setAttribute("list", list);
-//
-//int counter = 0;
-//
-//for(Student student : list){
-//    
-//    student.setSequence(counter++);
-//    }-->
 
 <% 
-// This is a comment
+
 List<Student> list = StudentDao.getAllStudent();
 request.setAttribute("list", list);
 
 int counter = 0;
-// ... other Java code ...
+
 %>
 
 

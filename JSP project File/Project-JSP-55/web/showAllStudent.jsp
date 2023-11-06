@@ -5,18 +5,17 @@
 <%@taglib prefix="hasan" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%@page import="model.Student"%>
-<%@page import="Dao.StudentDao"%>
+<%@page import="daos.StudentDao"%>
 <%@page import="java.util.*"%>
 
 
-
 <% 
-
+// This is a comment
 List<Student> list = StudentDao.getAllStudent();
 request.setAttribute("list", list);
 
 int counter = 0;
-
+// ... other Java code ...
 %>
 
 
